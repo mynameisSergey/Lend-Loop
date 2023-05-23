@@ -35,18 +35,18 @@ public class InMemoryItemStorage implements ItemStorage {
 
     @Override
     public Item getItemById(int id) {
-        if (items.get(id) != null) {
-            return items.get(id);
-        } else {
-            throw new ObjectNotFoundException("Вещь не найдена");
-        }
+        checkById(id);
+        return items.get(id);
     }
 
     @Override
     public void removeItemById(int id) {
-        if (items.get(id) != null) {
-            items.remove(id);
-        } else {
+        checkById(id);
+        items.remove(id);
+    }
+
+    public void checkById(int id) {
+        if (items.get(id) == null) {
             throw new ObjectNotFoundException("Вещь не найдена");
         }
     }

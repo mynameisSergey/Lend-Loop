@@ -13,8 +13,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/items")
 public class ItemController {
-    private final ItemServiceInterface itemService;
+
     private static final String XSHARERUSERID = "X-Sharer-User-Id";
+    private final ItemServiceInterface itemService;
+
 
     @Autowired
     public ItemController(ItemServiceInterface itemService) {
