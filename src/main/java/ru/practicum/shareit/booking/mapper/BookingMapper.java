@@ -1,7 +1,7 @@
-package ru.practicum.shareit.booking;
+package ru.practicum.shareit.booking.mapper;
 
 import ru.practicum.shareit.booking.dto.BookingDto;
-import ru.practicum.shareit.booking.Booking;
+import ru.practicum.shareit.booking.model.Booking;
 
 import java.util.Optional;
 

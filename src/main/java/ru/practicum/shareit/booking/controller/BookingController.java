@@ -1,9 +1,9 @@
-package ru.practicum.shareit.booking;
+package ru.practicum.shareit.booking.controller;
 
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.shareit.booking.dto.BookingDto;
-import ru.practicum.shareit.booking.BookingService;
+import ru.practicum.shareit.booking.service.BookingService;
 
 import javax.validation.Valid;
 import java.util.List;
