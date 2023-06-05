@@ -65,18 +65,17 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public ItemDto getItemById(Long id, Long userId) {
         var item = itemRepository.findById(id);
-        if (item.isEmpty()) {
-            throw new ObjectNotFoundException("Вещь не найдена");
-        } else {
+        if (item.isPresent()) {
             var itemDto = ItemMapper.toItemDto(item.get());
             if (item.get().getOwner().getId().equals(userId)) {
                 addBookingsItem(itemDto);
             }
             addCommentsItem(itemDto);
             return itemDto;
+        } else {
+            throw new ObjectNotFoundException("Вещь не найдена");
         }
     }
-
 
     private ItemDto addBookingsItem(ItemDto dto) {
         Item item = ItemMapper.toItem(new Item(), dto);
