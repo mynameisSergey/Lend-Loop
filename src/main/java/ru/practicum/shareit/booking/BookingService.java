@@ -16,3 +16,4 @@ public interface BookingService {
     List<BookingDto> getAllBookingsByStateAndOwner(Long userId, String stringState);
 }
 
+
