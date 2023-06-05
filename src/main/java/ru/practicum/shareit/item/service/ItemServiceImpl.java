@@ -25,6 +25,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class ItemServiceImpl implements ItemService {
@@ -33,6 +34,7 @@ public class ItemServiceImpl implements ItemService {
     private final UserRepository userRepository;
     private final BookingRepository bookingRepository;
     private final CommentRepository commentRepository;
+
     @Override
     public ItemDto createItem(ItemDto itemDto, Long userId) {
         Item newItem = ItemMapper.toItem(new Item(), itemDto);
@@ -44,6 +46,7 @@ public class ItemServiceImpl implements ItemService {
         Item createdItem = itemRepository.save(newItem);
         return ItemMapper.toItemDto(createdItem);
     }
+
     @Override
     public ItemDto updateItem(ItemDto itemDto, Long itemId, Long userId) {
         var item = itemRepository.findById(itemId);
@@ -55,6 +58,7 @@ public class ItemServiceImpl implements ItemService {
         Item updatedItem = itemRepository.save(item.get());
         return ItemMapper.toItemDto(updatedItem);
     }
+
     @Override
     public ItemDto getItemById(Long id, Long userId) {
         var item = itemRepository.findById(id);
@@ -82,6 +86,7 @@ public class ItemServiceImpl implements ItemService {
         }
         return dto;
     }
+
     @Override
     public List<ItemDto> getItemsByUserId(Long userId) {
         return itemRepository.findAllByOwnerId(userId)
@@ -92,6 +97,7 @@ public class ItemServiceImpl implements ItemService {
                 .sorted(Comparator.comparingLong(ItemDto::getId))
                 .collect(Collectors.toList());
     }
+
     private ItemDto addCommentsItem(ItemDto dto) {
         Item item = new Item();
         ItemMapper.toItem(item, dto);
@@ -105,6 +111,7 @@ public class ItemServiceImpl implements ItemService {
         }
         return dto;
     }
+
     @Override
     public void removeItemById(Long id) {
         itemRepository.deleteById(id);
@@ -118,6 +125,7 @@ public class ItemServiceImpl implements ItemService {
                 .map(ItemMapper::toItemDto)
                 .collect(Collectors.toList());
     }
+
     @Override
     public CommentDto createComment(CommentDto commentDto, Long userId, Long itemId) {
         Comment newComment = new Comment();
