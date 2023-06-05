@@ -55,16 +55,13 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public BookingDto getBooking(Long id, Long userId) {
         var booking = bookingRepository.findById(id);
-        if (booking.isPresent()) {
-            if (!Objects.equals(booking.get().getBooker().getId(), userId) &&
-                    !Objects.equals(booking.get().getItem().getOwner().getId(), userId)) {
-                throw new ObjectNotFoundException("Вещь другого собственника:" + userId);
-            }
-            return BookingMapper.toBookingDto(booking.get());
-        } else {
+        if (booking.isEmpty()) {
             throw new ObjectNotFoundException("Бронирование не найдено");
+        } else {
+            return BookingMapper.toBookingDto(booking.get());
         }
     }
+
 
     @Override
     @Transactional

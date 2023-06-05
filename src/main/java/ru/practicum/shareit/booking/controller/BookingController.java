@@ -1,5 +1,6 @@
 package ru.practicum.shareit.booking.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.shareit.booking.dto.BookingDto;
@@ -10,14 +11,12 @@ import java.util.List;
 
 @Validated
 @RestController
+@RequiredArgsConstructor
 @RequestMapping(path = "/bookings")
 public class BookingController {
+
     private final BookingService bookingService;
     private static final String X_SHARER_USER_ID = "X-Sharer-User-Id";
-
-    public BookingController(BookingService bookingService) {
-        this.bookingService = bookingService;
-    }
 
     @PostMapping
     public BookingDto createBooking(@Valid @RequestBody BookingDto bookingDto, @RequestHeader(X_SHARER_USER_ID) Long userId) {
@@ -27,7 +26,7 @@ public class BookingController {
     @PatchMapping("/{bookingId}")
     public BookingDto updateBooking(@PathVariable Long bookingId,
                                     @RequestHeader(X_SHARER_USER_ID) Long userId,
-                                    @RequestParam(name = "approved") Boolean approved) {
+                                    @RequestParam("approved") Boolean approved) {
         return bookingService.updateBooking(bookingId, userId, approved);
     }
 
