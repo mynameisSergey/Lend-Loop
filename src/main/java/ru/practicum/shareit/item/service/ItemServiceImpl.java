@@ -116,6 +116,7 @@ public class ItemServiceImpl implements ItemService {
     public void removeItemById(Long id) {
         itemRepository.deleteById(id);
     }
+
     public List<ItemDto> searchItems(String text) {
         if (StringUtils.isBlank(text)) {
             return new ArrayList<>();
