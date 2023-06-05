@@ -12,12 +12,11 @@ public class ItemMapper {
                 .name(item.getName())
                 .description(item.getDescription())
                 .available(item.getAvailable())
-                .owner(item.getOwner())
-                .request(item.getRequest())
                 .build();
     }
 
     public static Item toItem(Item item, ItemDto itemDto) {
+        item.setId(itemDto.getId());
         Optional.ofNullable(itemDto.getName()).ifPresent(item::setName);
         Optional.ofNullable(itemDto.getAvailable()).ifPresent(item::setAvailable);
         Optional.ofNullable(itemDto.getDescription()).ifPresent(item::setDescription);
