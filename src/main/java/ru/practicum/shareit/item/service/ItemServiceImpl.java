@@ -28,6 +28,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class ItemServiceImpl implements ItemService {
+
     private final ItemRepository itemRepository;
     private final UserRepository userRepository;
     private final BookingRepository bookingRepository;
