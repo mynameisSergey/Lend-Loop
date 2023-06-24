@@ -16,7 +16,7 @@ import javax.validation.constraints.Min;
  * // TODO .
  */
 @Data
-@NoArgsConstructor
+@NoArgsConstructor(force = true)
 @Entity
 @Table(name = "items")
 public class Item {

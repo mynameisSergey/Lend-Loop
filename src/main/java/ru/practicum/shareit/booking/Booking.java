@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
  * // TODO .
  */
 @Data
-@NoArgsConstructor
+@NoArgsConstructor(force = true)
 @AllArgsConstructor
 @Entity
 @Table(name = "bookings")
