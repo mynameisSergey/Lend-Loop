@@ -1,144 +1,108 @@
 package ru.practicum.shareit.user;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import ru.practicum.shareit.exception.NullParamException;
+import org.springframework.test.web.servlet.MvcResult;
 
-import java.nio.charset.StandardCharsets;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Collections;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@ExtendWith(MockitoExtension.class)
-public class UserControllerTest {
-    @Mock
+
+@AutoConfigureMockMvc
+@WebMvcTest(UserController.class)
+class UserControllerTest {
+
+    @Autowired
+    private ObjectMapper mapper;
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @MockBean
     private UserService userService;
-
-    @InjectMocks
-    private UserController userController;
-
-    private final ObjectMapper mapper = new ObjectMapper();
-
-    private MockMvc mvc;
-    private List<User> users;
+    private UserDto userDto;
+    private UserDto userDto2;
+    private UserDto userDto3;
 
     @BeforeEach
-    void setUp() {
-        mvc = MockMvcBuilders.standaloneSetup(userController).build();
-        users = new LinkedList<>();
-        User user = new User(1, "name", "a@email.ru");
-        users.add(user);
+    void beforeEach() {
+        userDto = new UserDto(1L, "User1", "user@email.ru");
+        userDto2 = new UserDto(1L, "User1", "mail@email.ru");
+        userDto3 = new UserDto(1L, "User1", "mail-email.ru");
     }
 
     @Test
-    void show() throws Exception {
-        when(userService.getUsers()).thenReturn(users);
-
-        mvc.perform(get("/users"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].id", is(users.get(0).getId()), Long.class))
-                .andExpect(jsonPath("$[0].name", is(users.get(0).getName())))
-                .andExpect(jsonPath("$[0].email", is(users.get(0).getEmail())));
-    }
-
-    @Test
-    void create() throws Exception {
-        when(userService.addUser(any())).thenReturn(users.get(0));
-
-        mvc.perform(post("/users")
-                        .content(mapper.writeValueAsString(users.get(0)))
-                        .characterEncoding(StandardCharsets.UTF_8)
+    void createUserTest() throws Exception {
+        when(userService.createUser(any())).thenReturn(userDto);
+        String body = mapper.writeValueAsString(userDto);
+        mockMvc.perform(post("/users")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON))
+                        .content(body))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(users.get(0).getId()), Long.class))
-                .andExpect(jsonPath("$.name", is(users.get(0).getName())))
-                .andExpect(jsonPath("$.email", is(users.get(0).getEmail())));
+                .andExpect(jsonPath("$.id", is(userDto.getId()), Long.class))
+                .andExpect(jsonPath("$.name", is(userDto.getName()), String.class))
+                .andExpect(jsonPath("$.email", is(userDto.getEmail()), String.class));
     }
 
     @Test
-    void put() throws Exception {
-        when(userService.update(any())).thenReturn(users.get(0));
-
-        mvc.perform(MockMvcRequestBuilders.put("/users")
-                        .content(mapper.writeValueAsString(new UserDto(1, "name", "a@email.ru")))
-                        .characterEncoding(StandardCharsets.UTF_8)
+    void createUserFailEmailTest() throws Exception {
+        String body = mapper.writeValueAsString(userDto3);
+        mockMvc.perform(post("/users")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(users.get(0).getId()), Long.class))
-                .andExpect(jsonPath("$.name", is(users.get(0).getName())))
-                .andExpect(jsonPath("$.email", is(users.get(0).getEmail())));
+                        .content(body))
+                .andExpect(status().isBadRequest())
+                .andReturn();
     }
 
     @Test
-    void update() throws Exception {
-        when(userService.update(any())).thenReturn(users.get(0));
-
-        mvc.perform(MockMvcRequestBuilders.patch("/users/1")
-                        .content(mapper.writeValueAsString(new UserDto(1, "name", "a@email.ru")))
-                        .characterEncoding(StandardCharsets.UTF_8)
+    void updateUserTest() throws Exception {
+        when(userService.updateUser(1L, userDto2)).thenReturn(userDto2);
+        String body2 = mapper.writeValueAsString(userDto2);
+        mockMvc.perform(patch("/users/1")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON))
+                        .content(body2))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(users.get(0).getId()), Long.class))
-                .andExpect(jsonPath("$.name", is(users.get(0).getName())))
-                .andExpect(jsonPath("$.email", is(users.get(0).getEmail())));
+                .andExpect(jsonPath("$.name", is(userDto2.getName()), String.class))
+                .andExpect(jsonPath("$.email", is(userDto2.getEmail()), String.class));
     }
 
     @Test
-    void getById() throws Exception {
-        when(userService.getUser(1)).thenReturn(java.util.Optional.ofNullable(users.get(0)));
-
-        mvc.perform(get("/users/1"))
+    void getUserByIdTest() throws Exception {
+        when(userService.getUserById(1L)).thenReturn(userDto);
+        mockMvc.perform(get("/users/1")
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(users.get(0).getId()), Long.class))
-                .andExpect(jsonPath("$.name", is(users.get(0).getName())))
-                .andExpect(jsonPath("$.email", is(users.get(0).getEmail())));
+                .andExpect(jsonPath("$.name", is(userDto.getName()), String.class))
+                .andExpect(jsonPath("$.email", is(userDto.getEmail()), String.class));
     }
 
     @Test
-    void userCheckerNullParamException() {
-        User user = new User();
-        user.setId(1);
-        Exception exception = assertThrows(NullParamException.class, () -> {
-            userController.userChecker(user);
-        });
-        System.out.println(exception.getMessage());
-        String expectedMessage = "NullParamException";
-        String actualMessage = exception.getMessage();
-        assertEquals(actualMessage, expectedMessage);
+    void findAllTest() throws Exception {
+        when(userService.findAll()).thenReturn(Collections.singletonList(userDto));
+        MvcResult result = mockMvc.perform(get("/users")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andReturn();
+        assertNotNull(result);
     }
 
     @Test
-    void userCheckerWrongDataException() {
-        User user = new User();
-        user.setId(1);
-        user.setName("name");
-        Exception exception = assertThrows(NullParamException.class, () -> {
-            userController.userChecker(user);
-        });
-        System.out.println(exception.getMessage());
-        String expectedMessage = "NullParamException";
-        String actualMessage = exception.getMessage();
-        assertEquals(actualMessage, expectedMessage);
+    void removeUserById() throws Exception {
+        mockMvc.perform(delete("/users/1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
     }
 }

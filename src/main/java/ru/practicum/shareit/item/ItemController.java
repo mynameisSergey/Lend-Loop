@@ -1,77 +1,63 @@
 package ru.practicum.shareit.item;
 
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.shareit.comment.CommentDto;
-import ru.practicum.shareit.exception.NotFoundException;
-import ru.practicum.shareit.exception.WrongDataException;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 import java.util.List;
 
-/**
- * // TODO .
- */
+@Validated
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/items")
 public class ItemController {
-
     private final ItemService itemService;
+    private static final String X_SHARER_USER_ID = "X-Sharer-User-Id";
 
-    @PostMapping
-    public @Valid ItemDto create(@RequestHeader("X-Sharer-User-Id") String ownerId,
-                                 @Valid @RequestBody final ItemDto itemDto) {
-        System.out.println(itemDto);
-        if (itemDto.getName() == null) throw new NotFoundException("");
-        if (itemDto.getName().equals("") || itemDto.getDescription() == null) throw new WrongDataException("");
-        return itemService.addItem(itemDto, Long.parseLong(ownerId));
+    @Autowired
+    public ItemController(ItemService itemService) {
+        this.itemService = itemService;
     }
 
     @GetMapping
-    public @Valid List<?> show(@RequestHeader("X-Sharer-User-Id") String ownerId,
-                               @RequestParam(name = "from", defaultValue = "") String from,
-                               @RequestParam(name = "size", defaultValue = "") String size) {
-        if (!size.equals("")) {
-            if (itemService.show(Long.parseLong(ownerId), Integer.parseInt(from), Integer.parseInt(size)).getClass().getSimpleName().equals("PageImpl")) {
-                return itemService.show(Long.parseLong(ownerId), Integer.parseInt(from), Integer.parseInt(size)).getContent();
-            }
-            return (List<?>) itemService.show(Long.parseLong(ownerId), Integer.parseInt(from), Integer.parseInt(size));
-        } else {
-            return itemService.show(Long.parseLong(ownerId));
-        }
+    public List<ItemResponseDto> findAll(@RequestHeader(X_SHARER_USER_ID) Long userId,
+                                         @PositiveOrZero @RequestParam(name = "from", defaultValue = "0") Integer from, @Positive @RequestParam(name = "size", defaultValue = "100") Integer size) {
+        return itemService.getItemsByUserId(userId, from, size);
+    }
+
+    @PostMapping
+    public ItemResponseDto createItem(@Valid @RequestBody ItemDto itemDto, @RequestHeader(X_SHARER_USER_ID) Long userId) {
+        return itemService.createItem(itemDto, userId);
     }
 
     @PatchMapping("/{itemId}")
-    public @Valid ItemDto update(@PathVariable("itemId") long itemId,
-                                 @RequestHeader("X-Sharer-User-Id") String ownerId,
-                                 @Valid @RequestBody final ItemDto itemDto) {
-        return itemService.updateItem(itemDto, Long.parseLong(ownerId), itemId);
+    public ItemResponseDto updateItem(@RequestBody ItemDto itemDto, @PathVariable Long itemId, @RequestHeader(X_SHARER_USER_ID) Long userId) {
+        return itemService.updateItem(itemDto, itemId, userId);
     }
 
-    @GetMapping("/{id}")
-    public ItemDto getItemDtoById(@PathVariable("id") long id, @RequestHeader("X-Sharer-User-Id") String userId) {
-        if (itemService.getItemDtoById(id, Long.parseLong(userId)) != null) {
-            return itemService.getItemDtoById(id, Long.parseLong(userId));
-        }
-        throw new NotFoundException("Item not exist.");
+    @GetMapping("/{itemId}")
+    public ItemResponseDto getItem(@PathVariable Long itemId, @RequestHeader(X_SHARER_USER_ID) Long userId) {
+        return itemService.getItemById(itemId, userId);
     }
 
     @GetMapping("/search")
-    public List<? extends Object> search(@RequestParam("text") String text,
-                                         @RequestParam(name = "from", defaultValue = "") String from,
-                                         @RequestParam(name = "size", defaultValue = "") String size) {
-        if (!size.equals("")) {
-            return itemService.searchItems(text, Integer.parseInt(from), Integer.parseInt(size));
-        } else
-            return itemService.searchItems(text);
+    public List<ItemResponseDto> searchItems(@RequestParam(name = "text") String text,
+                                             @PositiveOrZero @RequestParam(name = "from", defaultValue = "0") Integer from,
+                                             @Positive @RequestParam(name = "size", defaultValue = "100") Integer size) {
+        return itemService.searchItems(text, from, size);
+    }
+
+    @DeleteMapping("/{itemId}")
+    public void removeItem(@PathVariable Long itemId) {
+        itemService.removeItemById(itemId);
     }
 
     @PostMapping("/{itemId}/comment")
-    public CommentDto addComment(@PathVariable("itemId") long itemId, @Valid @RequestBody CommentDto commentDto,
-                                 @RequestHeader("X-Sharer-User-Id") String userId) {
-        if (commentDto.getText().equals("")) throw new WrongDataException("text is empty.");
-        return itemService.addComment(commentDto, itemId, Long.parseLong(userId));
+    public CommentResponseDto createComment(@Valid @RequestBody CommentDto commentDto,
+                                            @RequestHeader(X_SHARER_USER_ID) Long userId,
+                                            @PathVariable Long itemId) {
+        return itemService.createComment(commentDto, userId, itemId);
     }
-
 }

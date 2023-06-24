@@ -1,15 +1,21 @@
 package ru.practicum.shareit.user;
 
+
+import java.util.Optional;
+
 public class UserMapper {
     public static UserDto toUserDto(User user) {
-        return new UserDto(
-                user.getId(),
-                user.getName(),
-                user.getEmail()
-        );
+        return UserDto.builder()
+                .id(user.getId())
+                .name(user.getName())
+                .email(user.getEmail())
+                .build();
     }
 
-    public static User toUser(UserDto userDto) {
-        return new User(userDto.getId(), userDto.getName(), userDto.getEmail());
+    public static User toUser(User user, UserDto userDto) {
+        user.setId(userDto.getId());
+        Optional.ofNullable(userDto.getName()).ifPresent(user::setName);
+        Optional.ofNullable(userDto.getEmail()).ifPresent(user::setEmail);
+        return user;
     }
 }

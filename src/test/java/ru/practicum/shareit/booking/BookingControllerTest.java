@@ -1,122 +1,109 @@
 package ru.practicum.shareit.booking;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
-import ru.practicum.shareit.item.ItemService;
-import ru.practicum.shareit.user.User;
-import ru.practicum.shareit.user.UserService;
-
 import java.time.LocalDateTime;
-import java.util.Collections;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(BookingController.class)
-@ExtendWith(MockitoExtension.class)
-@TestPropertySource(properties = {"db.name=booking_test"})
 @AutoConfigureMockMvc
-public class BookingControllerTest {
-    @MockBean
-    private BookingService bookingService;
-
-    @MockBean
-    private UserService userService;
-
-    @MockBean
-    private ItemService itemService;
+@WebMvcTest(BookingController.class)
+class BookingControllerTest {
 
     @Autowired
-    private MockMvc mockMvc;
+    ObjectMapper mapper;
+
+    @Autowired
+    MockMvc mockMvc;
+
+    @MockBean
+    BookingService bookingService;
 
     @Test
-    void testGetBookings() throws Exception {
-        // given
-        String state = "ALL";
-        long userId = 1L;
-        int from = 0;
-        int size = 20;
-        when(userService.getUser(anyLong())).thenReturn(java.util.Optional.of(new User()));
-        when(bookingService.showAllUserBookings(userId, State.PAST)).thenReturn(Collections.emptyList());
-
-        // when + then
-        mockMvc.perform(get("/bookings")
-                        .header("X-Sharer-User-Id", userId)
-                        .param("from", String.valueOf(from))
-                        .param("size", String.valueOf(size))
-                        .param("state", state))
-                .andExpect(status().isOk())
-                .andExpect(content().json("[]"));
-        verify(bookingService, times(1)).showAll(State.ALL, from, size);
-    }
-
-    @Test
-    void testGetOwnerBookings() throws Exception {
-        // given
-        String state = "ALL";
-        long userId = 1L;
-        int from = 0;
-        int size = 20;
-        when(userService.getUser(anyLong())).thenReturn(java.util.Optional.of(new User()));
-        when(bookingService.showAllUserBookings(userId, State.PAST)).thenReturn(Collections.emptyList());
-
-        // when + then
-        mockMvc.perform(get("/bookings/owner")
-                        .header("X-Sharer-User-Id", userId)
-                        .param("from", String.valueOf(from))
-                        .param("size", String.valueOf(size))
-                        .param("state", state))
-                .andExpect(status().isOk())
-                .andExpect(content().json("[]"));
-        verify(bookingService, times(1)).getOwnerBookings(from, size, userId);
-    }
-
-    @Test
-    void testBookItem() throws Exception {
-        // given
-        long userId = 1L;
-        long itemId = 2L;
-        BookingDto bookingDto = new BookingDto(3L, itemId, userId, null, null);
-        when(bookingService.createBooking(any(), anyLong())).thenReturn(bookingDto);
-
-        // when + then
+    void createBookingTest() throws Exception {
+        LocalDateTime start = LocalDateTime.now().plusDays(1);
+        LocalDateTime end = LocalDateTime.now().plusDays(2);
+        BookingDto booking = new BookingDto(1L, start, end, 1L, 1L);
+        String body = mapper.writeValueAsString(booking);
         mockMvc.perform(post("/bookings")
-                        .header("X-Sharer-User-Id", userId)
-                        .content(String.format("{\"itemId\": %s,\"start\": \"%s\", \"end\":\"%s\"}", itemId, LocalDateTime.now().plusDays(1), LocalDateTime.now().plusDays(2)))
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(bookingDto.getId()));
-        verify(bookingService, times(1)).createBooking(any(), anyLong());
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header("X-Sharer-User-Id", "1")
+                        .content(body))
+                .andExpect(status().isOk());
     }
 
     @Test
-    void testGetBooking() throws Exception {
-        // given
-        long userId = 1L;
-        long bookerId = 0L;
-        BookingDto bookingDto = new BookingDto(3L, userId, null, null);
-        when(userService.getUser(anyLong())).thenReturn(java.util.Optional.of(new User()));
-        when(bookingService.isBookingExist(anyLong())).thenReturn(true);
-        when(bookingService.getBookingDto(bookingDto.getId())).thenReturn(bookingDto);
+    void createBookingFailStartTest() throws Exception {
+        LocalDateTime start = LocalDateTime.now().minusDays(1);
+        LocalDateTime end = LocalDateTime.now().plusDays(2);
+        BookingDto booking = new BookingDto(1L, start, end, 1L, 1L);
+        String body = mapper.writeValueAsString(booking);
+        mockMvc.perform(post("/bookings")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header("X-Sharer-User-Id", "1")
+                        .content(body))
+                .andExpect(status().isBadRequest())
+                .andReturn();
+    }
 
-        // when + then
-        mockMvc.perform(get("/bookings/" + bookingDto.getId())
-                        .header("X-Sharer-User-Id", bookerId))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(3));
-        verify(bookingService, times(2)).getBookingDto(anyLong());
+    @Test
+    void createBookingFailEndTest() throws Exception {
+        LocalDateTime start = LocalDateTime.now().plusDays(1);
+        LocalDateTime end = null;
+        BookingDto booking = new BookingDto(1L, start, end, 1L, 1L);
+        String body = mapper.writeValueAsString(booking);
+        mockMvc.perform(post("/bookings")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header("X-Sharer-User-Id", "1")
+                        .content(body))
+                .andExpect(status().isBadRequest())
+                .andReturn();
+    }
+
+    @Test
+    void updateBookingTest() throws Exception {
+        mockMvc.perform(patch("/bookings/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header("X-Sharer-User-Id", "1")
+                        .param("approved", "true"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void getBookingTest() throws Exception {
+        mockMvc.perform(get("/bookings/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header("X-Sharer-User-Id", "1"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void getAllBookingsByStateTest() throws Exception {
+        mockMvc.perform(get("/bookings")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header("X-Sharer-User-Id", "1")
+                        .param("from", "1")
+                        .param("size", "1")
+                        .param("state", "FUTURE"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void getAllBookingsByStateAndOwnerTest() throws Exception {
+        mockMvc.perform(get("/bookings/owner")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header("X-Sharer-User-Id", "1")
+                        .param("from", "1")
+                        .param("size", "1")
+                        .param("state", "FUTURE"))
+                .andExpect(status().isOk());
     }
 
 }

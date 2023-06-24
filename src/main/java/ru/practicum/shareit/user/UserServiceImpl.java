@@ -1,65 +1,67 @@
 package ru.practicum.shareit.user;
 
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import ru.practicum.shareit.exception.ObjectNotFoundException;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.stream.Collectors;
 
-@Component
+@Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
-@Getter
 public class UserServiceImpl implements UserService {
+
     private final UserRepository repository;
 
-    @Override//I&T
-    public List<User> getUsers() {
-        return repository.findAll();
+    @Override
+    @Transactional
+    public UserDto createUser(UserDto userDto) {
+        User user = UserMapper.toUser(new User(), userDto);
+        User createdUser = repository.save(user);
+        return UserMapper.toUserDto(createdUser);
     }
 
-    @Override//I&T
-    public Optional<User> getUser(long userId) {
-        return repository.findById(userId);
-    }
-
-    @Override//unit-test
-    public boolean isEmailExist(String email) {
-        for (User user : getUsers()) {
-            if (user.getEmail().equals(email)) return true;
-        }
-        return false;
-    }
-
-    @Override//I&T
-    public void setUsers(Set<User> users) {
-        for (User user : users) {
-            repository.save(user);
+    @Override
+    @Transactional
+    public UserDto updateUser(Long id, UserDto userDto) {
+        var user = repository.findById(id);
+        if (user.isPresent()) {
+            UserMapper.toUser(user.get(), userDto);
+            user.get().setId(id);
+            User updatedUser = repository.save(user.get());
+            return UserMapper.toUserDto(updatedUser);
+        } else {
+            throw new ObjectNotFoundException("Пользователь не найден");
         }
     }
 
-    @Override//I&T
-    public User addUser(User user) {
-        repository.save(user);
-        return repository.getById(user.getId());
+    @Override
+    public List<UserDto> findAll() {
+        return repository.findAll()
+                .stream()
+                .map(UserMapper::toUserDto)
+                .collect(Collectors.toList());
     }
 
-    @Override//I&T
-    public void deleteUser(long userId) {
-        repository.delete(getUser(userId).get());
-    }
-
-    @Override//unit-test
-    public User update(UserDto user) {
-        if (getUser(user.getId()).isPresent()) {
-            User updatedUser = getUser(user.getId()).get();
-            if (user.getName() != null) updatedUser.setName(user.getName());
-            if (user.getEmail() != null) updatedUser.setEmail(user.getEmail());
-            repository.save(updatedUser);
-            return updatedUser;
+    @Override
+    public UserDto getUserById(Long id) {
+        var user = repository.findById(id);
+        if (user.isEmpty()) {
+            throw new ObjectNotFoundException("Пользователь не найден");
         }
-        repository.save(UserMapper.toUser(user));
-        return UserMapper.toUser(user);
+        return UserMapper.toUserDto(user.get());
+    }
+
+    @Override
+    @Transactional
+    public void removeUserById(Long id) {
+        existUserById(id);
+        repository.deleteById(id);
+    }
+
+    private void existUserById(Long id) {
+        getUserById(id);
     }
 }

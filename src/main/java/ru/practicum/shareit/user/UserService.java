@@ -1,21 +1,16 @@
 package ru.practicum.shareit.user;
+import ru.practicum.shareit.exception.ObjectNotFoundException;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 public interface UserService {
-    List<User> getUsers();
+    List<UserDto> findAll();
 
-    Optional<User> getUser(long userId);
+    UserDto createUser(UserDto userDto);
 
-    boolean isEmailExist(String email);
+    UserDto updateUser(Long id, UserDto userDto);
 
-    void setUsers(Set<User> users);
+    UserDto getUserById(Long id) throws ObjectNotFoundException;
 
-    User addUser(User user);
-
-    void deleteUser(long userId);
-
-    User update(UserDto user);
+    void removeUserById(Long id);
 }
