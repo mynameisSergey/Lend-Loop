@@ -1,5 +1,6 @@
 package ru.practicum.shareit.item;
 
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
@@ -15,7 +16,7 @@ import javax.validation.constraints.Min;
  * // TODO .
  */
 @Data
-@NoArgsConstructor(force = true)
+@NoArgsConstructor
 @Entity
 @Table(name = "items")
 public class Item {

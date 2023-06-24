@@ -117,4 +117,5 @@ public class BookingController {
             throw new ValidationException("Wrong");
         }
     }
+
 }

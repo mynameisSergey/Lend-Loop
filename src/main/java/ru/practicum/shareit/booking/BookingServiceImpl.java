@@ -179,4 +179,6 @@ public class BookingServiceImpl implements BookingService {
         }
         return repository.getOwnerBookings(userId, PageRequest.of(firstPage, size, Sort.by("start").descending()));
     }
+
+
 }

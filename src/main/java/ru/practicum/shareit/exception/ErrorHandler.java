@@ -34,4 +34,6 @@ public class ErrorHandler {
     public Map<String, String> handleNotFoundException(final NotFoundException e) {
         return Map.of("not found error", e.getMessage());
     }
+
+
 }

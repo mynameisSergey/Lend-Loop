@@ -27,4 +27,5 @@ public interface ItemService {
     CommentDto getCommentDto(long itemId);
 
     void removeItem(long id);
+
 }

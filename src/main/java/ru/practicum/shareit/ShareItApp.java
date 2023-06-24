@@ -20,4 +20,5 @@ public class ShareItApp {
 	public static void stop() {
 		context.close();
 	}
+
 }

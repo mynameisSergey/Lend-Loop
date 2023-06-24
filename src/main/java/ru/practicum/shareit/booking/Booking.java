@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
  * // TODO .
  */
 @Data
-@NoArgsConstructor(force = true)
+@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "bookings")
@@ -67,4 +67,5 @@ public class Booking {
         this.item = item;
         this.status = status;
     }
+
 }
