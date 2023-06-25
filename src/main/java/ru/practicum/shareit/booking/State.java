@@ -3,7 +3,7 @@ package ru.practicum.shareit.booking;
 import java.util.Optional;
 
 public enum State {
-    WAITING, REJECTED, ALL, CURRENT, PAST, FUTURE;
+    WAITING, REJECTED, ALL, CURRENT, PAST, FUTURE, UNSUPPORTED_STATUS;
 
     public static Optional<State> from(String stringState) {
         for (State state : values()) {
