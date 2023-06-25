@@ -125,7 +125,7 @@ public class BookingServiceTest {
         assertEquals(1, bookingDb.size());
         assertThrows(IllegalStateException.class, () -> bookingService.getAllBookingsByState(1L, "FAIL", 1, 1));
         final IllegalStateException exception = Assertions.assertThrows(IllegalStateException.class,
-                () -> bookingService.getAllBookingsByState(1L, "FAIL", 1, 1));
+                () -> bookingService.getAllBookingsByState(1L, "UNSUPPORTED_STATUS", 1, 1));
         Assertions.assertEquals("Unknown state: UNSUPPORTED_STATUS", exception.getMessage());
     }
 
@@ -142,7 +142,7 @@ public class BookingServiceTest {
         assertEquals(1, bookingDb.size());
         assertThrows(IllegalStateException.class, () -> bookingService.getAllBookingsByStateAndOwner(1L, "FAIL", 1, 1));
         final IllegalStateException exception = Assertions.assertThrows(IllegalStateException.class,
-                () -> bookingService.getAllBookingsByStateAndOwner(1L, "FAIL", 1, 1));
+                () -> bookingService.getAllBookingsByStateAndOwner(1L, "UNSUPPORTED_STATUS", 1, 1));
         Assertions.assertEquals("Unknown state: UNSUPPORTED_STATUS", exception.getMessage());
     }
 
