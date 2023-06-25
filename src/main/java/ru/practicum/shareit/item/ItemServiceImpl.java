@@ -1,4 +1,5 @@
 package ru.practicum.shareit.item;
+
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.PageRequest;
@@ -12,7 +13,7 @@ import ru.practicum.shareit.booking.StatusBooking;
 import ru.practicum.shareit.booking.BookingRepository;
 import ru.practicum.shareit.exception.BadRequestException;
 import ru.practicum.shareit.exception.ObjectNotFoundException;
-import ru.practicum.shareit.requests.RequestRepository;
+import ru.practicum.shareit.request.RequestRepository;
 import ru.practicum.shareit.user.UserRepository;
 
 import java.time.LocalDateTime;
@@ -24,7 +25,6 @@ import java.util.stream.Collectors;
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class ItemServiceImpl implements ItemService {
-
     private final ItemRepository itemRepository;
     private final UserRepository userRepository;
     private final BookingRepository bookingRepository;

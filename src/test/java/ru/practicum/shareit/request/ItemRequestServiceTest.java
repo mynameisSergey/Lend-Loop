@@ -1,4 +1,4 @@
-package ru.practicum.shareit.requests;
+package ru.practicum.shareit.request;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;

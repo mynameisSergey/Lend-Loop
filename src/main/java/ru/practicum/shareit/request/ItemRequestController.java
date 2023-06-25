@@ -1,8 +1,9 @@
-package ru.practicum.shareit.requests;
+package ru.practicum.shareit.request;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
@@ -13,7 +14,6 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/requests")
 public class ItemRequestController {
-
     private final ItemRequestService itemRequestService;
     private static final String X_SHARER_USER_ID = "X-Sharer-User-Id";
 

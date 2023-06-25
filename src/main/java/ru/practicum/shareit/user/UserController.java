@@ -13,12 +13,10 @@ import java.util.List;
 @RequestMapping(path = "/users")
 public class UserController {
     private final UserService userService;
-
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
-
     @GetMapping
     public List<UserDto> findAll() {
         return userService.findAll();
@@ -38,10 +36,8 @@ public class UserController {
     public UserDto getUser(@PathVariable Long id) {
         return userService.getUserById(id);
     }
-
     @DeleteMapping("/{userId}")
     public void removeUser(@PathVariable Long userId) {
         userService.removeUserById(userId);
     }
-
 }

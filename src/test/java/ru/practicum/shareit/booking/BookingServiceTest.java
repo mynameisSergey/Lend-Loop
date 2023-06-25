@@ -15,7 +15,7 @@ import ru.practicum.shareit.exception.ObjectNotFoundException;
 import ru.practicum.shareit.item.ItemDto;
 import ru.practicum.shareit.item.Item;
 import ru.practicum.shareit.item.ItemRepository;
-import ru.practicum.shareit.requests.ItemRequest;
+import ru.practicum.shareit.request.ItemRequest;
 import ru.practicum.shareit.user.User;
 import ru.practicum.shareit.user.UserRepository;
 

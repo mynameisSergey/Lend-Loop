@@ -12,7 +12,6 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CommentDto {
-
     private Long id;
     @NotBlank
     private String text;

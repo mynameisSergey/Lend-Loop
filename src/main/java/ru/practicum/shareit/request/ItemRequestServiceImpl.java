@@ -1,4 +1,4 @@
-package ru.practicum.shareit.requests;
+package ru.practicum.shareit.request;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -25,7 +25,6 @@ import static java.util.stream.Collectors.toList;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class ItemRequestServiceImpl implements ItemRequestService {
-
     private final RequestRepository itemRequestRepository;
     private final UserRepository userRepository;
     private final ItemRepository itemRepository;

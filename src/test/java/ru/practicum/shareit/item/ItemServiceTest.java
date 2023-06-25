@@ -11,8 +11,8 @@ import ru.practicum.shareit.booking.StatusBooking;
 import ru.practicum.shareit.booking.BookingRepository;
 import ru.practicum.shareit.exception.BadRequestException;
 import ru.practicum.shareit.exception.ObjectNotFoundException;
-import ru.practicum.shareit.requests.ItemRequest;
-import ru.practicum.shareit.requests.RequestRepository;
+import ru.practicum.shareit.request.ItemRequest;
+import ru.practicum.shareit.request.RequestRepository;
 import ru.practicum.shareit.user.User;
 import ru.practicum.shareit.user.UserRepository;
 

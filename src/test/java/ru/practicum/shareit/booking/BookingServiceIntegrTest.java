@@ -9,7 +9,7 @@ import ru.practicum.shareit.ShareItApp;
 import ru.practicum.shareit.item.ItemDto;
 import ru.practicum.shareit.item.Item;
 import ru.practicum.shareit.item.ItemServiceImpl;
-import ru.practicum.shareit.requests.ItemRequest;
+import ru.practicum.shareit.request.ItemRequest;
 import ru.practicum.shareit.user.UserDto;
 import ru.practicum.shareit.user.User;
 import ru.practicum.shareit.user.UserServiceImpl;

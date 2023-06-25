@@ -1,4 +1,4 @@
-package ru.practicum.shareit.requests;
+package ru.practicum.shareit.request;
 
 import lombok.*;
 import ru.practicum.shareit.user.User;
@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 @Data
 @Table(name = "requests")
 public class ItemRequest {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

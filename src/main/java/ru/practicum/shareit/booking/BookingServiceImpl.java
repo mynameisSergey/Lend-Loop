@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import ru.practicum.shareit.exception.BadRequestException;
 import ru.practicum.shareit.exception.IllegalStateException;
 import ru.practicum.shareit.exception.ObjectNotFoundException;
@@ -23,7 +24,6 @@ import java.util.stream.Collectors;
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class BookingServiceImpl implements BookingService {
-
     private final ItemRepository itemRepository;
     private final UserRepository userRepository;
     private final BookingRepository bookingRepository;

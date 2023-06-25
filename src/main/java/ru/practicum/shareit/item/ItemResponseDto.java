@@ -10,7 +10,6 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 public class ItemResponseDto {
-
     private long id;
     private String name;
     private String description;
