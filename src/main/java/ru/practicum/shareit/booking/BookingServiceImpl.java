@@ -127,7 +127,7 @@ public class BookingServiceImpl implements BookingService {
                 result = bookingRepository.findAllByItemOwnerIdAndStatusIsOrderByStartDesc(owner.getId(), StatusBooking.REJECTED, pageable);
                 break;
              default:
-                throw new ErrorResponse(String.format("Unknown state: %s", state));
+                throw new ErrorResponse(String.format("Unknown state: UNSUPPORTED_STATUS"));
         }
         return result.stream()
                 .map(BookingMapper::toBookingResponseDto)
@@ -158,7 +158,7 @@ public class BookingServiceImpl implements BookingService {
                 result = bookingRepository.findAllByBookerAndStatusIsOrderByStartDesc(owner, StatusBooking.REJECTED, pageable);
                 break;
             default:
-                throw new ErrorResponse(String.format("Unknown state: %s", state));
+                throw new ErrorResponse(String.format("Unknown state: UNSUPPORTED_STATUS"));
         }
         return result.stream()
                 .map(BookingMapper::toBookingResponseDto)
