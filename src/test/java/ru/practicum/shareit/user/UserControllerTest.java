@@ -1,108 +1,160 @@
 package ru.practicum.shareit.user;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.BeforeEach;
+import lombok.SneakyThrows;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import java.util.Collections;
+import java.util.List;
 
-import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-@AutoConfigureMockMvc
-@WebMvcTest(UserController.class)
+@WebMvcTest(controllers = UserController.class)
 class UserControllerTest {
 
     @Autowired
-    private ObjectMapper mapper;
+    private ObjectMapper objectMapper;
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
     private UserService userService;
-    private UserDto userDto;
-    private UserDto userDto2;
-    private UserDto userDto3;
 
-    @BeforeEach
-    void beforeEach() {
-        userDto = new UserDto(1L, "User1", "user@email.ru");
-        userDto2 = new UserDto(1L, "User1", "mail@email.ru");
-        userDto3 = new UserDto(1L, "User1", "mail-email.ru");
+    @Test
+    @SneakyThrows
+    @DisplayName("Тестирование добавления пользователя")
+    void createUser_wheUserIsValid() {
+        UserDto userDtoToCreate = UserDto.builder()
+                .email("email@email.com")
+                .name("name")
+                .build();
+
+        when(userService.add(userDtoToCreate)).thenReturn(userDtoToCreate);
+
+        String result = mockMvc.perform(post("/users")
+                        .contentType("application/json")
+                        .content(objectMapper.writeValueAsString(userDtoToCreate)))
+                .andExpect(status().isOk())
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+
+        assertEquals(objectMapper.writeValueAsString(userDtoToCreate), result);
     }
 
     @Test
-    void createUserTest() throws Exception {
-        when(userService.createUser(any())).thenReturn(userDto);
-        String body = mapper.writeValueAsString(userDto);
+    @SneakyThrows
+    @DisplayName("Тестирование добавления пользователя c некорректным Email")
+    void createUser_wheUserEmailIsNotValid_thenReturnBadRequest() {
+        UserDto userDtoToCreate = UserDto.builder()
+                .email("email.com")
+                .name("name")
+                .build();
+
+        when(userService.add(userDtoToCreate)).thenReturn(userDtoToCreate);
+
         mockMvc.perform(post("/users")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(body))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(userDto.getId()), Long.class))
-                .andExpect(jsonPath("$.name", is(userDto.getName()), String.class))
-                .andExpect(jsonPath("$.email", is(userDto.getEmail()), String.class));
+                        .contentType("application/json")
+                        .content(objectMapper.writeValueAsString(userDtoToCreate)))
+                .andExpect(status().isBadRequest());
+
+        verify(userService, never()).add(userDtoToCreate);
     }
 
     @Test
-    void createUserFailEmailTest() throws Exception {
-        String body = mapper.writeValueAsString(userDto3);
+    @SneakyThrows
+    @DisplayName("Тестирование добавления пользователя c некорректным Name")
+    void createUser_wheNameIsNotValid_thenReturnBadRequest() {
+        UserDto userDtoToCreate = UserDto.builder()
+                .email("email@email.com")
+                .name("     ")
+                .build();
+
+        when(userService.add(userDtoToCreate)).thenReturn(userDtoToCreate);
+
         mockMvc.perform(post("/users")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(body))
-                .andExpect(status().isBadRequest())
-                .andReturn();
+                        .contentType("application/json")
+                        .content(objectMapper.writeValueAsString(userDtoToCreate)))
+                .andExpect(status().isBadRequest());
+
+        verify(userService, never()).add(userDtoToCreate);
     }
 
     @Test
-    void updateUserTest() throws Exception {
-        when(userService.updateUser(1L, userDto2)).thenReturn(userDto2);
-        String body2 = mapper.writeValueAsString(userDto2);
-        mockMvc.perform(patch("/users/1")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(body2))
+    @SneakyThrows
+    @DisplayName("Тестирование обновления пользователя")
+    void updateUser_WhenUserIsValid() {
+        Long userId = 0L;
+        UserDto userDtoToUpdate = UserDto.builder()
+                .email("update@update.com")
+                .name("update")
+                .build();
+
+        when(userService.update(userId,userDtoToUpdate)).thenReturn(userDtoToUpdate);
+
+        String result = mockMvc.perform(patch("/users/{userId}", userId)
+                        .contentType("application/json")
+                        .content(objectMapper.writeValueAsString(userDtoToUpdate)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name", is(userDto2.getName()), String.class))
-                .andExpect(jsonPath("$.email", is(userDto2.getEmail()), String.class));
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+
+        assertEquals(objectMapper.writeValueAsString(userDtoToUpdate), result);
     }
 
-    @Test
-    void getUserByIdTest() throws Exception {
-        when(userService.getUserById(1L)).thenReturn(userDto);
-        mockMvc.perform(get("/users/1")
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name", is(userDto.getName()), String.class))
-                .andExpect(jsonPath("$.email", is(userDto.getEmail()), String.class));
-    }
 
     @Test
-    void findAllTest() throws Exception {
-        when(userService.findAll()).thenReturn(Collections.singletonList(userDto));
-        MvcResult result = mockMvc.perform(get("/users")
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andReturn();
-        assertNotNull(result);
-    }
+    @SneakyThrows
+    @DisplayName("Тестирование получения пользователя по Id")
+    void get() {
+        long userId = 0L;
 
-    @Test
-    void removeUserById() throws Exception {
-        mockMvc.perform(delete("/users/1")
-                        .contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(MockMvcRequestBuilders.get("/users/{userId}", userId))
+                .andDo(print())
                 .andExpect(status().isOk());
+
+        verify(userService).getUserById(userId);
+    }
+
+    @Test
+    @SneakyThrows
+    @DisplayName("Тестирование получения всех пользоваетлей")
+    void getAll() {
+        List<UserDto> usersDtoToExpect = List.of(UserDto.builder().name("name").email("email@email.com").build());
+
+        when(userService.getAll()).thenReturn(usersDtoToExpect);
+
+        String result = mockMvc.perform(MockMvcRequestBuilders.get("/users"))
+                .andExpect(status().isOk())
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+
+        assertEquals(objectMapper.writeValueAsString(usersDtoToExpect), result);
+    }
+
+    @Test
+    @SneakyThrows
+    @DisplayName("Тестирование удаления пользователя по Id")
+    void delete() {
+        long userId = 0L;
+
+        mockMvc.perform(MockMvcRequestBuilders.delete("/users/{id}", userId))
+                .andExpect(status().isOk());
+
+        verify(userService, times(1)).delete(userId);
     }
 }

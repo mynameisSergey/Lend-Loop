@@ -1,19 +1,20 @@
 package ru.practicum.shareit.item;
 
-import java.util.List;
+import org.hibernate.ObjectNotFoundException;
+
+import java.util.*;
 
 public interface ItemService {
-    ItemResponseDto createItem(ItemDto itemDto, Long userId);
 
-    ItemResponseDto updateItem(ItemDto itemDto, Long itemId, Long userId);
+    ItemDto create(Long userId, ItemDto itemDto);
 
-    List<ItemResponseDto> getItemsByUserId(Long userId, Integer from, Integer size);
+    ItemDto update(Long userId, Long itemId, ItemDto itemDto);
 
-    ItemResponseDto getItemById(Long id, Long userId);
+    ItemDto getItemById(Long userId, Long itemId) throws ObjectNotFoundException;
 
-    void removeItemById(Long id);
+    List<ItemDto> getAll(Long userId, Integer  from, Integer size);
 
-    List<ItemResponseDto> searchItems(String text, Integer from, Integer size);
+    List<ItemDto> search(Long userId, String text, Integer  from, Integer size);
 
-    CommentResponseDto createComment(CommentDto commentDto, Long userId, Long itemId);
+    CommentDto createComment(Long userId, CommentDto commentDto, Long itemId);
 }

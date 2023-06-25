@@ -1,22 +1,26 @@
 package ru.practicum.shareit.item;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.experimental.UtilityClass;
+import ru.practicum.shareit.user.User;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@UtilityClass
 public class CommentMapper {
-    public static CommentResponseDto toCommentResponseDto(Comment comment) {
-        return CommentResponseDto.builder()
+    public static CommentDto toCommentDto(Comment comment) {
+        return CommentDto.builder()
                 .id(comment.getId())
                 .text(comment.getText())
                 .authorName(comment.getAuthor().getName())
-                .itemId(comment.getItem().getId())
                 .created(comment.getCreated())
                 .build();
     }
 
-    public static void toComment(Comment comment, CommentDto commentDto) {
-        comment.setId(commentDto.getId());
-        comment.setText(commentDto.getText());
+    public static Comment toComment(CommentDto commentDto, Item item, User user) {
+        return Comment.builder()
+                .id(commentDto.getId())
+                .text(commentDto.getText())
+                .item(item)
+                .author(user)
+                .created(commentDto.getCreated())
+                .build();
     }
 }

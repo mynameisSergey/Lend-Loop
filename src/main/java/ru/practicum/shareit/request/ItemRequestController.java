@@ -1,45 +1,47 @@
 package ru.practicum.shareit.request;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.PositiveOrZero;
+
+import javax.validation.constraints.Min;
 import java.util.List;
 
-@Validated
-@RequiredArgsConstructor
+
 @RestController
 @RequestMapping(path = "/requests")
+@RequiredArgsConstructor
+@Slf4j
+@Validated
 public class ItemRequestController {
-    private final ItemRequestService itemRequestService;
-    private static final String X_SHARER_USER_ID = "X-Sharer-User-Id";
 
-    @PostMapping()
-    public ItemRequestResponseDto createRequest(@Valid @RequestBody ItemRequestDto itemRequestDto,
-                                                @RequestHeader(X_SHARER_USER_ID) Long userId) {
-        return itemRequestService.createRequest(itemRequestDto, userId);
+    private final RequestService requestService;
+
+    @PostMapping
+    public ItemRequestDto add(@RequestHeader("X-Sharer-User-Id") Long userId,
+                              @Valid @RequestBody ItemRequestDto requestDto) {
+        return requestService.add(userId, requestDto);
     }
 
-    @GetMapping()
-    public List<ItemRequestResponseDto> getUserRequests(@RequestHeader(X_SHARER_USER_ID) Long userId,
-                                                        @PositiveOrZero @RequestParam(name = "from", defaultValue = "0") Integer from,
-                                                        @Positive @RequestParam(name = "size", defaultValue = "100") Integer size) {
-        return itemRequestService.getUserRequests(userId, from, size);
+    @GetMapping
+    public List<ItemRequestDto> getUserRequests(@RequestHeader("X-Sharer-User-Id") Long userId) {
+        return requestService.getUserRequests(userId);
     }
 
     @GetMapping("/all")
-    public List<ItemRequestResponseDto> getAllRequest(@RequestHeader(X_SHARER_USER_ID) Long userId,
-                                                      @PositiveOrZero @RequestParam(name = "from", defaultValue = "0") Integer from,
-                                                      @Positive @RequestParam(name = "size", defaultValue = "100") Integer size) {
-        return itemRequestService.getAllRequests(userId, from, size);
+    public List<ItemRequestDto> getAllRequests(@RequestHeader("X-Sharer-User-Id") Long userId,
+                                               @RequestParam(name = "from", defaultValue = "0") @Min(0) Integer from,
+                                               @RequestParam(value = "size", defaultValue = "10") @Min(1) Integer size) {
+        return requestService.getAllRequests(userId, from, size);
     }
 
     @GetMapping("/{requestId}")
-    public ItemRequestResponseDto getRequest(@PathVariable Long requestId,
-                                             @RequestHeader(X_SHARER_USER_ID) Long userId) {
-        return itemRequestService.getRequest(requestId, userId);
+    public ItemRequestDto get(@RequestHeader("X-Sharer-User-Id") Long userId,
+                              @PathVariable Long requestId) {
+        return requestService.getRequestById(userId, requestId);
     }
 }

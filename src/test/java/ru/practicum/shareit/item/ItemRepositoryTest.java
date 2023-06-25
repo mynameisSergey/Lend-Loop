@@ -1,48 +1,63 @@
 package ru.practicum.shareit.item;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.data.domain.Page;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import ru.practicum.shareit.request.ItemRequest;
-import ru.practicum.shareit.request.RequestRepository;
+import org.springframework.test.annotation.DirtiesContext;
+import ru.practicum.shareit.item.Item;
+import ru.practicum.shareit.item.ItemRepository;
 import ru.practicum.shareit.user.User;
-import ru.practicum.shareit.user.UserRepository;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataJpaTest
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 class ItemRepositoryTest {
 
     @Autowired
-    private UserRepository userRepository;
-    @Autowired
     private ItemRepository itemRepository;
+
     @Autowired
-    private RequestRepository requestRepository;
-    private User user;
-    private Item item;
-    private ItemRequest itemRequest;
+    private TestEntityManager testEntityManager;
+
+    private final User user = User.builder()
+            .name("name")
+            .email("email@email.com")
+            .build();
+
+    private final Item item = Item.builder()
+            .name("name")
+            .description("description")
+            .available(true)
+            .owner(user)
+            .build();
+
+
+    @BeforeEach
+    private void addItems() {
+        testEntityManager.persist(user);
+        testEntityManager.flush();
+        itemRepository.save(item);
+    }
+
+    @AfterEach
+    private void deleteAll() {
+        itemRepository.deleteAll();
+    }
 
     @Test
-    void searchTest() {
-        user = userRepository.save(new User(1L, "User", "user@email.ru"));
-        itemRequest = requestRepository.save(new ItemRequest(1L, "description", user, LocalDateTime.now()));
-        item = itemRepository.save(new Item(1L, "item", "item test", true, user, itemRequest));
-        Pageable pageable = PageRequest.of(0, 1);
-        Page<Item> itemList = itemRepository.search("test", pageable);
-        List<Item> itemDbList = itemList.getContent();
-        assertEquals(1, itemDbList.size());
-        Item itemDb = itemDbList.get(0);
-        assertEquals(item.getName(), itemDb.getName());
-        assertEquals(item.getDescription(), itemDb.getDescription());
-        assertEquals(item.getAvailable(), itemDb.getAvailable());
-        assertEquals(item.getOwner(), itemDb.getOwner());
-        assertEquals(item.getRequest(), itemDb.getRequest());
+    @DisplayName("Тестирование получения всех вещей пользователя по Id")
+    void findAllByOwnerIdOrderByIdAsc() {
+        List<Item> items = itemRepository.findAllByOwnerIdOrderByIdAsc(1L, PageRequest.of(0, 1)).getContent();
+
+        assertEquals(items.size(), 1);
+        assertEquals(items.get(0).getName(), "name");
     }
 }

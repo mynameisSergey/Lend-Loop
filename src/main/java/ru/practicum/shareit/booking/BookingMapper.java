@@ -1,39 +1,37 @@
 package ru.practicum.shareit.booking;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.experimental.UtilityClass;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+import ru.practicum.shareit.item.Item;
+import ru.practicum.shareit.user.User;
+
+@UtilityClass
 public class BookingMapper {
-
-    public static BookingDto toBookingDto(Booking booking) {
-        return BookingDto.builder()
-                .id(booking.getId())
-                .start(booking.getStart())
-                .end(booking.getEnd())
-                .bookerId(booking.getBooker().getId())
+    public static Booking toBooking(User user, Item item, BookingDto bookingDto) {
+        return Booking.builder()
+                .start(bookingDto.getStart())
+                .end(bookingDto.getEnd())
+                .item(item)
+                .booker(user)
+                .status(BookingStatus.WAITING)
                 .build();
     }
 
-    public static void toBooking(Booking booking, BookingDto bookingDto) {
-        booking.setId(bookingDto.getId());
-        booking.setStart(bookingDto.getStart());
-        booking.setEnd(bookingDto.getEnd());
-        booking.setStatus(StatusBooking.WAITING);
+    public static BookingDtoOut toBookingOut(Booking booking) {
+        return BookingDtoOut.builder()
+                .id(booking.getId())
+                .start(booking.getStart())
+                .end(booking.getEnd())
+                .item(booking.getItem())
+                .booker(booking.getBooker())
+                .status(booking.getStatus())
+                .build();
     }
 
-    public static BookingResponseDto toBookingResponseDto(Booking booking) {
-        if (booking != null) {
-            BookingResponseDto.Booker booker = new BookingResponseDto.Booker(booking.getBooker().getId(), booking.getBooker().getName());
-            BookingResponseDto.Item item = new BookingResponseDto.Item(booking.getItem().getId(), booking.getItem().getName(), booking.getItem().getOwner().getId());
-            return new BookingResponseDto(booking.getId(),
-                    booking.getStart(),
-                    booking.getEnd(),
-                    booking.getStatus(),
-                    booker,
-                    item);
-        } else {
-            return null;
-        }
+    public static BookingItemDto toBookingItemDto(Booking booking) {
+        return BookingItemDto.builder()
+                .id(booking.getId())
+                .bookerId(booking.getBooker().getId())
+                .build();
     }
 }

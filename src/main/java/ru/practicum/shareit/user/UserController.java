@@ -1,46 +1,46 @@
 package ru.practicum.shareit.user;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.shareit.config.Create;
-import ru.practicum.shareit.config.Update;
 
+import javax.validation.Valid;
 import java.util.List;
 
-@Validated
 @RestController
+@RequiredArgsConstructor
 @RequestMapping(path = "/users")
+@Slf4j
 public class UserController {
     private final UserService userService;
 
-    @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
+    @PostMapping
+    public UserDto add(@Valid @RequestBody UserDto user) {
+        log.info("POST запрос на создание пользователя: {}", user);
+        return userService.add(user);
+    }
+
+    @PatchMapping("/{userId}")
+    public UserDto update(@RequestBody UserDto userDto, @PathVariable Long userId) {
+        log.info("PATCH запрос на обновление пользователя c id: {}", userId);
+        return userService.update(userId, userDto);
     }
 
     @GetMapping
-    public List<UserDto> findAll() {
-        return userService.findAll();
+    public List<UserDto> getAll() {
+        log.info("GET запрос на получение списка всех пользователей.");
+        return userService.getAll();
     }
 
-    @PostMapping
-    public UserDto createUser(@Validated({Create.class}) @RequestBody UserDto userDto) {
-        return userService.createUser(userDto);
-    }
-
-    @PatchMapping("/{id}")
-    public UserDto updateUser(@PathVariable Long id, @Validated({Update.class}) @RequestBody UserDto userDto) {
-        return userService.updateUser(id, userDto);
-    }
-
-    @GetMapping("/{id}")
-    public UserDto getUser(@PathVariable Long id) {
-        return userService.getUserById(id);
+    @GetMapping("/{userId}")
+    public UserDto get(@PathVariable Long userId) {
+        log.info("GET запрос на получение пользователя c id: {}", userId);
+        return userService.getUserById(userId);
     }
 
     @DeleteMapping("/{userId}")
-    public void removeUser(@PathVariable Long userId) {
-        userService.removeUserById(userId);
+    public void delete(@PathVariable long userId) {
+        log.info("DELETE запрос на удаление пользователя с id: {}", userId);
+        userService.delete(userId);
     }
 }

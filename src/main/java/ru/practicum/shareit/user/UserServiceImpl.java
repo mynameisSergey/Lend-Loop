@@ -1,67 +1,112 @@
 package ru.practicum.shareit.user;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.practicum.shareit.exception.ObjectNotFoundException;
+import org.springframework.util.StringUtils;
+import ru.practicum.shareit.exceptions.NotFoundException;
 
+import javax.validation.ValidationException;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Objects;
+import java.util.Optional;
 
 @Service
-@Transactional(readOnly = true)
+@Slf4j
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
+    private final UserRepository userRepository;
 
-    private final UserRepository repository;
 
     @Override
-    @Transactional
-    public UserDto createUser(UserDto userDto) {
-        User user = UserMapper.toUser(new User(), userDto);
-        User createdUser = repository.save(user);
-        return UserMapper.toUserDto(createdUser);
+    public UserDto add(UserDto userDto) {
+        User user = UserMapper.toUser(userDto);
+        validation(user);
+        var userObject = userRepository.save(user);
+        return UserMapper.toUserDto(userObject);
     }
 
-    @Override
     @Transactional
-    public UserDto updateUser(Long id, UserDto userDto) {
-        var user = repository.findById(id);
-        if (user.isPresent()) {
-            UserMapper.toUser(user.get(), userDto);
-            user.get().setId(id);
-            User updatedUser = repository.save(user.get());
-            return UserMapper.toUserDto(updatedUser);
+    @Override
+    public UserDto update(Long userId, UserDto userDto) {
+        userNotExists(userId);
+        User user = UserMapper.toUser(userDto);
+        UserDto userFromStorage = getUserById(userId);
+        if (Objects.isNull(user.getName())) {
+            user.setName(userFromStorage.getName());
+        }
+        if (Objects.isNull(user.getEmail())) {
+            user.setEmail(userFromStorage.getEmail());
         } else {
-            throw new ObjectNotFoundException("Пользователь не найден");
+            String email = user.getEmail();
+            boolean isEmailNotChange = userFromStorage.getEmail().equals(email);
+            if (!isEmailNotChange) {
+                validEmail(user);
+            }
         }
+        user.setId(userId);
+        validation(user);
+        return UserMapper.toUserDto(userRepository.save(user));
     }
 
+    @Transactional
     @Override
-    public List<UserDto> findAll() {
-        return repository.findAll()
-                .stream()
-                .map(UserMapper::toUserDto)
-                .collect(Collectors.toList());
+    public List<UserDto> getAll() {
+        return UserMapper.mapToUserDto(userRepository.findAll());
     }
 
-    @Override
-    public UserDto getUserById(Long id) {
-        var user = repository.findById(id);
-        if (user.isEmpty()) {
-            throw new ObjectNotFoundException("Пользователь не найден");
-        }
+    @Transactional
+    public void delete(Long userId) {
+        userNotExists(userId);
+        userRepository.deleteById(userId);
+    }
+
+    @Transactional
+    public UserDto getUserById(Long userId) {
+        userNotExists(userId);
+        Optional<User> user = userRepository.findById(userId);
+        user.ifPresent(this::validation);
         return UserMapper.toUserDto(user.get());
     }
 
-    @Override
-    @Transactional
-    public void removeUserById(Long id) {
-        existUserById(id);
-        repository.deleteById(id);
+    private void validation(User user) throws ValidationException {
+        if (!StringUtils.hasText(user.getEmail())) {
+            log.warn("Неправильно ввели почту");
+            throw new ValidationException("Адрес электронной почты не может быть пустым.");
+        }
+
+        if (!user.getEmail().contains("@")) {
+            log.warn("Неправильно ввели почту");
+            throw new ValidationException("Адрес электронной почты не содержит @.");
+        }
+        if (user.getName().isBlank()) {
+            log.warn("Неправильно ввели имя");
+            throw new ValidationException("Имя пользователя не может быть пустым.");
+        }
+        if (user.getName().contains(" ")) {
+            log.warn("Неправильно ввели имя");
+            throw new ValidationException("Имя пользователя не может быть пустым");
+        }
     }
 
-    private void existUserById(Long id) {
-        getUserById(id);
+    private void userNotExists(Long user) {
+        userRepository.findById(user).orElseThrow(() -> {
+            log.error("user service получает пользователя по ошибке: user с id {} не найден.", user);
+            return new NotFoundException(String.format("Пользователь с id: %s не найден!", user));
+        });
+    }
+
+
+    private void validEmail(User user) {
+        String email = user.getEmail();
+        List<User> userList = userRepository.findAll();
+        for (User user1 : userList) {
+            if (user1.getEmail().contains(email)) {
+                log.error("user service получает email по ошибке: email {} уже существует.", email);
+                throw new ValidationException("Адрес электронной почты уже существует.");
+            }
+        }
     }
 }
+

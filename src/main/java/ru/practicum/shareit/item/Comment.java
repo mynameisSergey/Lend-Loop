@@ -1,30 +1,38 @@
 package ru.practicum.shareit.item;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 import ru.practicum.shareit.user.User;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@NoArgsConstructor
+@Data
 @AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
-@Getter
-@Setter
-@Table(name = "comments")
+@Table(name = "comments", schema = "public")
 public class Comment {
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "text", length = 2000)
+    @Column(name = "text", nullable = false)
     private String text;
+
     @ManyToOne
+    @JoinColumn(name = "item_id")
     private Item item;
+
     @ManyToOne
+    @JoinColumn(name = "author_id")
     private User author;
-    @Column(name = "created_date")
+
+    @Column(name = "created")
+    @CreationTimestamp
     private LocalDateTime created;
 }

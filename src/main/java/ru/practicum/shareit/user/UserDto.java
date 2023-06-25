@@ -3,20 +3,21 @@ package ru.practicum.shareit.user;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import ru.practicum.shareit.config.Create;
-import ru.practicum.shareit.config.Update;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class UserDto {
     private Long id;
-    @NotBlank(groups = {Create.class})
+    @NotBlank(message = "Поле name не должно быть пустым")
     private String name;
-    @NotBlank(groups = {Create.class})
-    @Email(groups = {Create.class, Update.class}, message = "Некорректный e-mail")
+    @NotEmpty(message = "Поле email не должно быть пустым")
+    @Email(message = "Email не корректен")
     private String email;
 }

@@ -1,9 +1,14 @@
 package ru.practicum.shareit.user;
 
+import lombok.experimental.UtilityClass;
 
-import java.util.Optional;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@UtilityClass
 public class UserMapper {
+
     public static UserDto toUserDto(User user) {
         return UserDto.builder()
                 .id(user.getId())
@@ -12,10 +17,19 @@ public class UserMapper {
                 .build();
     }
 
-    public static User toUser(User user, UserDto userDto) {
-        user.setId(userDto.getId());
-        Optional.ofNullable(userDto.getName()).ifPresent(user::setName);
-        Optional.ofNullable(userDto.getEmail()).ifPresent(user::setEmail);
-        return user;
+    public static User toUser(UserDto userDto) {
+        return User.builder()
+                .id(userDto.getId())
+                .name(userDto.getName())
+                .email(userDto.getEmail())
+                .build();
+    }
+
+    public static List<UserDto> mapToUserDto(Iterable<User> users) {
+        List<UserDto> result = new ArrayList<>();
+        for (User user : users) {
+            result.add(toUserDto(user));
+        }
+        return result;
     }
 }
