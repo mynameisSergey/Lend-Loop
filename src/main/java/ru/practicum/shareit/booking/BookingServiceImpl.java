@@ -126,7 +126,7 @@ public class BookingServiceImpl implements BookingService {
             case REJECTED:
                 result = bookingRepository.findAllByItemOwnerIdAndStatusIsOrderByStartDesc(owner.getId(), StatusBooking.REJECTED, pageable);
                 break;
-            default:
+             default:
                 throw new ErrorResponse(String.format("Unknown state: %s", state));
         }
         return result.stream()
