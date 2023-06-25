@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ru.practicum.shareit.exception.BadRequestException;
-import ru.practicum.shareit.exception.ErrorResponse;
 import ru.practicum.shareit.exception.IllegalStateException;
 import ru.practicum.shareit.exception.ObjectNotFoundException;
 import ru.practicum.shareit.item.Item;
@@ -89,7 +88,7 @@ public class BookingServiceImpl implements BookingService {
         pageable = PageRequest.of(from / size, size, Sort.by("start").descending());
         User booker = userRepository.findById(userId)
                 .orElseThrow(() -> new ObjectNotFoundException("Пользователь не найден: " + userId));
-        State state = checkState(stringState).orElseThrow(() -> new IllegalStateException("Unknown state: " + stringState));
+        State state = checkState(stringState).orElseThrow(() -> new IllegalStateException("Unknown state: UNSUPPORTED_STATUS"));
         return new ArrayList<>(stateToRepository(booker, state, pageable));
     }
 
@@ -99,7 +98,7 @@ public class BookingServiceImpl implements BookingService {
         pageable = PageRequest.of(from / size, size, Sort.by("start").descending());
         User booker = userRepository.findById(userId)
                 .orElseThrow(() -> new ObjectNotFoundException("Пользователь не найден: " + userId));
-        State state = checkState(stringState).orElseThrow(() -> new IllegalStateException("Unknown state: " + stringState));
+        State state = checkState(stringState).orElseThrow(() -> new IllegalStateException("Unknown state: UNSUPPORTED_STATUS"));
         return new ArrayList<>(stateToRepositoryAndOwner(booker, state, pageable));
     }
 
@@ -127,7 +126,7 @@ public class BookingServiceImpl implements BookingService {
                 result = bookingRepository.findAllByItemOwnerIdAndStatusIsOrderByStartDesc(owner.getId(), StatusBooking.REJECTED, pageable);
                 break;
              default:
-                throw new ErrorResponse(String.format("Unknown state: UNSUPPORTED_STATUS"));
+                throw new IllegalStateException(String.format("Unknown state: UNSUPPORTED_STATUS"));
         }
         return result.stream()
                 .map(BookingMapper::toBookingResponseDto)
@@ -158,7 +157,7 @@ public class BookingServiceImpl implements BookingService {
                 result = bookingRepository.findAllByBookerAndStatusIsOrderByStartDesc(owner, StatusBooking.REJECTED, pageable);
                 break;
             default:
-                throw new ErrorResponse(String.format("Unknown state: UNSUPPORTED_STATUS"));
+                throw new IllegalStateException(String.format("Unknown state: UNSUPPORTED_STATUS"));
         }
         return result.stream()
                 .map(BookingMapper::toBookingResponseDto)
