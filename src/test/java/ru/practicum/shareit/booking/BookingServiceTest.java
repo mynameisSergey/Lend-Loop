@@ -18,18 +18,15 @@ import ru.practicum.shareit.item.ItemRepository;
 import ru.practicum.shareit.requests.ItemRequest;
 import ru.practicum.shareit.user.User;
 import ru.practicum.shareit.user.UserRepository;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
-
 @ExtendWith(MockitoExtension.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class BookingServiceTest {
@@ -39,7 +36,6 @@ public class BookingServiceTest {
     ItemRepository itemRepository;
     @Mock
     UserRepository userRepository;
-
     BookingServiceImpl bookingService;
     ItemDto itemDto;
     Item item;
@@ -49,7 +45,6 @@ public class BookingServiceTest {
     Booking booking1;
     BookingDto bookingDto;
     BookingResponseDto bookingResponseDto;
-
     @BeforeEach
     void beforeEach() {
         bookingService = new BookingServiceImpl(
@@ -66,7 +61,6 @@ public class BookingServiceTest {
         booking = new Booking(1L, start, end, item, user, StatusBooking.APPROVED);
         booking1 = new Booking(2L, start, end, item, user, StatusBooking.WAITING);
     }
-
     @Order(1)
     @Test
     public void createBookingTest() {
@@ -78,7 +72,7 @@ public class BookingServiceTest {
         assertEquals(bookingDb.getStart(), bookingDto.getStart());
         assertEquals(bookingDb.getEnd(), bookingDto.getEnd());
 
-        BookingDto bookingDto1 = new BookingDto(1L, LocalDateTime.now().plusDays(2), LocalDateTime.now().plusDays(1), 1L, 1L);
+        BookingDto bookingDto1 = new BookingDto(1L, LocalDateTime.now().minusDays(2), LocalDateTime.now().plusDays(2), 1L, 1L);
         assertThrows(BadRequestException.class, () -> bookingService.createBooking(bookingDto1, 1L));
 
         when(itemRepository.findById(anyLong())).thenReturn(Optional.empty());
@@ -98,7 +92,6 @@ public class BookingServiceTest {
         assertThrows(IllegalStateException.class, () -> bookingService.updateBooking(1L, 2L, false));
         assertThrows(ObjectNotFoundException.class, () -> bookingService.updateBooking(1L, 5L, true));
     }
-
     @Order(3)
     @Test
     public void getBookingTest() {
@@ -128,7 +121,6 @@ public class BookingServiceTest {
                 () -> bookingService.getAllBookingsByState(1L, "FAIL", 1, 1));
         Assertions.assertEquals("Unknown state: FAIL", exception.getMessage());
     }
-
     @Order(5)
     @Test
     public void getAllBookingsByStateAndOwnerTest() {
@@ -145,7 +137,6 @@ public class BookingServiceTest {
                 () -> bookingService.getAllBookingsByStateAndOwner(1L, "FAIL", 1, 1));
         Assertions.assertEquals("Unknown state: FAIL", exception.getMessage());
     }
-
     @Order(6)
     @Test
     public void stateToRepositoryAndOwnerTest() {
@@ -180,7 +171,6 @@ public class BookingServiceTest {
         BookingResponseDto bookingDb5 = bookingService.stateToRepositoryAndOwner(user, State.FUTURE, pageable).get(0);
         assertNotNull(bookingDb5);
     }
-
     @Order(7)
     @Test
     public void stateToRepositoryTest() {
