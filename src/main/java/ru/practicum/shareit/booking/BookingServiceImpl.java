@@ -108,27 +108,34 @@ public class BookingServiceImpl implements BookingService {
         Page<Booking> result = new PageImpl<>(resultList);
         switch (state) {
             case ALL:
-                result = bookingRepository.findAllByItemOwnerIdOrderByStartDesc(owner.getId(), pageable);
-                break;
+                return bookingRepository.findAllByItemOwnerIdOrderByStartDesc(owner.getId(), pageable).stream()
+                        .map(BookingMapper::toBookingResponseDto)
+                        .collect(Collectors.toList());
+
             case CURRENT:
-                result = bookingRepository.findAllByItemOwnerAndStartIsBeforeAndEndIsAfterOrderByStartDesc(owner, now, now, pageable);
-                break;
+                return bookingRepository.findAllByItemOwnerAndStartIsBeforeAndEndIsAfterOrderByStartDesc(owner, now, now, pageable).stream()
+                        .map(BookingMapper::toBookingResponseDto)
+                        .collect(Collectors.toList());
+
             case PAST:
-                result = bookingRepository.findAllByItemOwnerIdAndEndIsBeforeAndStatusIsOrderByStartDesc(owner.getId(), now, StatusBooking.APPROVED, pageable);
-                break;
+                return bookingRepository.findAllByItemOwnerIdAndEndIsBeforeAndStatusIsOrderByStartDesc(owner.getId(), now, StatusBooking.APPROVED, pageable).stream()
+                        .map(BookingMapper::toBookingResponseDto)
+                        .collect(Collectors.toList());
             case FUTURE:
-                result = bookingRepository.findAllByItemOwnerIdAndStartIsAfterOrderByStartDesc(owner.getId(), now, pageable);
-                break;
+                return bookingRepository.findAllByItemOwnerIdAndStartIsAfterOrderByStartDesc(owner.getId(), now, pageable).stream()
+                        .map(BookingMapper::toBookingResponseDto)
+                        .collect(Collectors.toList());
             case WAITING:
-                result = bookingRepository.findAllByItemOwnerIdAndStatusIsOrderByStartDesc(owner.getId(), StatusBooking.WAITING, pageable);
-                break;
+                return bookingRepository.findAllByItemOwnerIdAndStatusIsOrderByStartDesc(owner.getId(), StatusBooking.WAITING, pageable).stream()
+                        .map(BookingMapper::toBookingResponseDto)
+                        .collect(Collectors.toList());
             case REJECTED:
-                result = bookingRepository.findAllByItemOwnerIdAndStatusIsOrderByStartDesc(owner.getId(), StatusBooking.REJECTED, pageable);
-                break;
+                return bookingRepository.findAllByItemOwnerIdAndStatusIsOrderByStartDesc(owner.getId(), StatusBooking.REJECTED, pageable).stream()
+                        .map(BookingMapper::toBookingResponseDto)
+                        .collect(Collectors.toList());
+            default:
+                throw new IllegalArgumentException("Unknown state: UNSUPPORTED_STATUS");
         }
-        return result.stream()
-                .map(BookingMapper::toBookingResponseDto)
-                .collect(Collectors.toList());
     }
 
     public List<BookingResponseDto> stateToRepository(User owner, State state, Pageable pageable) {
@@ -137,27 +144,32 @@ public class BookingServiceImpl implements BookingService {
         Page<Booking> result = new PageImpl<>(resultList);
         switch (state) {
             case ALL:
-                result = bookingRepository.findBookingsByBookerOrderByStartDesc(owner, pageable);
-                break;
+                return bookingRepository.findBookingsByBookerOrderByStartDesc(owner, pageable).stream()
+                        .map(BookingMapper::toBookingResponseDto)
+                        .collect(Collectors.toList());
             case CURRENT:
-                result = bookingRepository.findAllByBookerAndStartIsBeforeAndEndIsAfterOrderByStartDesc(owner, now, now, pageable);
-                break;
+                return bookingRepository.findAllByBookerAndStartIsBeforeAndEndIsAfterOrderByStartDesc(owner, now, now, pageable).stream()
+                        .map(BookingMapper::toBookingResponseDto)
+                        .collect(Collectors.toList());
             case PAST:
-                result = bookingRepository.findAllByBookerAndEndIsBeforeAndStatusIsOrderByStartDesc(owner, now, StatusBooking.APPROVED, pageable);
-                break;
+                return bookingRepository.findAllByBookerAndEndIsBeforeAndStatusIsOrderByStartDesc(owner, now, StatusBooking.APPROVED, pageable).stream()
+                        .map(BookingMapper::toBookingResponseDto)
+                        .collect(Collectors.toList());
             case FUTURE:
-                result = bookingRepository.findAllByBookerAndStartIsAfterOrderByStartDesc(owner, now, pageable);
-                break;
+                return bookingRepository.findAllByBookerAndStartIsAfterOrderByStartDesc(owner, now, pageable).stream()
+                        .map(BookingMapper::toBookingResponseDto)
+                        .collect(Collectors.toList());
             case WAITING:
-                result = bookingRepository.findAllByBookerAndStatusIsOrderByStartDesc(owner, StatusBooking.WAITING, pageable);
-                break;
+                return bookingRepository.findAllByBookerAndStatusIsOrderByStartDesc(owner, StatusBooking.WAITING, pageable).stream()
+                        .map(BookingMapper::toBookingResponseDto)
+                        .collect(Collectors.toList());
             case REJECTED:
-                result = bookingRepository.findAllByBookerAndStatusIsOrderByStartDesc(owner, StatusBooking.REJECTED, pageable);
-                break;
+                return bookingRepository.findAllByBookerAndStatusIsOrderByStartDesc(owner, StatusBooking.REJECTED, pageable).stream()
+                        .map(BookingMapper::toBookingResponseDto)
+                        .collect(Collectors.toList());
+            default:
+                throw new IllegalArgumentException("Unknown state: UNSUPPORTED_STATUS");
         }
-        return result.stream()
-                .map(BookingMapper::toBookingResponseDto)
-                .collect(Collectors.toList());
     }
 
     private Optional<Item> existItemById(Long id) {
