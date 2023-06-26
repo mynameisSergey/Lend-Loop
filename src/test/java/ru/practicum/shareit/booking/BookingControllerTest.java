@@ -32,6 +32,12 @@ class BookingControllerTest {
     @MockBean
     private BookingService bookingService;
 
+    final Integer FROM = 0;
+
+    final Integer SIZE = 10;
+
+    final String SHARER = "X-Sharer-User-Id";
+
     private final User user = User.builder()
             .id(1L)
             .name("username")
@@ -63,12 +69,12 @@ class BookingControllerTest {
     @Test
     @SneakyThrows
     @DisplayName("Тестирование эндпоинта post /bookings")
-    void createBooking_whenBookingIsValid_thenReturnStatusOk() {
+    void createBooking_whenBookingIsValid_thenReturnStatusOkTest() {
         when(bookingService.add(user.getId(), bookingDto)).thenReturn(bookingDtoOut);
 
         String result = mockMvc.perform(post("/bookings")
                         .contentType("application/json")
-                        .header("X-Sharer-User-Id", user.getId())
+                        .header(SHARER, user.getId())
                         .content(objectMapper.writeValueAsString(bookingDto)))
                 .andExpect(status().isOk())
                 .andReturn()
@@ -81,7 +87,7 @@ class BookingControllerTest {
     @Test
     @SneakyThrows
     @DisplayName("Тестирование эндпоинта post /bookings с невалидными данными")
-    void createBooking_whenBookingIsNotValid_thenReturnBadRequest() {
+    void createBooking_whenBookingIsNotValid_thenReturnBadRequestTest() {
         bookingDto.setItemId(null);
         bookingDto.setStart(null);
         bookingDto.setEnd(null);
@@ -90,7 +96,7 @@ class BookingControllerTest {
 
         mockMvc.perform(post("/bookings")
                         .contentType("application/json")
-                        .header("X-Sharer-User-Id", user.getId())
+                        .header(SHARER, user.getId())
                         .content(objectMapper.writeValueAsString(bookingDto)))
                 .andExpect(status().isBadRequest());
 
@@ -100,7 +106,7 @@ class BookingControllerTest {
     @Test
     @SneakyThrows
     @DisplayName("Тестирование эндпоинта patch /bookings/{bookingId}")
-    void update_whenBookingIsValid_thenReturnStatusIsOk() {
+    void update_whenBookingIsValid_thenReturnStatusIsOkTest() {
         Boolean approved = true;
         Long bookingId = 1L;
 
@@ -108,7 +114,7 @@ class BookingControllerTest {
 
         String result = mockMvc.perform(patch("/bookings/{bookingId}", bookingId)
                         .contentType("application/json")
-                        .header("X-Sharer-User-Id", user.getId())
+                        .header(SHARER, user.getId())
                         .param("approved", String.valueOf(approved)))
                 .andExpect(status().isOk())
                 .andReturn()
@@ -121,13 +127,13 @@ class BookingControllerTest {
     @Test
     @SneakyThrows
     @DisplayName("Тестирование эндпоинта get /bookings/{bookingId}")
-    void getById_whenBookingIsValid_thenReturnStatusIsOk() {
+    void getById_whenBookingIsValid_thenReturnStatusIsOkTest() {
         Long bookingId = 1L;
 
         when(bookingService.getBookingById(user.getId(), bookingId)).thenReturn(bookingDtoOut);
 
         String result = mockMvc.perform(get("/bookings/{bookingId}", bookingId)
-                        .header("X-Sharer-User-Id", user.getId())).andExpect(status().isOk())
+                        .header(SHARER, user.getId())).andExpect(status().isOk())
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
@@ -138,19 +144,17 @@ class BookingControllerTest {
     @Test
     @SneakyThrows
     @DisplayName("Тестирование эндпоинта get /bookings")
-    void getAll_thenReturnStatusIsOk() {
-        Integer from = 0;
-        Integer size = 10;
-        String state = "ALL";
+    void getAll_thenReturnStatusIsOkTest() {
+       String state = "ALL";
 
         when(bookingService.getAll(user.getId(), BookingState.ALL.toString(), 0, 10))
                 .thenReturn(List.of(bookingDtoOut));
 
         String result = mockMvc.perform(get("/bookings")
                         .param("state", state)
-                        .param("from", String.valueOf(from))
-                        .param("size", String.valueOf(size))
-                        .header("X-Sharer-User-Id", user.getId()))
+                        .param("from", String.valueOf(FROM))
+                        .param("size", String.valueOf(SIZE))
+                        .header(SHARER, user.getId()))
                 .andExpect(status().isOk())
                 .andReturn()
                 .getResponse()
@@ -162,9 +166,7 @@ class BookingControllerTest {
     @Test
     @SneakyThrows
     @DisplayName("Тестирование эндпоинта get /bookings с некорректным статусом")
-    void getAll_whenBookingStatusIsInvalid_thenThrowIllegalArgumentException() {
-        Integer from = 0;
-        Integer size = 10;
+    void getAll_whenBookingStatusIsInvalid_thenThrowIllegalArgumentExceptionTest() {
         String state = "ERROR";
 
         when(bookingService.getAll(user.getId(), BookingState.ALL.toString(), 0, 10))
@@ -172,28 +174,27 @@ class BookingControllerTest {
 
         mockMvc.perform(get("/bookings")
                         .param("state", state)
-                        .param("from", String.valueOf(from))
-                        .param("size", String.valueOf(size))
-                        .header("X-Sharer-User-Id", user.getId()))
+                        .param("from", String.valueOf(FROM))
+                        .param("size", String.valueOf(SIZE))
+                        .header(SHARER, user.getId()))
                 .andExpect(status().isInternalServerError());
     }
 
     @Test
     @SneakyThrows
     @DisplayName("Тестирование эндпоинта get /bookings/owner")
-    void getAllByOwner() {
-        Integer from = 0;
-        Integer size = 10;
+    void getAllByOwnersTest() {
+
         String state = "ALL";
 
-        when(bookingService.getAllOwner(user.getId(), BookingState.ALL.toString(), 0, 10))
+        when(bookingService.getAllOwners(user.getId(), BookingState.ALL.toString(), 0, 10))
                 .thenReturn(List.of(bookingDtoOut));
 
         String result = mockMvc.perform(get("/bookings/owner")
                         .param("state", state)
-                        .param("from", String.valueOf(from))
-                        .param("size", String.valueOf(size))
-                        .header("X-Sharer-User-Id", user.getId()))
+                        .param("from", String.valueOf(FROM))
+                        .param("size", String.valueOf(SIZE))
+                        .header(SHARER, user.getId()))
                 .andExpect(status().isOk())
                 .andReturn()
                 .getResponse()
@@ -205,19 +206,17 @@ class BookingControllerTest {
     @Test
     @SneakyThrows
     @DisplayName("Тестирование эндпоинта get /bookings/owner")
-    void getAllByOwner_whenBookingStatusIsNotValid_thenThrowIllegalArgumentException() {
-        Integer from = 0;
-        Integer size = 10;
-        String state = "ERROR";
+    void getAllByOwner_whenBookingStatusIsNotValid_thenThrowIllegalArgumentExceptionTest() {
+             String state = "ERROR";
 
-        when(bookingService.getAllOwner(user.getId(), BookingState.ALL.toString(), 0, 10))
+        when(bookingService.getAllOwners(user.getId(), BookingState.ALL.toString(), 0, 10))
                 .thenReturn(List.of(bookingDtoOut));
 
         mockMvc.perform(get("/bookings/owner")
                         .param("state", state)
-                        .param("from", String.valueOf(from))
-                        .param("size", String.valueOf(size))
-                        .header("X-Sharer-User-Id", user.getId()))
+                        .param("from", String.valueOf(FROM))
+                        .param("size", String.valueOf(SIZE))
+                        .header(SHARER, user.getId()))
                 .andExpect(status().isInternalServerError());
     }
 }

@@ -112,7 +112,7 @@ class BookingServiceImplTest {
 
     @Test
     @DisplayName("Тестирование добавления бронирования")
-    void create() {
+    void createTest() {
         BookingDtoOut expectedBookingDtoOut = BookingMapper.toBookingOut(BookingMapper.toBooking(user, item, bookingDto));
         when(userService.getUserById(userDto.getId())).thenReturn(userDto);
         when(itemRepository.findById(anyLong())).thenReturn(Optional.of(item));
@@ -125,7 +125,7 @@ class BookingServiceImplTest {
 
     @Test
     @DisplayName("Тестирование добавления бронирования с датой начала до текущей")
-    void create_whenStartIsBeforeNow_thenThrowValidationException() {
+    void create_whenStartIsBeforeNow_thenThrowValidationExceptionTest() {
         when(userService.getUserById(userDto.getId())).thenReturn(userDto);
         when(itemRepository.findById(anyLong())).thenReturn(Optional.of(item));
 
@@ -138,7 +138,7 @@ class BookingServiceImplTest {
 
     @Test
     @DisplayName("Тестирование добавления бронирования с датой конца до даты начала")
-    void create_whenEndIsBeforeStart_thenThrowValidationException() {
+    void create_whenEndIsBeforeStart_thenThrowValidationExceptionTest() {
         when(userService.getUserById(userDto.getId())).thenReturn(userDto);
         when(itemRepository.findById(anyLong())).thenReturn(Optional.of(item));
 
@@ -151,7 +151,7 @@ class BookingServiceImplTest {
 
     @Test
     @DisplayName("Тестирование добавления бронирования с недоступной вещью")
-    void create_whenItemIsNotAvailable_thenThrowValidationException() {
+    void create_whenItemIsNotAvailable_thenThrowValidationExceptionTest() {
         item.setAvailable(false);
         when(userService.getUserById(userDto.getId())).thenReturn(userDto);
         when(itemRepository.findById(anyLong())).thenReturn(Optional.of(item));
@@ -165,7 +165,7 @@ class BookingServiceImplTest {
 
     @Test
     @DisplayName("Тестирование добавления бронирования с совпадающим пользователем и владельцем вещи")
-    void create_whenItemOwnerEqualsBooker_thenThrowValidationException() {
+    void create_whenItemOwnerEqualsBooker_thenThrowValidationExceptionTest() {
         item.setOwner(user);
         when(userService.getUserById(userDto.getId())).thenReturn(userDto);
         when(itemRepository.findById(anyLong())).thenReturn(Optional.of(item));
@@ -179,7 +179,7 @@ class BookingServiceImplTest {
 
     @Test
     @DisplayName("Тестирование одобрения бронирования")
-    void update() {
+    void updateTest() {
         when(bookingRepository.findById(anyLong())).thenReturn(Optional.of(bookingWaiting));
         when(bookingRepository.save(any(Booking.class))).thenReturn(bookingWaiting);
 
@@ -190,7 +190,7 @@ class BookingServiceImplTest {
 
     @Test
     @DisplayName("Тестирование запрета бронирования")
-    void update_whenStatusNotApproved() {
+    void update_whenStatusNotApprovedTest() {
         when(bookingRepository.findById(anyLong())).thenReturn(Optional.of(bookingWaiting));
         when(bookingRepository.save(any(Booking.class))).thenReturn(bookingWaiting);
 
@@ -201,7 +201,7 @@ class BookingServiceImplTest {
 
     @Test
     @DisplayName("Тестирование одобрения бронирования когда статус не WAITING")
-    void update_whenStatusNotWaiting() {
+    void update_whenStatusNotWaitingTest() {
         when(bookingRepository.findById(anyLong())).thenReturn(Optional.of(booking));
 
         ValidationException bookingValidationException = assertThrows(ValidationException.class,
@@ -213,7 +213,7 @@ class BookingServiceImplTest {
 
     @Test
     @DisplayName("Тестирование одобрения бронирования не владельцем вещи")
-    void update_whenUserIsNotItemOwner_thenThrowNotFoundException() {
+    void update_whenUserIsNotItemOwner_thenThrowNotFoundExceptionTest() {
         when(bookingRepository.findById(anyLong())).thenReturn(Optional.of(booking));
 
         NotFoundException bookingNotFoundException = assertThrows(NotFoundException.class,
@@ -224,7 +224,7 @@ class BookingServiceImplTest {
 
     @Test
     @DisplayName("Тестирование получения бронирования по Id")
-    void getById() {
+    void getByIdTest() {
         BookingDtoOut expectedBookingDtoOut = BookingMapper.toBookingOut(booking);
         when(bookingRepository.findById(anyLong())).thenReturn(Optional.of(booking));
 
@@ -235,7 +235,7 @@ class BookingServiceImplTest {
 
     @Test
     @DisplayName("Тестирование получения бронирования по несуществующему Id")
-    void getById_whenBookingIdIsNotValid_thenThrowObjectNotFoundException() {
+    void getById_whenBookingIdIsNotValid_thenThrowObjectNotFoundExceptionTest() {
         when(bookingRepository.findById(anyLong())).thenReturn(Optional.empty());
 
         NotFoundException bookingNotFoundException = assertThrows(NotFoundException.class,
@@ -346,7 +346,7 @@ class BookingServiceImplTest {
         when(userService.getUserById(user.getId())).thenReturn(userDto);
         when(bookingRepository.findAllByOwnerId(anyLong(), any(Pageable.class))).thenReturn(List.of(booking));
 
-        List<BookingDtoOut> actualBookingsDtoOut = bookingService.getAllOwner(user.getId(), "ALL", 0, 10);
+        List<BookingDtoOut> actualBookingsDtoOut = bookingService.getAllOwners(user.getId(), "ALL", 0, 10);
 
         assertEquals(expectedBookingsDtoOut, actualBookingsDtoOut);
     }
@@ -359,7 +359,7 @@ class BookingServiceImplTest {
         when(bookingRepository.findAllCurrentBookingsByOwnerId(anyLong(), any(LocalDateTime.class), any(Pageable.class)))
                 .thenReturn(List.of(booking));
 
-        List<BookingDtoOut> actualBookingsDtoOut = bookingService.getAllOwner(user.getId(), "CURRENT", 0, 10);
+        List<BookingDtoOut> actualBookingsDtoOut = bookingService.getAllOwners(user.getId(), "CURRENT", 0, 10);
 
         assertEquals(expectedBookingsDtoOut, actualBookingsDtoOut);
     }
@@ -372,7 +372,7 @@ class BookingServiceImplTest {
         when(bookingRepository.findAllPastBookingsByOwnerId(anyLong(), any(LocalDateTime.class), any(Pageable.class)))
                 .thenReturn(List.of(booking));
 
-        List<BookingDtoOut> actualBookingsDtoOut = bookingService.getAllOwner(user.getId(), "PAST", 0, 10);
+        List<BookingDtoOut> actualBookingsDtoOut = bookingService.getAllOwners(user.getId(), "PAST", 0, 10);
 
         assertEquals(expectedBookingsDtoOut, actualBookingsDtoOut);
     }
@@ -385,7 +385,7 @@ class BookingServiceImplTest {
         when(bookingRepository.findAllFutureBookingsByOwnerId(anyLong(), any(LocalDateTime.class), any(Pageable.class)))
                 .thenReturn(List.of(booking));
 
-        List<BookingDtoOut> actualBookingsDtoOut = bookingService.getAllOwner(user.getId(), "FUTURE", 0, 10);
+        List<BookingDtoOut> actualBookingsDtoOut = bookingService.getAllOwners(user.getId(), "FUTURE", 0, 10);
 
         assertEquals(expectedBookingsDtoOut, actualBookingsDtoOut);
     }
@@ -398,7 +398,7 @@ class BookingServiceImplTest {
         when(bookingRepository.findAllWaitingBookingsByOwnerId(anyLong(), any(LocalDateTime.class), any(Pageable.class)))
                 .thenReturn(List.of(booking));
 
-        List<BookingDtoOut> actualBookingsDtoOut = bookingService.getAllOwner(user.getId(), "WAITING", 0, 10);
+        List<BookingDtoOut> actualBookingsDtoOut = bookingService.getAllOwners(user.getId(), "WAITING", 0, 10);
 
         assertEquals(expectedBookingsDtoOut, actualBookingsDtoOut);
     }
@@ -411,7 +411,7 @@ class BookingServiceImplTest {
         when(bookingRepository.findAllRejectedBookingsByOwnerId(anyLong(), any(Pageable.class)))
                 .thenReturn(List.of(booking));
 
-        List<BookingDtoOut> actualBookingsDtoOut = bookingService.getAllOwner(user.getId(), "REJECTED", 0, 10);
+        List<BookingDtoOut> actualBookingsDtoOut = bookingService.getAllOwners(user.getId(), "REJECTED", 0, 10);
 
         assertEquals(expectedBookingsDtoOut, actualBookingsDtoOut);
     }
@@ -422,6 +422,6 @@ class BookingServiceImplTest {
         when(userService.getUserById(user.getId())).thenReturn(userDto);
 
         assertThrows(IllegalArgumentException.class,
-                () -> bookingService.getAllOwner(user.getId(), "ERROR", 0, 10));
+                () -> bookingService.getAllOwners(user.getId(), "ERROR", 0, 10));
     }
 }

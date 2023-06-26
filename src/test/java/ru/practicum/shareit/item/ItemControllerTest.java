@@ -31,6 +31,8 @@ class ItemControllerTest {
     @MockBean
     private ItemService itemService;
 
+    final String SHARER = "X-Sharer-User-Id";
+
     @Test
     @SneakyThrows
     @DisplayName("Тестирование добавления вещи прошедшей валидацию")
@@ -46,7 +48,7 @@ class ItemControllerTest {
 
         String result = mockMvc.perform(post("/items")
                         .contentType("application/json")
-                        .header("X-Sharer-User-Id", userId)
+                        .header(SHARER, userId)
                         .content(objectMapper.writeValueAsString(itemDtoToCreate)))
                 .andExpect(status().isOk())
                 .andReturn()
@@ -71,7 +73,7 @@ class ItemControllerTest {
 
         mockMvc.perform(post("/items")
                         .contentType("application/json")
-                        .header("X-Sharer-User-Id", userId)
+                        .header(SHARER, userId)
                         .content(objectMapper.writeValueAsString(itemDtoToCreate)))
                 .andExpect(status().isBadRequest());
 
@@ -95,7 +97,7 @@ class ItemControllerTest {
 
         String result = mockMvc.perform(patch("/items/{itemId}", itemId)
                         .contentType("application/json")
-                        .header("X-Sharer-User-Id", userId)
+                        .header(SHARER, userId)
                         .content(objectMapper.writeValueAsString(itemDtoToCreate)))
                 .andExpect(status().isOk())
                 .andReturn()
@@ -122,7 +124,7 @@ class ItemControllerTest {
 
         String result = mockMvc.perform(MockMvcRequestBuilders.get("/items/{itemId}", itemId)
                         .contentType("application/json")
-                        .header("X-Sharer-User-Id", userId)
+                        .header(SHARER, userId)
                         .content(objectMapper.writeValueAsString(itemDtoToCreate)))
                 .andExpect(status().isOk())
                 .andReturn()
@@ -148,7 +150,7 @@ class ItemControllerTest {
         when(itemService.getAll(userId, from, size)).thenReturn(itemsDtoToExpect);
 
         String result = mockMvc.perform(MockMvcRequestBuilders.get("/items", from, size)
-                        .header("X-Sharer-User-Id", userId))
+                        .header(SHARER, userId))
                 .andExpect(status().isOk())
                 .andReturn()
                 .getResponse()
@@ -174,7 +176,7 @@ class ItemControllerTest {
         when(itemService.search(userId, text, from, size)).thenReturn(itemsDtoToExpect);
 
         String result = mockMvc.perform(MockMvcRequestBuilders.get("/items/search", from, size)
-                        .header("X-Sharer-User-Id", userId)
+                        .header(SHARER, userId)
                         .param("text", text))
                 .andExpect(status().isOk())
                 .andReturn()
@@ -199,7 +201,7 @@ class ItemControllerTest {
 
         String result = mockMvc.perform(post("/items/{itemId}/comment", itemId)
                         .contentType("application/json")
-                        .header("X-Sharer-User-Id", userId)
+                        .header(SHARER, userId)
                         .content(objectMapper.writeValueAsString(commentToAdd)))
                 .andExpect(status().isOk())
                 .andReturn()

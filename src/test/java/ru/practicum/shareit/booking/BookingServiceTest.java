@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @Transactional
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-public class BookingServiceIT {
+public class BookingServiceTest {
 
     @Autowired
     private BookingService bookingService;
@@ -85,7 +85,7 @@ public class BookingServiceIT {
         assertEquals(BookingStatus.APPROVED, updatedBookingDto1.getStatus());
         assertEquals(BookingStatus.APPROVED, updatedBookingDto2.getStatus());
 
-        List<BookingDtoOut> bookingsDtoOut = bookingService.getAllOwner(addedUser2.getId(),
+        List<BookingDtoOut> bookingsDtoOut = bookingService.getAllOwners(addedUser2.getId(),
                 BookingState.ALL.toString(), 0, 10);
 
         assertEquals(2, bookingsDtoOut.size());

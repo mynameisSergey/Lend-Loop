@@ -89,7 +89,7 @@ class BookingRepositoryTest {
 
     @Test
     @DisplayName("Тестирование получения всех бронирований по Id пользователя")
-    void findAllByBookerId() {
+    void findAllByBookerIdTest() {
         List<Booking> bookings = bookingRepository.findAllByBookerId(1L, PageRequest.of(0, 10));
 
         assertEquals(bookings.size(), 3);
@@ -98,7 +98,7 @@ class BookingRepositoryTest {
 
     @Test
     @DisplayName("Тестирование получения всех текущих бронирований")
-    void findAllCurrentBookingsByBookerId() {
+    void findAllCurrentBookingsByBookerIdTest() {
         List<Booking> bookings = bookingRepository.findAllCurrentBookingsByBookerId(1L, LocalDateTime.now(),
                 PageRequest.of(0, 10));
 
@@ -108,7 +108,7 @@ class BookingRepositoryTest {
 
     @Test
     @DisplayName("Тестирование получения всех закончившихся бронирований")
-    void findAllPastBookingsByBookerId() {
+    void findAllPastBookingsByBookerIdTest() {
         List<Booking> bookings = bookingRepository.findAllPastBookingsByBookerId(1L, LocalDateTime.now(),
                 PageRequest.of(0, 10));
 
@@ -118,7 +118,7 @@ class BookingRepositoryTest {
 
     @Test
     @DisplayName("Тестирование получения всех будущих бронирований")
-    void findAllFutureBookingsByBookerId() {
+    void findAllFutureBookingsByBookerIdTest() {
         List<Booking> bookings = bookingRepository.findAllFutureBookingsByBookerId(1L, LocalDateTime.now(),
                 PageRequest.of(0, 10));
 
@@ -128,7 +128,7 @@ class BookingRepositoryTest {
 
     @Test
     @DisplayName("Тестирование получения всех неподтвержденных бронирований")
-    void findAllWaitingBookingsByBookerId() {
+    void findAllWaitingBookingsByBookerIdTest() {
         Booking waitingBooking = Booking.builder()
                 .item(item)
                 .booker(user)
@@ -147,7 +147,7 @@ class BookingRepositoryTest {
 
     @Test
     @DisplayName("Тестирование получения всех отклоненных бронирований")
-    void findAllRejectedBookingsByBookerId() {
+    void findAllRejectedBookingsByBookerIdTest() {
         Booking rejectedBooking = Booking.builder()
                 .item(item)
                 .booker(user)
@@ -166,7 +166,7 @@ class BookingRepositoryTest {
 
     @Test
     @DisplayName("Тестирование получения всех бронирований по Id владельца")
-    void findAllByOwnerId() {
+    void findAllByOwnerIdTest() {
         List<Booking> bookings = bookingRepository.findAllByOwnerId(2L, PageRequest.of(0, 10));
 
         assertEquals(bookings.size(), 3);
@@ -174,7 +174,7 @@ class BookingRepositoryTest {
 
     @Test
     @DisplayName("Тестирование получения всех текущих бронирований по Id владельца")
-    void findAllCurrentBookingsByOwnerId() {
+    void findAllCurrentBookingsByOwnerIdTest() {
         List<Booking> bookings = bookingRepository.findAllCurrentBookingsByOwnerId(2L, LocalDateTime.now(),
                 PageRequest.of(0, 10));
 
@@ -184,7 +184,7 @@ class BookingRepositoryTest {
 
     @Test
     @DisplayName("Тестирование получения всех закончившихся бронирований по Id владельца")
-    void findAllPastBookingsByOwnerId() {
+    void findAllPastBookingsByOwnerIdTest() {
         List<Booking> bookings = bookingRepository.findAllPastBookingsByOwnerId(2L, LocalDateTime.now(),
                 PageRequest.of(0, 10));
 
@@ -194,7 +194,7 @@ class BookingRepositoryTest {
 
     @Test
     @DisplayName("Тестирование получения всех будущих бронирований по Id владельца")
-    void findAllFutureBookingsByOwnerId() {
+    void findAllFutureBookingsByOwnerIdTest() {
         List<Booking> bookings = bookingRepository.findAllFutureBookingsByOwnerId(2L, LocalDateTime.now(),
                 PageRequest.of(0, 10));
 
@@ -204,7 +204,7 @@ class BookingRepositoryTest {
 
     @Test
     @DisplayName("Тестирование получения всех неподтвержденных бронирований по Id владельца")
-    void findAllWaitingBookingsByOwnerId() {
+    void findAllWaitingBookingsByOwnerIdTest() {
         Booking waitingBooking = Booking.builder()
                 .item(item)
                 .booker(user)
@@ -223,7 +223,7 @@ class BookingRepositoryTest {
 
     @Test
     @DisplayName("Тестирование получения всех отклоненных бронирований по Id владельца")
-    void findAllRejectedBookingsByOwnerId() {
+    void findAllRejectedBookingsByOwnerIdTest() {
         Booking rejectedBooking = Booking.builder()
                 .item(item)
                 .booker(user)
@@ -242,7 +242,7 @@ class BookingRepositoryTest {
 
     @Test
     @DisplayName("Тестирование получения всех бронирований пользователя")
-    void findAllByUserBookings() {
+    void findAllByUserBookingsTest() {
         List<Booking> bookings = bookingRepository.findAllByUserBookings(1L, 1L, LocalDateTime.now());
 
         assertEquals(bookings.size(), 1);
@@ -251,33 +251,22 @@ class BookingRepositoryTest {
 
     @Test
     @DisplayName("Тестирование получения последнего бронирования")
-    void getLastBooking() {
+    void getLastBookingTest() {
         Optional<Booking> bookingOptional = bookingRepository.getLastBooking(1L, LocalDateTime.now());
         Booking actualBooking;
-
-        if (bookingOptional.isPresent()) {
             actualBooking = bookingOptional.get();
-
             assertEquals(actualBooking.getId(), 1L);
-        } else {
 
-            fail();
-        }
     }
 
     @Test
     @DisplayName("Тестирование получения следующего бронирования")
-    void getNextBooking() {
+    void getNextBookingTest() {
         Optional<Booking> bookingOptional = bookingRepository.getNextBooking(1L, LocalDateTime.now());
         Booking actualBooking;
 
-        if (bookingOptional.isPresent()) {
             actualBooking = bookingOptional.get();
-
             assertEquals(actualBooking.getId(), 3L);
-        } else {
 
-            fail();
-        }
     }
 }

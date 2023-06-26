@@ -23,7 +23,7 @@ class BookingDtoTest {
     private BookingDto bookingDto = null;
 
     @BeforeEach
-    public void init() {
+    public void initTest() {
         bookingDto = BookingDto.builder()
                 .itemId(1L)
                 .start(LocalDateTime.parse("2023-05-13T17:33:33"))
@@ -34,7 +34,7 @@ class BookingDtoTest {
     @Test
     @SneakyThrows
     @DisplayName("Тестирование сериализации даты начала бронирования")
-    public void startSerializes() {
+    public void startSerializesTest() {
         assertThat(json.write(bookingDto)).extractingJsonPathStringValue("$.start")
                 .isEqualTo(DATE_TIME);
     }
@@ -42,7 +42,7 @@ class BookingDtoTest {
     @Test
     @SneakyThrows
     @DisplayName("Тестирование сериализации даты конца бронирования")
-    public void endSerializes() {
+    public void endSerializesTest() {
         assertThat(json.write(bookingDto)).extractingJsonPathStringValue("$.end")
                 .isEqualTo(DATE_TIME);
     }

@@ -12,5 +12,5 @@ public interface BookingService {
 
     List<BookingDtoOut> getAll(Long userId, String state, Integer from, Integer size);
 
-    List<BookingDtoOut> getAllOwner(Long userId, String state, Integer from, Integer size);
+    List<BookingDtoOut> getAllOwners(Long userId, String state, Integer from, Integer size);
 }

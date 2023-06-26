@@ -21,7 +21,7 @@ class BookingMapperTest {
             .build();
 
     @Test
-    void toBookingItemDto() {
+    void toBookingItemDtoTest() {
         BookingItemDto actualBookingItemDto = BookingMapper.toBookingItemDto(booking);
 
         assertEquals(1L, actualBookingItemDto.getId());

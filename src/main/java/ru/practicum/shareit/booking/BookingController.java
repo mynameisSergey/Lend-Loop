@@ -18,15 +18,16 @@ import java.util.Objects;
 public class BookingController {
     private final BookingService bookingService;
 
+    final String SHARER = "X-Sharer-User-Id";
     @PostMapping
-    public BookingDtoOut create(@RequestHeader("X-Sharer-User-Id") Long userId,
+    public BookingDtoOut create(@RequestHeader(SHARER) Long userId,
                                 @Valid @RequestBody BookingDto bookingDto) {
         log.info("POST запрос на создание нового бронирования вещи: {} от пользователя c id: {}", bookingDto, userId);
         return bookingService.add(userId, bookingDto);
     }
 
     @PatchMapping("/{bookingId}")
-    public BookingDtoOut updateStatus(@RequestHeader("X-Sharer-User-Id") Long userId,
+    public BookingDtoOut updateStatus(@RequestHeader(SHARER) Long userId,
                                       @PathVariable("bookingId")
                                       Long bookingId,
                                       @RequestParam(name = "approved") Boolean approved) {
@@ -35,7 +36,7 @@ public class BookingController {
     }
 
     @GetMapping("/{bookingId}")
-    public BookingDtoOut getBookingById(@RequestHeader("X-Sharer-User-Id") Long userId,
+    public BookingDtoOut getBookingById(@RequestHeader(SHARER) Long userId,
                                         @PathVariable("bookingId")
                                         Long bookingId) {
         log.info("GET запрос на получение данных о конкретном бронировании {} от пользователся с id: {}", bookingId, userId);
@@ -43,23 +44,23 @@ public class BookingController {
     }
 
     @GetMapping
-    public List<BookingDtoOut> getAll(@RequestHeader("X-Sharer-User-Id") Long userId,
+    public List<BookingDtoOut> getAll(@RequestHeader(SHARER) Long userId,
                                       @RequestParam(value = "state", defaultValue = "ALL") String bookingState,
-                                      @RequestParam(value = "from", defaultValue = "0") @Min(0) Integer from,
-                                      @RequestParam(value = "size", defaultValue = "10") @Min(1) Integer size) {
+                                      @RequestParam(defaultValue = "0") @Min(0) Integer from,
+                                      @RequestParam(defaultValue = "10") @Min(1) Integer size) {
         log.info("GET запрос на получение списка всех бронирований текущего пользователя с id: {} и статусом {}", userId, bookingState);
         validState(bookingState);
         return bookingService.getAll(userId, bookingState, from, size);
     }
 
     @GetMapping("/owner")
-    public List<BookingDtoOut> getAllOwner(@RequestHeader("X-Sharer-User-Id") Long ownerId,
+    public List<BookingDtoOut> getAllOwner(@RequestHeader(SHARER) Long ownerId,
                                            @RequestParam(value = "state", defaultValue = "ALL") String bookingState,
-                                           @RequestParam(value = "from", defaultValue = "0") @Min(0) Integer from,
-                                           @RequestParam(value = "size", defaultValue = "10") @Min(1) Integer size) {
+                                           @RequestParam(defaultValue = "0") @Min(0) Integer from,
+                                           @RequestParam(defaultValue = "10") @Min(1) Integer size) {
         log.info("GET запрос на получение списка всех бронирований текущего владельца с id: {} и статусом {}", ownerId, bookingState);
         validState(bookingState);
-        return bookingService.getAllOwner(ownerId, bookingState, from, size);
+        return bookingService.getAllOwners(ownerId, bookingState, from, size);
     }
 
     private void validState(String bookingState) {

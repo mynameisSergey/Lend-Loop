@@ -103,7 +103,7 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<BookingDtoOut> getAllOwner(Long ownerId, String state, Integer from, Integer size) {
+    public List<BookingDtoOut> getAllOwners(Long ownerId, String state, Integer from, Integer size) {
         Pageable pageable = PageRequest.of(from / size, size);
         userService.getUserById(ownerId);
         switch (BookingState.valueOf(state)) {
@@ -179,7 +179,7 @@ public class BookingServiceImpl implements BookingService {
 
         Booking booking = bookingById.get();
         switch (number) {
-            case 1:
+            case 1: // порядковый номер id владельца вещи
                 if (!booking.getItem().getOwner().getId().equals(userId)) {
                     log.warn("Пользователь не является владельцем вещи");
                     throw new NotFoundException(String.format("Пользователь с id %s не является владельцем", userId));
@@ -191,7 +191,7 @@ public class BookingServiceImpl implements BookingService {
 
                 }
                 return booking;
-            case 2:
+            case 2: // порядковый номер id владельца вещи
                 if (!booking.getBooker().getId().equals(userId)
                         && !booking.getItem().getOwner().getId().equals(userId)) {
                     log.warn("Пользователь не является ни владельцем, ни автором бронирования");
