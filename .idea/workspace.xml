@@ -4,175 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9681b2f4-cd95-482b-8488-cb182a374f27" name="Changes" comment="Добрый день! спринт 15 1 версия">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/build.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.github/workflows/dashboard-template.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.github/workflows/run.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.github/workflows/wait-for-it.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/ShareItGateway.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/booking/BookingClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/booking/BookingController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/booking/dto/BookItemRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/booking/dto/BookingState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/client/BaseClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/exceptions/ErrorHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/exceptions/ErrorResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/item/ItemClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/item/ItemController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/item/dto/BookingItemDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/item/dto/CommentDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/item/dto/ItemDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/request/ItemRequestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/request/RequestClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/request/dto/ItemRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/user/UserClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/user/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/user/dto/UserDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/postman/sprint.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/run/ShareItGateway.run.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/run/ShareItServer.run.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/ShareItServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/BookingController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/BookingMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/dto/BookingDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/dto/BookingDtoOut.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/dto/BookingItemDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/model/Booking.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/model/BookingState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/model/BookingStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/repository/BookingRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/service/BookingService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/service/BookingServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/exceptions/ErrorHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/exceptions/ErrorResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/exceptions/NotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/exceptions/ValidationException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/CommentMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/ItemController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/ItemMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/dao/ItemDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/dao/ItemDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/dto/CommentDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/dto/ItemDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/model/Comment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/model/Item.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/repository/CommentRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/repository/ItemRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/service/ItemService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/service/ItemServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/ItemRequestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/RequestMapping.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/dto/ItemRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/model/ItemRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/repository/RequestRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/service/RequestService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/service/RequestServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/user/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/user/UserMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/user/dao/UserDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/user/dao/UserDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/user/dto/UserDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/user/model/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/user/repository/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/user/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/user/service/UserServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/resources/schema.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shareit.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/ShareItApp.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/booking/Booking$BookingBuilder.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/booking/Booking.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/booking/BookingController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/booking/BookingDto$BookingDtoBuilder.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/booking/BookingDto.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/booking/BookingDtoOut$BookingDtoOutBuilder.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/booking/BookingDtoOut.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/booking/BookingItemDto$BookingItemDtoBuilder.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/booking/BookingItemDto.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/booking/BookingMapper.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/booking/BookingRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/booking/BookingService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/booking/BookingServiceImpl$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/booking/BookingServiceImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/booking/BookingState.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/booking/BookingStatus.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/exceptions/ErrorHandler.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/exceptions/ErrorResponse.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/exceptions/NotFoundException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/exceptions/ValidationException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/item/Comment$CommentBuilder.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/item/Comment.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/item/CommentDto$CommentDtoBuilder.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/item/CommentDto.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/item/CommentMapper.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/item/CommentRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/item/Item$ItemBuilder.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/item/Item.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/item/ItemController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/item/ItemDao.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/item/ItemDaoImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/item/ItemDto$ItemDtoBuilder.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/item/ItemDto.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/item/ItemMapper.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/item/ItemRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/item/ItemService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/item/ItemServiceImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/request/ItemRequest$ItemRequestBuilder.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/request/ItemRequest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/request/ItemRequestController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/request/ItemRequestDto$ItemRequestDtoBuilder.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/request/ItemRequestDto.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/request/RequestMapping.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/request/RequestRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/request/RequestService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/request/RequestServiceImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/user/User$UserBuilder.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/user/User.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/user/UserController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/user/UserDao.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/user/UserDaoImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/user/UserDto$UserDtoBuilder.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/user/UserDto.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/user/UserMapper.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/user/UserRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/user/UserService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/practicum/shareit/user/UserServiceImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/schema.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/ru/practicum/shareit/ShareItTests.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/ru/practicum/shareit/booking/BookingControllerTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/ru/practicum/shareit/booking/BookingDtoTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/ru/practicum/shareit/booking/BookingMapperTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/ru/practicum/shareit/booking/BookingRepositoryTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/ru/practicum/shareit/booking/BookingServiceImplTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/ru/practicum/shareit/booking/BookingServiceTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/ru/practicum/shareit/item/CommentRepositoryTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/ru/practicum/shareit/item/ItemControllerTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/ru/practicum/shareit/item/ItemRepositoryTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/ru/practicum/shareit/item/ItemServiceIT.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/ru/practicum/shareit/item/ItemServiceImplTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/ru/practicum/shareit/request/ItemRequestControllerTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/ru/practicum/shareit/request/RequestRepositoryTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/ru/practicum/shareit/request/RequestServiceImplTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/ru/practicum/shareit/request/RequestServiceTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/ru/practicum/shareit/user/UserControllerTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/ru/practicum/shareit/user/UserServiceIT.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/ru/practicum/shareit/user/UserServiceImplTest.class" afterDir="false" />
-    </list>
+    <list default="true" id="9681b2f4-cd95-482b-8488-cb182a374f27" name="Changes" comment="Добрый день! спринт 15 1 версия" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -218,7 +50,8 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/serge/dev/java-shareit/gateway"
+    "last_opened_file_path": "C:/Users/serge/dev/java-shareit/gateway",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.notifications"
   },
   "keyToStringList": {
     "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
@@ -351,13 +184,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1684271545885</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Добрый день! спринт 14">
-      <created>1685927591354</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1685927591354</updated>
     </task>
     <task id="LOCAL-00008" summary="Добрый день! спринт 14">
       <created>1685927789127</created>
@@ -695,7 +521,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687806183319</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="Добрый день! спринт 15 1 версия">
+      <created>1688083529561</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1688083529561</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
