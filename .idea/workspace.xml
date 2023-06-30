@@ -168,8 +168,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.BookingServiceTest" />
         <item itemvalue="JUnit.RequestServiceTest" />
+        <item itemvalue="JUnit.BookingServiceTest" />
         <item itemvalue="JUnit.BookingRepositoryTest.getNextBookingTest" />
         <item itemvalue="JUnit.BookingRepositoryTest.getLastBookingTest" />
         <item itemvalue="JUnit.BookingRepositoryTest" />
