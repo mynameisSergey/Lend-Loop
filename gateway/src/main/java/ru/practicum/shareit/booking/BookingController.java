@@ -27,8 +27,8 @@ public class BookingController {
     @GetMapping
     public ResponseEntity<Object> getBookings(@RequestHeader(REQUEST_HEADER_SHARER_USER_ID) long userId,
                                               @RequestParam(name = "state", defaultValue = "ALL") String stateParam,
-                                              @PositiveOrZero @RequestParam(name = "from", defaultValue = "0") Integer from,
-                                              @Positive @RequestParam(name = "size", defaultValue = "10") Integer size) {
+                                              @PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
+                                              @Positive @RequestParam(defaultValue = "10") Integer size) {
         BookingState state = BookingState.from(stateParam).orElseThrow(() -> new IllegalArgumentException("Unknown state: " + stateParam));
         log.info("Get booking with state {}, userId={}, from={}, size={}", stateParam, userId, from, size);
         return bookingClient.getBookings(userId, state, from, size);
@@ -51,8 +51,8 @@ public class BookingController {
     @GetMapping("/owner")
     public ResponseEntity<Object> getAllOwner(@RequestHeader(REQUEST_HEADER_SHARER_USER_ID) Long ownerId,
                                               @RequestParam(value = "state", defaultValue = "ALL") String bookingState,
-                                              @RequestParam(value = "from", defaultValue = "0") @Min(0) Integer from,
-                                              @RequestParam(value = "size", defaultValue = "10") @Min(1) Integer size) {
+                                              @RequestParam(defaultValue = "0") @Min(0) Integer from,
+                                              @RequestParam(defaultValue = "10") @Min(1) Integer size) {
         BookingState state = BookingState.from(bookingState)
                 .orElseThrow(() -> new IllegalArgumentException("Unknown state: " + bookingState));
         log.info("GET запрос на получение списка всех бронирований c state {}, userId={}, from={}, size={}", bookingState, ownerId, from, size);

@@ -17,8 +17,9 @@ import javax.validation.constraints.Min;
 @Slf4j
 public class ItemController {
 
-    private final ItemClient itemClient;
     private static final String REQUEST_HEADER_SHARER_USER_ID = "X-Sharer-User-Id";
+
+    private final ItemClient itemClient;
 
     @PostMapping
     public ResponseEntity<Object> create(@RequestHeader(REQUEST_HEADER_SHARER_USER_ID) Long userId,
