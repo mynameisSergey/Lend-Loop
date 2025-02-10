@@ -43,7 +43,7 @@ public class BookingServiceImpl implements BookingService {
         newBooking.setBooker(booker.get());
         var item = existItemById(bookingDto.getItemId());
         if (booker.get().equals(item.get().getOwner())) {
-            throw new ObjectNotFoundException("Вещь другого собственника:" + item.get().getOwner().getId());
+            throw new ObjectNotFoundException("Вещь не может быть забронирована собственником");
         }
         newBooking.setItem(item.get());
         newBooking.setStatus(StatusBooking.WAITING);
