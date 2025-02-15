@@ -5,12 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9681b2f4-cd95-482b-8488-cb182a374f27" name="Changes" comment="Во все контроллеры добавлен ResponseEntity">
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/ShareItApp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/booking/BookingControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/booking/BookingDtoTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/booking/BookingMapperTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/booking/BookingRepositoryTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/booking/BookingServiceIT.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/item/CommentRepositoryTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/item/ItemControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/item/ItemRepositoryTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/item/ItemServiceIT.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/item/ItemServiceImplTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/request/ItemRequestControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/request/RequestRepositoryTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/request/RequestServiceIT.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/request/RequestServiceImplTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/user/UserControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/user/UserServiceIT.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/user/UserServiceImplTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/BookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/BookingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/repository/BookingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/repository/BookingRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/service/BookingServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/service/BookingServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/ItemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/service/ItemServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/service/ItemServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/ItemMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/ItemMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/dto/ItemDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/dto/ItemDto.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,32 +48,32 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="add-bookings" />
+        <entry key="$PROJECT_DIR$" value="Add_item_requests" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "mynameisSergey"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;mynameisSergey&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/mynameisSergey/java-shareit.git",
-    "accountId": "8c5cadc3-0631-43ea-8ce4-e421b647aa52"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/mynameisSergey/java-shareit.git&quot;,
+    &quot;accountId&quot;: &quot;8c5cadc3-0631-43ea-8ce4-e421b647aa52&quot;
   }
-}]]></component>
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2PtLgjVl2wad9x78KwqhhlZfNT0" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -67,11 +84,39 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.ShareItApp.executor": "Run",
+    "JUnit.BookingControllerTest.createBooking_whenBookingIsValid_thenReturnStatusOk.executor": "Run",
+    "JUnit.BookingDtoTest.executor": "Run",
+    "JUnit.BookingDtoTest.startSerializes.executor": "Run",
+    "JUnit.BookingMapperTest.executor": "Run",
+    "JUnit.BookingRepositoryTest.executor": "Run",
+    "JUnit.BookingRepositoryTest.getLastBooking.executor": "Run",
+    "JUnit.BookingRepositoryTest.getNextBooking.executor": "Run",
+    "JUnit.BookingServiceIT.executor": "Run",
+    "JUnit.CommentRepositoryTest.findAllByItemId.executor": "Run",
+    "JUnit.ItemControllerTest.executor": "Run",
+    "JUnit.ItemRepositoryTest.executor": "Run",
+    "JUnit.ItemRequestControllerTest.createRequest.executor": "Run",
+    "JUnit.ItemRequestControllerTest.executor": "Run",
+    "JUnit.ItemServiceIT.executor": "Run",
+    "JUnit.RequestServiceIT.executor": "Run",
+    "JUnit.UserControllerTest.createUser_wheNameIsNotValid_thenReturnBadRequest.executor": "Run",
+    "JUnit.UserControllerTest.createUser_wheUserEmailIsNotValid_thenReturnBadRequest.executor": "Debug",
+    "JUnit.UserControllerTest.executor": "Run",
+    "JUnit.UserControllerTest.updateUser_WhenUserIsValid.executor": "Run",
+    "JUnit.UserServiceImplTest.deleteUser_whenUserExist_userRepositoryDeleteInvoked.executor": "Run",
+    "JUnit.UserServiceImplTest.executor": "Run",
+    "JUnit.shareit in shareit-server (1).executor": "Run",
+    "JUnit.shareit in shareit-server.executor": "Run",
+    "JUnit.shareit.user in shareit-server.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "add-item-requests",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/serge/dev/Shareit2",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "settings.editor.selected.configurable": "reference.settings.ide.settings.notifications"
   },
   "keyToStringList": {
@@ -96,80 +141,71 @@
       <recent name="ru.practicum.shareit.item" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.BookingServiceTest">
-    <configuration name="BookingRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="shareit" />
+  <component name="RunManager" selected="JUnit.ItemRequestControllerTest.createRequest">
+    <configuration name="CommentRepositoryTest.findAllByItemId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shareit-server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.practicum.shareit.*" />
+          <option name="PATTERN" value="shareit.item.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ru.practicum.shareit.booking" />
-      <option name="MAIN_CLASS_NAME" value="ru.practicum.shareit.booking.BookingRepositoryTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="BookingRepositoryTest.getLastBookingTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="shareit" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ru.practicum.shareit.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ru.practicum.shareit.booking" />
-      <option name="MAIN_CLASS_NAME" value="ru.practicum.shareit.booking.BookingRepositoryTest" />
-      <option name="METHOD_NAME" value="getLastBookingTest" />
+      <option name="PACKAGE_NAME" value="shareit.item" />
+      <option name="MAIN_CLASS_NAME" value="shareit.item.CommentRepositoryTest" />
+      <option name="METHOD_NAME" value="findAllByItemId" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BookingRepositoryTest.getNextBookingTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="shareit" />
+    <configuration name="ItemRequestControllerTest.createRequest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shareit-server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.practicum.shareit.*" />
+          <option name="PATTERN" value="shareit.request.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ru.practicum.shareit.booking" />
-      <option name="MAIN_CLASS_NAME" value="ru.practicum.shareit.booking.BookingRepositoryTest" />
-      <option name="METHOD_NAME" value="getNextBookingTest" />
+      <option name="PACKAGE_NAME" value="shareit.request" />
+      <option name="MAIN_CLASS_NAME" value="shareit.request.ItemRequestControllerTest" />
+      <option name="METHOD_NAME" value="createRequest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BookingServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="shareit" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ru.practicum.shareit.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ru.practicum.shareit.booking" />
-      <option name="MAIN_CLASS_NAME" value="ru.practicum.shareit.booking.BookingServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
+    <configuration name="shareit in shareit-server (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shareit-server" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/server/src/test/java/shareit" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RequestServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="shareit" />
+    <configuration name="shareit in shareit-server" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shareit-server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.practicum.shareit.request.*" />
+          <option name="PATTERN" value="shareit.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ru.practicum.shareit.request" />
-      <option name="MAIN_CLASS_NAME" value="ru.practicum.shareit.request.RequestServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="shareit" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="shareit.user in shareit-server" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shareit-server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="shareit.user.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="shareit.user" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -189,11 +225,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.RequestServiceTest" />
-        <item itemvalue="JUnit.BookingServiceTest" />
-        <item itemvalue="JUnit.BookingRepositoryTest.getNextBookingTest" />
-        <item itemvalue="JUnit.BookingRepositoryTest.getLastBookingTest" />
-        <item itemvalue="JUnit.BookingRepositoryTest" />
+        <item itemvalue="JUnit.ItemRequestControllerTest.createRequest" />
+        <item itemvalue="JUnit.shareit in shareit-server (1)" />
+        <item itemvalue="JUnit.shareit in shareit-server" />
+        <item itemvalue="JUnit.shareit.user in shareit-server" />
+        <item itemvalue="JUnit.CommentRepositoryTest.findAllByItemId" />
       </list>
     </recent_temporary>
   </component>
