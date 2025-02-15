@@ -23,18 +23,18 @@ public class ItemRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "description", nullable = false, length = 255)
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "requestor_id", nullable = false)
+    @JoinColumn(name = "requester_id",nullable = false, referencedColumnName = "id")
     private User requester;
 
     @CreationTimestamp
     @Column(name = "created")
     private LocalDateTime created;
 
-    @OneToMany
-    @JoinColumn(name = "request_id")
+    @OneToMany(mappedBy = "itemRequest")
     private List<Item> items = new ArrayList<>();
 }

@@ -20,17 +20,19 @@ import java.util.Objects;
 @Slf4j
 @Validated
 public class BookingController {
+    private static final String XSHARERUSERID = "X-SHARE-USER-Id";
+
     private final BookingService bookingService;
 
     @PostMapping
-    public BookingDtoOut create(@RequestHeader("X-Sharer-User-Id") Long userId,
+    public BookingDtoOut create(@RequestHeader(XSHARERUSERID) Long userId,
                                 @Valid @RequestBody BookingDto bookingDto) {
         log.info("POST запрос на создание нового бронирования вещи: {} от пользователя c id: {}", bookingDto, userId);
         return bookingService.add(userId, bookingDto);
     }
 
     @PatchMapping("/{bookingId}")
-    public BookingDtoOut updateStatus(@RequestHeader("X-Sharer-User-Id") Long userId,
+    public BookingDtoOut updateStatus(@RequestHeader(XSHARERUSERID) Long userId,
                                       @PathVariable("bookingId")
                                       Long bookingId,
                                       @RequestParam(name = "approved") Boolean approved) {
@@ -39,7 +41,7 @@ public class BookingController {
     }
 
     @GetMapping("/{bookingId}")
-    public BookingDtoOut getBookingById(@RequestHeader("X-Sharer-User-Id") Long userId,
+    public BookingDtoOut getBookingById(@RequestHeader(XSHARERUSERID) Long userId,
                                         @PathVariable("bookingId")
                                         Long bookingId) {
         log.info("GET запрос на получение данных о конкретном бронировании {} от пользователся с id: {}", bookingId, userId);
@@ -47,7 +49,7 @@ public class BookingController {
     }
 
     @GetMapping
-    public List<BookingDtoOut> getAll(@RequestHeader("X-Sharer-User-Id") Long userId,
+    public List<BookingDtoOut> getAll(@RequestHeader(XSHARERUSERID) Long userId,
                                       @RequestParam(value = "state", defaultValue = "ALL") String bookingState,
                                       @RequestParam(value = "from", defaultValue = "0") @Min(0) Integer from,
                                       @RequestParam(value = "size", defaultValue = "10") @Min(1) Integer size) {
@@ -57,7 +59,7 @@ public class BookingController {
     }
 
     @GetMapping("/owner")
-    public List<BookingDtoOut> getAllOwner(@RequestHeader("X-Sharer-User-Id") Long ownerId,
+    public List<BookingDtoOut> getAllOwner(@RequestHeader(XSHARERUSERID) Long ownerId,
                                            @RequestParam(value = "state", defaultValue = "ALL") String bookingState,
                                            @RequestParam(value = "from", defaultValue = "0") @Min(0) Integer from,
                                            @RequestParam(value = "size", defaultValue = "10") @Min(1) Integer size) {
