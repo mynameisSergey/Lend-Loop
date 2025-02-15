@@ -12,11 +12,12 @@ import ru.practicum.shareit.item.service.ItemService;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import java.util.List;
-
-@RestController
-@RequestMapping("/items")
 @RequiredArgsConstructor
 @Slf4j
+@Validated
+@RestController
+@RequestMapping("/items")
+
 public class ItemController {
     private static final String XSHARERUSERID = "X-SHARE-USER-Id";
 
@@ -46,8 +47,8 @@ public class ItemController {
 
     @GetMapping
     public ResponseEntity<List<ItemDto>> getAll(@RequestHeader(XSHARERUSERID) Long userId,
-                                @RequestParam(value = "from", defaultValue = "0") @Min(0) Integer from,
-                                @RequestParam(value = "size", defaultValue = "10") @Min(1) Integer size) {
+                                @RequestParam(name = "from", defaultValue = "0") @Min(0) Integer from,
+                                @RequestParam(name = "size", defaultValue = "10") @Min(1) Integer size) {
         log.info("GET запрос на получение всех вещей пользователя c id: {}", userId);
         return ResponseEntity.ok(itemService.getAll(userId, from, size));
     }
@@ -55,8 +56,8 @@ public class ItemController {
     @GetMapping("/search")
     public ResponseEntity<List<ItemDto>> searchItems(@RequestHeader(XSHARERUSERID) Long userId,
                                      @RequestParam(name = "text") String text,
-                                     @RequestParam(value = "from", defaultValue = "0") @Min(0) Integer from,
-                                     @RequestParam(value = "size", defaultValue = "10") @Min(1) Integer size) {
+                                     @RequestParam(name = "from", defaultValue = "0") @Min(0) Integer from,
+                                     @RequestParam(name = "size", defaultValue = "10") @Min(1) Integer size) {
         log.info("GET запрос на поиск всех вещей c текстом: {}", text);
         return ResponseEntity.ok(itemService.search(userId, text, from, size));
     }

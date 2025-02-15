@@ -4,18 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9681b2f4-cd95-482b-8488-cb182a374f27" name="Changes" comment="Добрый день! спринт 15 1 версия">
+    <list default="true" id="9681b2f4-cd95-482b-8488-cb182a374f27" name="Changes" comment="Во все контроллеры добавлен ResponseEntity">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/BookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/BookingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/exceptions/ErrorResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/exceptions/ErrorResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/exceptions/NotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/exceptions/NotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/exceptions/ValidationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/exceptions/ValidationException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/repository/BookingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/repository/BookingRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/service/BookingServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/service/BookingServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/ItemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/model/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/model/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/ItemRequestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/ItemRequestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/model/ItemRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/model/ItemRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/service/RequestServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/service/RequestServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/service/ItemServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/service/ItemServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -554,7 +549,7 @@
       <option name="project" value="LOCAL" />
       <updated>1688083529561</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -586,6 +581,8 @@
     <MESSAGE value="Добрый день! спринт 14" />
     <MESSAGE value="Добрый день! спринт 14 2 версия" />
     <MESSAGE value="Добрый день! спринт 15 1 версия" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добрый день! спринт 15 1 версия" />
+    <MESSAGE value="Рефакторинг BookingController, ItemController, schema.sql и Exceptions" />
+    <MESSAGE value="Во все контроллеры добавлен ResponseEntity" />
+    <option name="LAST_COMMIT_MESSAGE" value="Во все контроллеры добавлен ResponseEntity" />
   </component>
 </project>

@@ -1,7 +1,9 @@
 package ru.practicum.shareit.item.service;
 
+import io.micrometer.core.instrument.util.StringUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -25,10 +27,7 @@ import ru.practicum.shareit.user.model.User;
 import ru.practicum.shareit.user.service.UserService;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -74,7 +73,7 @@ public class ItemServiceImpl implements ItemService {
             item.setName(itemFromStorage.getName());
         }
         item.setId(itemFromStorage.getId());
-        item.setRequestId(itemFromStorage.getRequestId());
+        item.setItemRequest(itemFromStorage.getItemRequest());
         item.setOwner(itemFromStorage.getOwner());
 
         return ItemMapper.toItemDto(itemRepository.save(item));
@@ -108,7 +107,9 @@ public class ItemServiceImpl implements ItemService {
         userService.getUserById(userId);
         Pageable pageable = PageRequest.of(from / size, size);
 
-        List<Item> itemList = itemRepository.findAllByOwnerIdOrderByIdAsc(userId, pageable).stream().collect(Collectors.toList());
+        Page<Item> itemPage = itemRepository.findAllByOwnerIdOrderByIdAsc(userId, pageable);
+        List<Item> itemList = itemPage.getContent();
+
         List<ItemDto> items = ItemMapper.mapToItemDto(itemList);
         items.forEach(i -> {
             getLastNextBooking(i);
@@ -132,10 +133,11 @@ public class ItemServiceImpl implements ItemService {
     public List<ItemDto> search(Long userId, String text, Integer from, Integer size) {
         userService.getUserById(userId);
         Pageable pageable = PageRequest.of(from / size, size);
-        if (text.isBlank()) {
-            return Collections.emptyList();
+        if (StringUtils.isBlank(text)) {
+            return new ArrayList<>();
         }
-        return ItemMapper.mapToItemDto(itemRepository.findAll(pageable).stream()
+
+        return ItemMapper.mapToItemDto(itemRepository.findAll(pageable).getContent().stream()
                 .filter(Item::getAvailable)
                 .filter(item -> item.getName().toLowerCase().contains(text.toLowerCase())
                         || item.getDescription().toLowerCase().contains(text.toLowerCase()))
@@ -167,6 +169,7 @@ public class ItemServiceImpl implements ItemService {
         return CommentMapper.toCommentDto(commentRepository.save(CommentMapper.toComment(commentDto, item, user)));
     }
 
+    @Transactional
     private void getLastNextBooking(ItemDto itemDto) {
         Optional<Booking> lastBooking = bookingRepository.getLastBooking(itemDto.getId(), LocalDateTime.now());
         itemDto.setLastBooking(

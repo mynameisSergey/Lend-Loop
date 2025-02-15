@@ -14,12 +14,11 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import java.util.List;
 import java.util.Objects;
-
-@RestController
-@RequestMapping(path = "/bookings")
 @RequiredArgsConstructor
 @Slf4j
 @Validated
+@RestController
+@RequestMapping(path = "/bookings")
 public class BookingController {
     private static final String XSHARERUSERID = "X-SHARE-USER-Id";
 
@@ -54,7 +53,8 @@ public class BookingController {
                                       @RequestParam(value = "state", defaultValue = "ALL") String bookingState,
                                       @RequestParam(value = "from", defaultValue = "0") @Min(0) Integer from,
                                       @RequestParam(value = "size", defaultValue = "10") @Min(1) Integer size) {
-        log.info("GET запрос на получение списка всех бронирований текущего пользователя с id: {} и статусом {}", userId, bookingState);
+        log.info("GET запрос на получение списка всех бронирований текущего пользователя с id: {} и статусом {}",
+                userId, bookingState);
         validState(bookingState);
         return ResponseEntity.ok(bookingService.getAll(userId, bookingState, from, size));
     }
