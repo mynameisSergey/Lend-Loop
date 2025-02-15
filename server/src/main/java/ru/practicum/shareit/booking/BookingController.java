@@ -2,6 +2,7 @@ package ru.practicum.shareit.booking;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.shareit.booking.dto.BookingDto;
@@ -25,47 +26,47 @@ public class BookingController {
     private final BookingService bookingService;
 
     @PostMapping
-    public BookingDtoOut create(@RequestHeader(XSHARERUSERID) Long userId,
-                                @Valid @RequestBody BookingDto bookingDto) {
+    public ResponseEntity<BookingDtoOut> create(@RequestHeader(XSHARERUSERID) Long userId,
+                                               @Valid @RequestBody BookingDto bookingDto) {
         log.info("POST запрос на создание нового бронирования вещи: {} от пользователя c id: {}", bookingDto, userId);
-        return bookingService.add(userId, bookingDto);
+        return ResponseEntity.ok(bookingService.add(userId, bookingDto));
     }
 
     @PatchMapping("/{bookingId}")
-    public BookingDtoOut updateStatus(@RequestHeader(XSHARERUSERID) Long userId,
+    public ResponseEntity<BookingDtoOut> updateStatus(@RequestHeader(XSHARERUSERID) Long userId,
                                       @PathVariable("bookingId")
                                       Long bookingId,
                                       @RequestParam(name = "approved") Boolean approved) {
         log.info("PATCH запрос на обновление статуса бронирования вещи : {} от владельца с id: {}", bookingId, userId);
-        return bookingService.update(userId, bookingId, approved);
+        return ResponseEntity.ok(bookingService.update(userId, bookingId, approved));
     }
 
     @GetMapping("/{bookingId}")
-    public BookingDtoOut getBookingById(@RequestHeader(XSHARERUSERID) Long userId,
+    public ResponseEntity<BookingDtoOut> getBookingById(@RequestHeader(XSHARERUSERID) Long userId,
                                         @PathVariable("bookingId")
                                         Long bookingId) {
         log.info("GET запрос на получение данных о конкретном бронировании {} от пользователся с id: {}", bookingId, userId);
-        return bookingService.getBookingById(userId, bookingId);
+        return ResponseEntity.ok(bookingService.getBookingById(userId, bookingId));
     }
 
     @GetMapping
-    public List<BookingDtoOut> getAll(@RequestHeader(XSHARERUSERID) Long userId,
+    public ResponseEntity<List<BookingDtoOut>> getAll(@RequestHeader(XSHARERUSERID) Long userId,
                                       @RequestParam(value = "state", defaultValue = "ALL") String bookingState,
                                       @RequestParam(value = "from", defaultValue = "0") @Min(0) Integer from,
                                       @RequestParam(value = "size", defaultValue = "10") @Min(1) Integer size) {
         log.info("GET запрос на получение списка всех бронирований текущего пользователя с id: {} и статусом {}", userId, bookingState);
         validState(bookingState);
-        return bookingService.getAll(userId, bookingState, from, size);
+        return ResponseEntity.ok(bookingService.getAll(userId, bookingState, from, size));
     }
 
     @GetMapping("/owner")
-    public List<BookingDtoOut> getAllOwner(@RequestHeader(XSHARERUSERID) Long ownerId,
+    public ResponseEntity<List<BookingDtoOut>> getAllOwner(@RequestHeader(XSHARERUSERID) Long ownerId,
                                            @RequestParam(value = "state", defaultValue = "ALL") String bookingState,
                                            @RequestParam(value = "from", defaultValue = "0") @Min(0) Integer from,
                                            @RequestParam(value = "size", defaultValue = "10") @Min(1) Integer size) {
         log.info("GET запрос на получение списка всех бронирований текущего владельца с id: {} и статусом {}", ownerId, bookingState);
         validState(bookingState);
-        return bookingService.getAllOwner(ownerId, bookingState, from, size);
+        return ResponseEntity.ok(bookingService.getAllOwner(ownerId, bookingState, from, size));
     }
 
     private void validState(String bookingState) {

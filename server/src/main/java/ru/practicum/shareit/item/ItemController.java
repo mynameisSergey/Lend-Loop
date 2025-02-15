@@ -2,6 +2,7 @@ package ru.practicum.shareit.item;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.shareit.item.dto.CommentDto;
@@ -22,48 +23,48 @@ public class ItemController {
     private final ItemService itemService;
 
     @PostMapping
-    public ItemDto create(@RequestHeader(XSHARERUSERID) Long userId,
-                          @Valid @RequestBody ItemDto itemDto) {
+    public ResponseEntity<ItemDto> create(@RequestHeader(XSHARERUSERID) Long userId,
+                                          @Valid @RequestBody ItemDto itemDto) {
         log.info("POST запрос на создание новой вещи: {} от пользователя c id: {}", itemDto, userId);
-        return itemService.create(userId, itemDto);
+        return ResponseEntity.ok(itemService.create(userId, itemDto));
     }
 
     @PatchMapping("/{itemId}")
-    public ItemDto update(@RequestHeader(XSHARERUSERID) Long userId,
+    public ResponseEntity<ItemDto> update(@RequestHeader(XSHARERUSERID) Long userId,
                           @RequestBody ItemDto itemDto,
                           @PathVariable("itemId") Long itemId) {
         log.info("PATCH запрос на обновление вещи id: {} пользователя c id: {}", itemId, userId);
-        return itemService.update(userId, itemId, itemDto);
+        return ResponseEntity.ok(itemService.update(userId, itemId, itemDto));
     }
 
     @GetMapping("/{itemId}")
-    public ItemDto get(@RequestHeader(XSHARERUSERID) Long userId,
+    public ResponseEntity<ItemDto> get(@RequestHeader(XSHARERUSERID) Long userId,
                        @PathVariable Long itemId) {
         log.info("GET запрос на получение вещи c id: {}", itemId);
-        return itemService.getItemById(userId, itemId);
+        return ResponseEntity.ok(itemService.getItemById(userId, itemId));
     }
 
     @GetMapping
-    public List<ItemDto> getAll(@RequestHeader(XSHARERUSERID) Long userId,
+    public ResponseEntity<List<ItemDto>> getAll(@RequestHeader(XSHARERUSERID) Long userId,
                                 @RequestParam(value = "from", defaultValue = "0") @Min(0) Integer from,
                                 @RequestParam(value = "size", defaultValue = "10") @Min(1) Integer size) {
         log.info("GET запрос на получение всех вещей пользователя c id: {}", userId);
-        return itemService.getAll(userId, from, size);
+        return ResponseEntity.ok(itemService.getAll(userId, from, size));
     }
 
     @GetMapping("/search")
-    public List<ItemDto> searchItems(@RequestHeader(XSHARERUSERID) Long userId,
+    public ResponseEntity<List<ItemDto>> searchItems(@RequestHeader(XSHARERUSERID) Long userId,
                                      @RequestParam(name = "text") String text,
                                      @RequestParam(value = "from", defaultValue = "0") @Min(0) Integer from,
                                      @RequestParam(value = "size", defaultValue = "10") @Min(1) Integer size) {
         log.info("GET запрос на поиск всех вещей c текстом: {}", text);
-        return itemService.search(userId, text, from, size);
+        return ResponseEntity.ok(itemService.search(userId, text, from, size));
     }
 
     @PostMapping("/{itemId}/comment")
-    public CommentDto createComment(@RequestHeader(XSHARERUSERID) Long userId,
+    public ResponseEntity<CommentDto> createComment(@RequestHeader(XSHARERUSERID) Long userId,
                                     @Validated @RequestBody CommentDto commentDto,
                                     @PathVariable Long itemId) {
-        return itemService.createComment(userId, commentDto, itemId);
+        return ResponseEntity.ok(itemService.createComment(userId, commentDto, itemId));
     }
 }
