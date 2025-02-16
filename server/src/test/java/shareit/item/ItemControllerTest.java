@@ -2,11 +2,14 @@ package shareit.item;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
+import org.jeasy.random.EasyRandom;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import ru.practicum.shareit.item.ItemController;
@@ -14,6 +17,7 @@ import ru.practicum.shareit.item.dto.CommentDto;
 import ru.practicum.shareit.item.dto.ItemDto;
 import ru.practicum.shareit.item.service.ItemService;
 
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -27,31 +31,34 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class ItemControllerTest {
 
     @Autowired
-    private ObjectMapper objectMapper;
+    ObjectMapper objectMapper;
 
     @Autowired
-    private MockMvc mockMvc;
+    MockMvc mockMvc;
 
     @MockBean
-    private ItemService itemService;
+    ItemService itemService;
+
+    private final EasyRandom generator = new EasyRandom();
 
     @Test
     @SneakyThrows
     @DisplayName("Тестирование добавления вещи прошедшей валидацию")
     void createItem_whenItemIsValid_thenReturnStatusOk() {
-        Long userId = 0L;
-        ItemDto itemDtoToCreate = ItemDto.builder()
-                .description("some item description")
-                .name("some item name")
-                .available(true)
-                .build();
+        Long userId = 1L; // Замените на актуальный ID пользователя
+        ItemDto itemDtoToCreate = generator.nextObject(ItemDto.class);
 
-        when(itemService.create(userId, itemDtoToCreate)).thenReturn(itemDtoToCreate);
+        itemDtoToCreate.setId(userId);
+
+        when(itemService.create(Mockito.anyLong(), Mockito.any(ItemDto.class))).thenReturn(itemDtoToCreate);
 
         String result = mockMvc.perform(post("/items")
-                        .contentType("application/json")
+                        .content(objectMapper.writeValueAsString(itemDtoToCreate))
+                        .characterEncoding(StandardCharsets.UTF_8)
+                        .contentType(MediaType.APPLICATION_JSON)
                         .header("X-Sharer-User-Id", userId)
-                        .content(objectMapper.writeValueAsString(itemDtoToCreate)))
+                        .accept(MediaType.APPLICATION_JSON)
+                )
                 .andExpect(status().isOk())
                 .andReturn()
                 .getResponse()
@@ -59,6 +66,7 @@ class ItemControllerTest {
 
         assertEquals(objectMapper.writeValueAsString(itemDtoToCreate), result);
     }
+
 
     @Test
     @SneakyThrows

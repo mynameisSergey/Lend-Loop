@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.DirtiesContext;
 import ru.practicum.shareit.item.model.Item;
@@ -20,6 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataJpaTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
+@Import(ItemRepository.class)
 class ItemRepositoryTest {
 
     @Autowired
