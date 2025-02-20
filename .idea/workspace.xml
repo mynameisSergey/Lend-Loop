@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9681b2f4-cd95-482b-8488-cb182a374f27" name="Changes" comment="style: статические переменные перемещены в начало классов, удалены лишние отступы" />
+    <list default="true" id="9681b2f4-cd95-482b-8488-cb182a374f27" name="Changes" comment="style: удалены лишние отступы в методах" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -575,7 +575,7 @@
       <option name="project" value="LOCAL" />
       <updated>1688083529561</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -602,7 +602,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Во все контроллеры добавлен ResponseEntity" />
     <MESSAGE value="Добавлены тесты" />
     <MESSAGE value="fix: исправлена Schema" />
     <MESSAGE value="style: удалены отступы в BookingClient" />
@@ -627,6 +626,7 @@
     <MESSAGE value="feat: добавлен ItemClient в gateway" />
     <MESSAGE value="style: статическая переменная REQUEST_HEADER_SHARER_USER_ID перемещена в начало класса ItemController" />
     <MESSAGE value="style: статические переменные перемещены в начало классов, удалены лишние отступы" />
-    <option name="LAST_COMMIT_MESSAGE" value="style: статические переменные перемещены в начало классов, удалены лишние отступы" />
+    <MESSAGE value="style: удалены лишние отступы в методах" />
+    <option name="LAST_COMMIT_MESSAGE" value="style: удалены лишние отступы в методах" />
   </component>
 </project>
