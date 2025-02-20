@@ -21,8 +21,9 @@ import javax.validation.constraints.PositiveOrZero;
 @Slf4j
 @Validated
 public class BookingController {
-    private final BookingClient bookingClient;
     private static final String REQUEST_HEADER_SHARER_USER_ID = "X-Sharer-User-Id";
+    private final BookingClient bookingClient;
+
 
     @GetMapping
     public ResponseEntity<Object> getBookings(@RequestHeader(REQUEST_HEADER_SHARER_USER_ID) long userId,
