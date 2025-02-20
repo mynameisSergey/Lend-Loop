@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9681b2f4-cd95-482b-8488-cb182a374f27" name="Changes" comment="style: удален лишний отступ">
+    <list default="true" id="9681b2f4-cd95-482b-8488-cb182a374f27" name="Changes" comment="fix: удалена валидация в контроллерах сервера">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -585,7 +586,7 @@
       <option name="project" value="LOCAL" />
       <updated>1688083529561</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -612,7 +613,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="style: удалены отступы в BookingClient" />
     <MESSAGE value="fix: удалены лишние зависимости в pom" />
     <MESSAGE value="style: удалены отсупы в Booking" />
     <MESSAGE value="style: удалены отсупы в BookingController" />
@@ -637,6 +637,7 @@
     <MESSAGE value="style: откорректированы отступы в между зависимостями в общем pom" />
     <MESSAGE value="docs: добавлена информация о проекте в файл README" />
     <MESSAGE value="style: удален лишний отступ" />
-    <option name="LAST_COMMIT_MESSAGE" value="style: удален лишний отступ" />
+    <MESSAGE value="fix: удалена валидация в контроллерах сервера" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: удалена валидация в контроллерах сервера" />
   </component>
 </project>
