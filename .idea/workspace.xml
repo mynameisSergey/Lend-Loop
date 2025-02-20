@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9681b2f4-cd95-482b-8488-cb182a374f27" name="Changes" comment="style: откорректированы отступы в между зависимостями в общем pom">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="9681b2f4-cd95-482b-8488-cb182a374f27" name="Changes" comment="style: откорректированы отступы в между зависимостями в общем pom" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -70,51 +68,51 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.ShareItApp.executor": "Run",
-    "JUnit.BookingControllerTest.createBooking_whenBookingIsValid_thenReturnStatusOk.executor": "Run",
-    "JUnit.BookingDtoTest.executor": "Run",
-    "JUnit.BookingDtoTest.startSerializes.executor": "Run",
-    "JUnit.BookingMapperTest.executor": "Run",
-    "JUnit.BookingRepositoryTest.executor": "Run",
-    "JUnit.BookingRepositoryTest.getLastBooking.executor": "Run",
-    "JUnit.BookingRepositoryTest.getNextBooking.executor": "Run",
-    "JUnit.BookingServiceIT.executor": "Run",
-    "JUnit.CommentRepositoryTest.findAllByItemId.executor": "Run",
-    "JUnit.ItemControllerTest.createItem_whenItemIsValid_thenReturnStatusOk.executor": "Run",
-    "JUnit.ItemControllerTest.executor": "Run",
-    "JUnit.ItemRepositoryTest.executor": "Run",
-    "JUnit.ItemRequestControllerTest.createRequest.executor": "Run",
-    "JUnit.ItemRequestControllerTest.executor": "Run",
-    "JUnit.ItemServiceIT.executor": "Run",
-    "JUnit.RequestServiceIT.executor": "Run",
-    "JUnit.UserControllerTest.createUser_wheNameIsNotValid_thenReturnBadRequest.executor": "Run",
-    "JUnit.UserControllerTest.createUser_wheUserEmailIsNotValid_thenReturnBadRequest.executor": "Debug",
-    "JUnit.UserControllerTest.executor": "Run",
-    "JUnit.UserControllerTest.updateUser_WhenUserIsValid.executor": "Run",
-    "JUnit.UserServiceImplTest.deleteUser_whenUserExist_userRepositoryDeleteInvoked.executor": "Run",
-    "JUnit.UserServiceImplTest.executor": "Run",
-    "JUnit.java in shareit-server.executor": "Run",
-    "JUnit.shareit in shareit-server (1).executor": "Run",
-    "JUnit.shareit in shareit-server.executor": "Run",
-    "JUnit.shareit.user in shareit-server.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "#20 on add-item-requests",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/serge/dev/Shareit2",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.settings.ide.settings.notifications"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.ShareItApp.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BookingControllerTest.createBooking_whenBookingIsValid_thenReturnStatusOk.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BookingDtoTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BookingDtoTest.startSerializes.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BookingMapperTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BookingRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BookingRepositoryTest.getLastBooking.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BookingRepositoryTest.getNextBooking.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BookingServiceIT.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CommentRepositoryTest.findAllByItemId.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ItemControllerTest.createItem_whenItemIsValid_thenReturnStatusOk.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ItemControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ItemRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ItemRequestControllerTest.createRequest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ItemRequestControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ItemServiceIT.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RequestServiceIT.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.createUser_wheNameIsNotValid_thenReturnBadRequest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.createUser_wheUserEmailIsNotValid_thenReturnBadRequest.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.UserControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.updateUser_WhenUserIsValid.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceImplTest.deleteUser_whenUserExist_userRepositoryDeleteInvoked.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceImplTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.java in shareit-server.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.shareit in shareit-server (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.shareit in shareit-server.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.shareit.user in shareit-server.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;#20 on add-item-requests&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/serge/dev/Shareit2&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.notifications&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "Shell Script"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;Shell Script&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="ru.practicum.shareit.item.service" />
@@ -577,7 +575,7 @@
       <option name="project" value="LOCAL" />
       <updated>1688083529561</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
