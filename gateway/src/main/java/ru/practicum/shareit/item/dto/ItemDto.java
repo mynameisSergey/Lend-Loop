@@ -15,13 +15,17 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class ItemDto {
+
     private Long id;
+
     @NotBlank(message = "Поле name не должно быть пустым")
     @Size(min = 1)
     private String name;
+
     @NotBlank(message = "Поле description не должно быть пустым")
     @Size(min = 1)
     private String description;
+
     @NotNull
     private Boolean available;
     private BookingItemDto lastBooking;
