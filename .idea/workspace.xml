@@ -4,30 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9681b2f4-cd95-482b-8488-cb182a374f27" name="Changes" comment="Во все контроллеры добавлен ResponseEntity">
-      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/ShareItApp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/booking/BookingControllerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/booking/BookingDtoTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/booking/BookingMapperTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/booking/BookingRepositoryTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/booking/BookingServiceIT.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/item/CommentRepositoryTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/item/ItemControllerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/item/ItemRepositoryTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/item/ItemServiceIT.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/item/ItemServiceImplTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/request/ItemRequestControllerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/request/RequestRepositoryTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/request/RequestServiceIT.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/request/RequestServiceImplTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/user/UserControllerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/user/UserServiceIT.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/test/java/shareit/user/UserServiceImplTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/test/resources/application.properties" afterDir="false" />
+    <list default="true" id="9681b2f4-cd95-482b-8488-cb182a374f27" name="Changes" comment="Добавлены тесты">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/ItemMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/ItemMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/dto/ItemDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/dto/ItemDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/ItemController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test/java/shareit/item/ItemControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/shareit/item/ItemControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test/java/shareit/item/ItemRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/shareit/item/ItemRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +46,16 @@
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/mynameisSergey/java-shareit.git&quot;,
     &quot;accountId&quot;: &quot;8c5cadc3-0631-43ea-8ce4-e421b647aa52&quot;
+  },
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
+    },
+    &quot;owner&quot;: &quot;mynameisSergey&quot;,
+    &quot;repository&quot;: &quot;java-shareit&quot;
   }
 }</component>
   <component name="MarkdownSettingsMigration">
@@ -94,6 +87,7 @@
     "JUnit.BookingRepositoryTest.getNextBooking.executor": "Run",
     "JUnit.BookingServiceIT.executor": "Run",
     "JUnit.CommentRepositoryTest.findAllByItemId.executor": "Run",
+    "JUnit.ItemControllerTest.createItem_whenItemIsValid_thenReturnStatusOk.executor": "Run",
     "JUnit.ItemControllerTest.executor": "Run",
     "JUnit.ItemRepositoryTest.executor": "Run",
     "JUnit.ItemRequestControllerTest.createRequest.executor": "Run",
@@ -106,6 +100,7 @@
     "JUnit.UserControllerTest.updateUser_WhenUserIsValid.executor": "Run",
     "JUnit.UserServiceImplTest.deleteUser_whenUserExist_userRepositoryDeleteInvoked.executor": "Run",
     "JUnit.UserServiceImplTest.executor": "Run",
+    "JUnit.java in shareit-server.executor": "Run",
     "JUnit.shareit in shareit-server (1).executor": "Run",
     "JUnit.shareit in shareit-server.executor": "Run",
     "JUnit.shareit.user in shareit-server.executor": "Run",
@@ -141,8 +136,8 @@
       <recent name="ru.practicum.shareit.item" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ItemRequestControllerTest.createRequest">
-    <configuration name="CommentRepositoryTest.findAllByItemId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.ItemRepositoryTest">
+    <configuration name="ItemControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="shareit-server" />
       <extension name="coverage">
         <pattern>
@@ -151,9 +146,39 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="shareit.item" />
-      <option name="MAIN_CLASS_NAME" value="shareit.item.CommentRepositoryTest" />
-      <option name="METHOD_NAME" value="findAllByItemId" />
+      <option name="MAIN_CLASS_NAME" value="shareit.item.ItemControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ItemControllerTest.createItem_whenItemIsValid_thenReturnStatusOk" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shareit-server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="shareit.item.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="shareit.item" />
+      <option name="MAIN_CLASS_NAME" value="shareit.item.ItemControllerTest" />
+      <option name="METHOD_NAME" value="createItem_whenItemIsValid_thenReturnStatusOk" />
       <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ItemRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shareit-server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="shareit.item.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="shareit.item" />
+      <option name="MAIN_CLASS_NAME" value="shareit.item.ItemRepositoryTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -174,38 +199,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="shareit in shareit-server (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="java in shareit-server" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="shareit-server" />
       <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/server/src/test/java/shareit" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="shareit in shareit-server" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="shareit-server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="shareit.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="shareit" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="shareit.user in shareit-server" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="shareit-server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="shareit.user.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="shareit.user" />
-      <option name="TEST_OBJECT" value="package" />
+      <dir value="$PROJECT_DIR$/server/src/test/java" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -225,11 +222,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ItemRepositoryTest" />
+        <item itemvalue="JUnit.java in shareit-server" />
+        <item itemvalue="JUnit.ItemControllerTest.createItem_whenItemIsValid_thenReturnStatusOk" />
+        <item itemvalue="JUnit.ItemControllerTest" />
         <item itemvalue="JUnit.ItemRequestControllerTest.createRequest" />
-        <item itemvalue="JUnit.shareit in shareit-server (1)" />
-        <item itemvalue="JUnit.shareit in shareit-server" />
-        <item itemvalue="JUnit.shareit.user in shareit-server" />
-        <item itemvalue="JUnit.CommentRepositoryTest.findAllByItemId" />
       </list>
     </recent_temporary>
   </component>
@@ -585,7 +582,7 @@
       <option name="project" value="LOCAL" />
       <updated>1688083529561</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -619,6 +616,7 @@
     <MESSAGE value="Добрый день! спринт 15 1 версия" />
     <MESSAGE value="Рефакторинг BookingController, ItemController, schema.sql и Exceptions" />
     <MESSAGE value="Во все контроллеры добавлен ResponseEntity" />
-    <option name="LAST_COMMIT_MESSAGE" value="Во все контроллеры добавлен ResponseEntity" />
+    <MESSAGE value="Добавлены тесты" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлены тесты" />
   </component>
 </project>

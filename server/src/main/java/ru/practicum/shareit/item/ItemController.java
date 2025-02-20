@@ -17,7 +17,6 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/items")
-
 public class ItemController {
     private static final String XSHARERUSERID = "X-SHARE-USER-Id";
 
