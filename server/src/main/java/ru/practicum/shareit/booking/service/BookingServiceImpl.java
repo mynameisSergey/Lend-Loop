@@ -53,11 +53,10 @@ public class BookingServiceImpl implements BookingService {
     public BookingDtoOut update(Long userId, Long bookingId, Boolean approved) {
         Booking booking = validateBookingDetails(userId, bookingId, 1);
         assert booking != null;
-        if (approved) {
+        if (approved)
             booking.setStatus(BookingStatus.APPROVED);
-        } else {
+        else
             booking.setStatus(BookingStatus.REJECTED);
-        }
         return BookingMapper.toBookingOut(bookingRepository.save(booking));
     }
 
@@ -159,7 +158,6 @@ public class BookingServiceImpl implements BookingService {
     }
 
     private void bookingValidation(BookingDto bookingDto, User user, Item item) {
-
         if (bookingDto.getStart().isBefore(LocalDateTime.now())) {
             throw new ValidationException(
                     String.format("Дата начала: %s не может быть раньше текущего времени.",
@@ -188,7 +186,6 @@ public class BookingServiceImpl implements BookingService {
             );
         }
     }
-
 
     private Booking validateBookingDetails(Long userId, Long bookingId, Integer number) {
         Optional<Booking> bookingById = bookingRepository.findById(bookingId);
