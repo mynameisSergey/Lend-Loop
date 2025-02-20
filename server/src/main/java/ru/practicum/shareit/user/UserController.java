@@ -10,11 +10,12 @@ import ru.practicum.shareit.user.service.UserService;
 import javax.validation.Valid;
 import java.util.List;
 
-@RestController
-@RequiredArgsConstructor
-@RequestMapping(path = "/users")
 @Slf4j
+@RequiredArgsConstructor
+@RestController
+@RequestMapping(path = "/users")
 public class UserController {
+
     private final UserService userService;
 
     @PostMapping
@@ -24,7 +25,7 @@ public class UserController {
     }
 
     @PatchMapping("/{userId}")
-    public ResponseEntity<UserDto> update(@RequestBody UserDto userDto, @PathVariable Long userId) {
+    public ResponseEntity<UserDto> update(@Valid @RequestBody UserDto userDto, @PathVariable Long userId) {
         log.info("PATCH запрос на обновление пользователя c id: {}", userId);
         return ResponseEntity.ok(userService.update(userId, userDto));
     }
