@@ -4,10 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9681b2f4-cd95-482b-8488-cb182a374f27" name="Changes" comment="style: по порядку расставлены аннотации над классом ItemServiceImpl, а также удалены лишние &quot;}&quot; в методах">
+    <list default="true" id="9681b2f4-cd95-482b-8488-cb182a374f27" name="Changes" comment="style: по порядку расставлены аннотации над классами Item, удалена аннотация @Column в User">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/item/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/item/ItemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/ItemController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/ItemRequestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/ItemRequestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/dto/ItemRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/dto/ItemRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/model/ItemRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/model/ItemRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/service/RequestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/service/RequestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/service/RequestServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/service/RequestServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/user/dao/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/user/dao/UserDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/user/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/user/dto/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/user/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/user/model/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -579,7 +585,7 @@
       <option name="project" value="LOCAL" />
       <updated>1688083529561</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -621,6 +627,8 @@
     <MESSAGE value="style: удалены отсупы в BookingController" />
     <MESSAGE value="style: удалены отсупы" />
     <MESSAGE value="style: по порядку расставлены аннотации над классом ItemServiceImpl, а также удалены лишние &quot;}&quot; в методах" />
-    <option name="LAST_COMMIT_MESSAGE" value="style: по порядку расставлены аннотации над классом ItemServiceImpl, а также удалены лишние &quot;}&quot; в методах" />
+    <MESSAGE value="style: по порядку расставлены аннотации над классом ItemController, а также удалены лишние &quot;}&quot; в методах" />
+    <MESSAGE value="style: по порядку расставлены аннотации над классами Item, удалена аннотация @Column в User" />
+    <option name="LAST_COMMIT_MESSAGE" value="style: по порядку расставлены аннотации над классами Item, удалена аннотация @Column в User" />
   </component>
 </project>

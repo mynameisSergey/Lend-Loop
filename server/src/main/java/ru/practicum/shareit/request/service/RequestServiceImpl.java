@@ -24,6 +24,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @RequiredArgsConstructor
 public class RequestServiceImpl implements RequestService {
+
     private final UserService userService;
     private final RequestRepository requestRepository;
 
@@ -39,7 +40,7 @@ public class RequestServiceImpl implements RequestService {
     @Override
     @Transactional(readOnly = true)
     public List<ItemRequestDto> getUserRequests(Long userId) {
-      userService.getUserById(userId);
+        userService.getUserById(userId);
         List<ItemRequest> itemRequestList = requestRepository.findAllByRequesterId(userId);
         return itemRequestList.stream()
                 .sorted(Comparator.comparing(ItemRequest::getCreated).reversed())
@@ -50,7 +51,7 @@ public class RequestServiceImpl implements RequestService {
     @Override
     @Transactional
     public List<ItemRequestDto> getAllRequests(Long userId, Integer from, Integer size) {
-    userService.getUserById(userId);
+        userService.getUserById(userId);
         List<ItemRequest> itemRequestList = requestRepository.findAllByRequester_IdNotOrderByCreatedDesc(userId,
                 PageRequest.of(from / size, size));
         return itemRequestList.stream()
@@ -62,7 +63,6 @@ public class RequestServiceImpl implements RequestService {
     @Transactional
     public ItemRequestDto getRequestById(Long userId, Long requestId) {
         userService.getUserById(userId);
-
         Optional<ItemRequest> requestById = requestRepository.findById(requestId);
 
         if (requestById.isEmpty()) {
@@ -70,7 +70,6 @@ public class RequestServiceImpl implements RequestService {
             throw new NotFoundException(String.format("Запрос с id: %d " +
                     "не был найден.", requestId));
         }
-
         return RequestMapping.toRequestDto(requestById.get());
     }
 }

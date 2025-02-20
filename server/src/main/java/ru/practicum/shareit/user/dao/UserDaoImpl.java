@@ -12,9 +12,10 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Slf4j
-@Repository
 @RequiredArgsConstructor
+@Repository
 public class UserDaoImpl implements UserDao {
+
     private final Map<Long, User> users = new HashMap<>();
     private final AtomicLong userId = new AtomicLong();
 

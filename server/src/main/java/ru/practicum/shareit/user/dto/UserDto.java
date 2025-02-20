@@ -14,9 +14,12 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor
 @Builder
 public class UserDto {
+
     private Long id;
+
     @NotBlank(message = "Поле name не должно быть пустым")
     private String name;
+
     @NotEmpty(message = "Поле email не должно быть пустым")
     @Email(message = "Email не корректен")
     private String email;
