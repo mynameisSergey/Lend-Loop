@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class BookingDto {
     @NotNull
     private Long itemId;
@@ -23,5 +22,4 @@ public class BookingDto {
     @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-ddTHH:mm:ss")
     private LocalDateTime end;
-
 }
