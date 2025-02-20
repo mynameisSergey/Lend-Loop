@@ -34,7 +34,6 @@ public class ItemRequest {
     @Column(name = "created")
     private LocalDateTime created;
 
-    @OneToMany
-    @JoinColumn(name = "request_id")
+    @OneToMany(mappedBy = "itemRequest")
     private List<Item> items = new ArrayList<>();
 }

@@ -29,6 +29,7 @@ public class RequestMapping {
                     .map(ItemMapper::toItemDto)
                     .collect(Collectors.toList());
         }
+
         return ItemRequestDto.builder()
                 .id(request.getId())
                 .description(request.getDescription())
