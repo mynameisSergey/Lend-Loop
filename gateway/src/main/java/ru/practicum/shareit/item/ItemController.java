@@ -14,6 +14,7 @@ import javax.validation.constraints.Min;
 @RestController
 @RequestMapping("/items")
 @RequiredArgsConstructor
+@Validated
 @Slf4j
 public class ItemController {
 

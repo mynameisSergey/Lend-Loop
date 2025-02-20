@@ -14,10 +14,11 @@ import javax.validation.constraints.Min;
 import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
-@Validated
 @RestController
+@Validated
 @RequestMapping("/items")
 public class ItemController {
+
     private static final String XSHARERUSERID = "X-SHARE-USER-Id";
 
     private final ItemService itemService;
@@ -31,7 +32,7 @@ public class ItemController {
 
     @PatchMapping("/{itemId}")
     public ResponseEntity<ItemDto> update(@RequestHeader(XSHARERUSERID) Long userId,
-                          @RequestBody ItemDto itemDto,
+                          @Valid @RequestBody ItemDto itemDto,
                           @PathVariable("itemId") Long itemId) {
         log.info("PATCH запрос на обновление вещи id: {} пользователя c id: {}", itemId, userId);
         return ResponseEntity.ok(itemService.update(userId, itemId, itemDto));

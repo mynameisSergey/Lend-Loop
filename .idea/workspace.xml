@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9681b2f4-cd95-482b-8488-cb182a374f27" name="Changes" comment="style: удалены отсупы">
+    <list default="true" id="9681b2f4-cd95-482b-8488-cb182a374f27" name="Changes" comment="style: по порядку расставлены аннотации над классом ItemServiceImpl, а также удалены лишние &quot;}&quot; в методах">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/service/ItemServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/service/ItemServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/item/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/item/ItemController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/ItemController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -578,7 +579,7 @@
       <option name="project" value="LOCAL" />
       <updated>1688083529561</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -619,6 +620,7 @@
     <MESSAGE value="style: удалены отсупы в Booking" />
     <MESSAGE value="style: удалены отсупы в BookingController" />
     <MESSAGE value="style: удалены отсупы" />
-    <option name="LAST_COMMIT_MESSAGE" value="style: удалены отсупы" />
+    <MESSAGE value="style: по порядку расставлены аннотации над классом ItemServiceImpl, а также удалены лишние &quot;}&quot; в методах" />
+    <option name="LAST_COMMIT_MESSAGE" value="style: по порядку расставлены аннотации над классом ItemServiceImpl, а также удалены лишние &quot;}&quot; в методах" />
   </component>
 </project>
