@@ -39,7 +39,8 @@ public class BookingServiceImpl implements BookingService {
     public BookingDtoOut add(Long userId, BookingDto bookingDto) {
         User user = UserMapper.toUser(userService.getUserById(userId));
         Optional<Item> itemById = itemRepository.findById(bookingDto.getItemId());
-        itemById.orElseThrow(() -> new NotFoundException(String.format("Вещь с id %s не найдена.", bookingDto.getItemId())));
+        itemById.orElseThrow(() -> new NotFoundException(String.format("Вещь с id %s не найдена.",
+                bookingDto.getItemId())));
         log.error("Вещь с id {} не найдена.", bookingDto.getItemId());
         Item item = itemById.get();
         bookingValidation(bookingDto, user, item);
@@ -52,11 +53,10 @@ public class BookingServiceImpl implements BookingService {
     public BookingDtoOut update(Long userId, Long bookingId, Boolean approved) {
         Booking booking = validateBookingDetails(userId, bookingId, 1);
         assert booking != null;
-        if (approved) {
+        if (approved)
             booking.setStatus(BookingStatus.APPROVED);
-        } else {
+         else
             booking.setStatus(BookingStatus.REJECTED);
-        }
         return BookingMapper.toBookingOut(bookingRepository.save(booking));
     }
 
@@ -114,31 +114,37 @@ public class BookingServiceImpl implements BookingService {
         userService.getUserById(ownerId);
         switch (BookingState.valueOf(state)) {
             case ALL:
-                return bookingRepository.findAllByOwnerId(ownerId, pageable).stream()
+                return bookingRepository.findAllByOwnerId(ownerId, pageable)
+                        .getContent().stream()
                         .map(BookingMapper::toBookingOut)
                         .collect(Collectors.toList());
             case CURRENT:
-                return bookingRepository.findAllCurrentBookingsByOwnerId(ownerId, LocalDateTime.now(), pageable).stream()
+                return bookingRepository.findAllCurrentBookingsByOwnerId(ownerId, LocalDateTime.now(), pageable)
+                        .getContent().stream()
                         .map(BookingMapper::toBookingOut)
                         .collect(Collectors.toList());
 
             case PAST:
-                return bookingRepository.findAllPastBookingsByOwnerId(ownerId, LocalDateTime.now(), pageable).stream()
+                return bookingRepository.findAllPastBookingsByOwnerId(ownerId, LocalDateTime.now(), pageable)
+                        .getContent().stream()
                         .map(BookingMapper::toBookingOut)
                         .collect(Collectors.toList());
 
             case FUTURE:
-                return bookingRepository.findAllFutureBookingsByOwnerId(ownerId, LocalDateTime.now(), pageable).stream()
+                return bookingRepository.findAllFutureBookingsByOwnerId(ownerId, LocalDateTime.now(), pageable)
+                        .getContent().stream()
                         .map(BookingMapper::toBookingOut)
                         .collect(Collectors.toList());
 
             case WAITING:
-                return bookingRepository.findAllWaitingBookingsByOwnerId(ownerId, LocalDateTime.now(), pageable).stream()
+                return bookingRepository.findAllWaitingBookingsByOwnerId(ownerId, LocalDateTime.now(), pageable)
+                        .getContent().stream()
                         .map(BookingMapper::toBookingOut)
                         .collect(Collectors.toList());
 
             case REJECTED:
-                return bookingRepository.findAllRejectedBookingsByOwnerId(ownerId, pageable).stream()
+                return bookingRepository.findAllRejectedBookingsByOwnerId(ownerId, pageable)
+                        .getContent().stream()
                         .map(BookingMapper::toBookingOut)
                         .collect(Collectors.toList());
             default:
@@ -177,7 +183,6 @@ public class BookingServiceImpl implements BookingService {
         }
     }
 
-
     private Booking validateBookingDetails(Long userId, Long bookingId, Integer number) {
         Optional<Booking> bookingById = bookingRepository.findById(bookingId);
         bookingById.orElseThrow(() -> new NotFoundException(String.format("Бронь с id %s не найдена.", bookingId)));
@@ -194,7 +199,6 @@ public class BookingServiceImpl implements BookingService {
                     log.warn("В брони уже изменили статус");
                     throw new ValidationException(String.format("Бронь c id %s уже изменил статус",
                             booking.getId()));
-
                 }
                 return booking;
             case 2:

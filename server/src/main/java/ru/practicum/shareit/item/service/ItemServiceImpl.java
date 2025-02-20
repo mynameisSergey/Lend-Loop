@@ -74,12 +74,10 @@ public class ItemServiceImpl implements ItemService {
             item.setName(itemFromStorage.getName());
         }
         item.setId(itemFromStorage.getId());
-        item.setRequestId(itemFromStorage.getRequestId());
+        item.setItemRequest(itemFromStorage.getItemRequest());
         item.setOwner(itemFromStorage.getOwner());
-
         return ItemMapper.toItemDto(itemRepository.save(item));
     }
-
 
     @Override
     @Transactional(readOnly = true)
@@ -108,7 +106,8 @@ public class ItemServiceImpl implements ItemService {
         userService.getUserById(userId);
         Pageable pageable = PageRequest.of(from / size, size);
 
-        List<Item> itemList = itemRepository.findAllByOwnerIdOrderByIdAsc(userId, pageable).stream().collect(Collectors.toList());
+        List<Item> itemList = itemRepository.findAllByOwnerIdOrderByIdAsc(userId, pageable).stream().collect(Collectors
+                .toList());
         List<ItemDto> items = ItemMapper.mapToItemDto(itemList);
         items.forEach(i -> {
             getLastNextBooking(i);
