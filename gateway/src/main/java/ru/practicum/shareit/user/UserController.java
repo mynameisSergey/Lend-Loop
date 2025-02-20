@@ -8,11 +8,12 @@ import ru.practicum.shareit.user.dto.UserDto;
 
 import javax.validation.Valid;
 
-@RestController
-@RequiredArgsConstructor
-@RequestMapping(path = "/users")
 @Slf4j
+@RequiredArgsConstructor
+@RestController
+@RequestMapping(path = "/users")
 public class UserController {
+
     private final UserClient userClient;
 
     @PostMapping
