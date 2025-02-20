@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9681b2f4-cd95-482b-8488-cb182a374f27" name="Changes" comment="style: удален отступ между классом и переменной" />
+    <list default="true" id="9681b2f4-cd95-482b-8488-cb182a374f27" name="Changes" comment="fix: добавлен @Getter в ErrorResponse">
+      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/item/dto/CommentDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/item/dto/CommentDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/item/dto/ItemDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/item/dto/ItemDto.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -575,7 +578,7 @@
       <option name="project" value="LOCAL" />
       <updated>1688083529561</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -602,7 +605,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Добрый день! 2 версия" />
     <MESSAGE value="Добрый день! спринт 14" />
     <MESSAGE value="Добрый день! спринт 14 2 версия" />
     <MESSAGE value="Добрый день! спринт 15 1 версия" />
@@ -627,6 +629,7 @@
     <MESSAGE value="feat: добавлен BookingController в gateway" />
     <MESSAGE value="style: добавлен отсутп между классом и переменной в BaseClient" />
     <MESSAGE value="style: удален отступ между классом и переменной" />
-    <option name="LAST_COMMIT_MESSAGE" value="style: удален отступ между классом и переменной" />
+    <MESSAGE value="fix: добавлен @Getter в ErrorResponse" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: добавлен @Getter в ErrorResponse" />
   </component>
 </project>
