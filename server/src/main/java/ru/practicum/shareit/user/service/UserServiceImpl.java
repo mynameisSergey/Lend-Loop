@@ -16,10 +16,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-@Service
 @Slf4j
 @RequiredArgsConstructor
+@Service
 public class UserServiceImpl implements UserService {
+
     private final UserRepository userRepository;
 
     @Override
@@ -36,17 +37,13 @@ public class UserServiceImpl implements UserService {
         userNotExists(userId);
         User user = UserMapper.toUser(userDto);
         UserDto userFromStorage = getUserById(userId);
-        if (Objects.isNull(user.getName())) {
-            user.setName(userFromStorage.getName());
-        }
+        if (Objects.isNull(user.getName())) user.setName(userFromStorage.getName());
         if (Objects.isNull(user.getEmail())) {
             user.setEmail(userFromStorage.getEmail());
         } else {
             String email = user.getEmail();
             boolean isEmailNotChange = userFromStorage.getEmail().equals(email);
-            if (!isEmailNotChange) {
-                validEmail(user);
-            }
+            if (!isEmailNotChange) validEmail(user);
         }
         user.setId(userId);
         validation(user);
@@ -83,10 +80,12 @@ public class UserServiceImpl implements UserService {
             log.warn("Неправильно ввели почту");
             throw new ValidationException("Адрес электронной почты не содержит @.");
         }
+
         if (user.getName().isBlank()) {
             log.warn("Неправильно ввели имя");
             throw new ValidationException("Имя пользователя не может быть пустым.");
         }
+
         if (user.getName().contains(" ")) {
             log.warn("Неправильно ввели имя");
             throw new ValidationException("Имя пользователя не может быть пустым");
@@ -100,16 +99,14 @@ public class UserServiceImpl implements UserService {
         });
     }
 
-
     private void validEmail(User user) {
         String email = user.getEmail();
         List<User> userList = userRepository.findAll();
-        for (User user1 : userList) {
+        for (User user1 : userList)
             if (user1.getEmail().contains(email)) {
                 log.error("user service получает email по ошибке: email {} уже существует.", email);
                 throw new ValidationException("Адрес электронной почты уже существует.");
             }
-        }
     }
 }
 

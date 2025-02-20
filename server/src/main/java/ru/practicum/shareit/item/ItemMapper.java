@@ -32,9 +32,8 @@ public class ItemMapper {
 
     public static List<ItemDto> mapToItemDto(Iterable<Item> items) {
         List<ItemDto> dtos = new ArrayList<>();
-        for (Item item : items) {
+        for (Item item : items)
             dtos.add(toItemDto(item));
-        }
         return dtos;
     }
 }

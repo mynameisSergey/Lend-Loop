@@ -20,8 +20,8 @@ import java.util.Objects;
 @RestController
 @RequestMapping(path = "/bookings")
 public class BookingController {
-    private static final String XSHARERUSERID = "X-SHARE-USER-Id";
 
+    private static final String XSHARERUSERID = "X-SHARE-USER-Id";
     private final BookingService bookingService;
 
     @PostMapping

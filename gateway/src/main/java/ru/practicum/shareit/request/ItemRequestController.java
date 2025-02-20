@@ -11,15 +11,17 @@ import ru.practicum.shareit.request.dto.ItemRequestDto;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
-@RestController
-@RequestMapping(path = "/requests")
+
 @RequiredArgsConstructor
 @Slf4j
 @Validated
+@RestController
+@RequestMapping(path = "/requests")
 public class ItemRequestController {
 
-    private final RequestClient requestClient;
     private static final String REQUEST_HEADER_SHARER_USER_ID = "X-Sharer-User-Id";
+
+    private final RequestClient requestClient;
 
     @PostMapping
     public ResponseEntity<Object> add(@RequestHeader(REQUEST_HEADER_SHARER_USER_ID) Long userId,

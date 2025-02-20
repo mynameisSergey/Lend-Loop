@@ -1,6 +1,10 @@
 package ru.practicum.shareit.exceptions;
 
+import lombok.Getter;
+
+@Getter
 public class ErrorResponse {
+
     private final String error;
     private String stackTrace;
 
@@ -11,13 +15,5 @@ public class ErrorResponse {
     public ErrorResponse(String error, String stackTrace) {
         this.error = error;
         this.stackTrace = stackTrace;
-    }
-
-    public String getError() {
-        return error;
-    }
-
-    public String getStackTrace() {
-        return stackTrace;
     }
 }

@@ -15,9 +15,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class BookItemRequestDto {
     private long itemId;
+
     @FutureOrPresent
     @NotNull
     private LocalDateTime start;
+
     @NotNull
     @Future
     private LocalDateTime end;

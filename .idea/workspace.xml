@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9681b2f4-cd95-482b-8488-cb182a374f27" name="Changes" comment="fix: удалены лишние зависимости в pom">
+    <list default="true" id="9681b2f4-cd95-482b-8488-cb182a374f27" name="Changes" comment="style: откорректированы отступы в между зависимостями в общем pom">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/dto/BookingDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/dto/BookingDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/model/Booking.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/model/Booking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/service/BookingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/service/BookingService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/service/BookingServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/service/BookingServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +101,7 @@
     "JUnit.shareit.user in shareit-server.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "#19 on add-item-requests",
+    "git-widget-placeholder": "#20 on add-item-requests",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/serge/dev/Shareit2",
     "project.structure.last.edited": "Modules",
@@ -581,7 +577,7 @@
       <option name="project" value="LOCAL" />
       <updated>1688083529561</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -608,17 +604,31 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Добрый день! Заранее благодарен за замечания" />
-    <MESSAGE value="Добрый день! 2 версия" />
-    <MESSAGE value="Добрый день! спринт 14" />
-    <MESSAGE value="Добрый день! спринт 14 2 версия" />
-    <MESSAGE value="Добрый день! спринт 15 1 версия" />
-    <MESSAGE value="Рефакторинг BookingController, ItemController, schema.sql и Exceptions" />
-    <MESSAGE value="Во все контроллеры добавлен ResponseEntity" />
-    <MESSAGE value="Добавлены тесты" />
     <MESSAGE value="fix: исправлена Schema" />
     <MESSAGE value="style: удалены отступы в BookingClient" />
     <MESSAGE value="fix: удалены лишние зависимости в pom" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: удалены лишние зависимости в pom" />
+    <MESSAGE value="style: удалены отсупы в Booking" />
+    <MESSAGE value="style: удалены отсупы в BookingController" />
+    <MESSAGE value="style: удалены отсупы" />
+    <MESSAGE value="style: по порядку расставлены аннотации над классом ItemServiceImpl, а также удалены лишние &quot;}&quot; в методах" />
+    <MESSAGE value="style: по порядку расставлены аннотации над классом ItemController, а также удалены лишние &quot;}&quot; в методах" />
+    <MESSAGE value="style: по порядку расставлены аннотации над классами Item, удалена аннотация @Column в User" />
+    <MESSAGE value="style: по порядку расставлены аннотации над классом UserServiceImpl, удалены лишние отсутупы между методами" />
+    <MESSAGE value="feat: добавлена функция валидации в UserController, style: по порядку расставлены аннотации над классом" />
+    <MESSAGE value="style: удален лишний отступ" />
+    <MESSAGE value="fix: удалены лишние зависимости в pom gateway" />
+    <MESSAGE value="fix: удалены лишние &quot;}&quot; в BookItemRequestDto в" />
+    <MESSAGE value="style: добавлен отступ между классом и переменной" />
+    <MESSAGE value="feat: добавлен BookingController в gateway" />
+    <MESSAGE value="style: добавлен отсутп между классом и переменной в BaseClient" />
+    <MESSAGE value="style: удален отступ между классом и переменной" />
+    <MESSAGE value="fix: добавлен @Getter в ErrorResponse" />
+    <MESSAGE value="style: добавлены отступы между переменными" />
+    <MESSAGE value="feat: добавлен ItemClient в gateway" />
+    <MESSAGE value="style: статическая переменная REQUEST_HEADER_SHARER_USER_ID перемещена в начало класса ItemController" />
+    <MESSAGE value="style: статические переменные перемещены в начало классов, удалены лишние отступы" />
+    <MESSAGE value="style: удалены лишние отступы в методах" />
+    <MESSAGE value="style: откорректированы отступы в между зависимостями в общем pom" />
+    <option name="LAST_COMMIT_MESSAGE" value="style: откорректированы отступы в между зависимостями в общем pom" />
   </component>
 </project>

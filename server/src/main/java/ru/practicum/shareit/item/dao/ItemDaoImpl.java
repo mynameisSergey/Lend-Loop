@@ -31,28 +31,22 @@ public class ItemDaoImpl implements ItemDao {
     public Item update(Item item) {
         List<Item> userItems = items.get(item.getOwner().getId());
         List<Item> toRemove = new ArrayList<>();
-        for (Item userItem : userItems) {
-            if (userItem.getId().equals(item.getId())) {
+        for (Item userItem : userItems)
+            if (userItem.getId().equals(item.getId()))
                 toRemove.add(userItem);
-            }
-        }
         userItems.removeAll(toRemove);
         userItems.add(item);
 
         return item;
     }
 
-
     @Override
     @Transactional(readOnly = true)
     public Optional<Item> getItemById(Long itemId) {
-        for (List<Item> itemList : items.values()) {
-            for (Item item : itemList) {
-                if (item.getId().equals(itemId)) {
+        for (List<Item> itemList : items.values())
+            for (Item item : itemList)
+                if (item.getId().equals(itemId))
                     return Optional.of(item);
-                }
-            }
-        }
         return Optional.empty();
     }
 
@@ -65,15 +59,12 @@ public class ItemDaoImpl implements ItemDao {
     @Transactional(readOnly = true)
     public List<Item> search(String text) {
         List<Item> itemListSearch = new ArrayList<>();
-        for (List<Item> itemList : items.values()) {
-            for (Item item : itemList) {
-                if (item.getAvailable().equals(true)) {
-                    if (item.getName().toLowerCase().contains(text.toLowerCase()) || item.getDescription().toLowerCase().contains(text.toLowerCase())) {
+        for (List<Item> itemList : items.values())
+            for (Item item : itemList)
+                if (item.getAvailable().equals(true))
+                    if (item.getName().toLowerCase().contains(text.toLowerCase()) || item.getDescription()
+                            .toLowerCase().contains(text.toLowerCase()))
                         itemListSearch.add(item);
-                    }
-                }
-            }
-        }
         return itemListSearch;
     }
 }
