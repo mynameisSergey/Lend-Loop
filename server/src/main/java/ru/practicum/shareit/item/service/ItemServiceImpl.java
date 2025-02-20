@@ -30,9 +30,10 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Service
+
 @RequiredArgsConstructor
 @Slf4j
+@Service
 public class ItemServiceImpl implements ItemService {
     private final ItemRepository itemRepository;
     private final UserService userService;
@@ -63,15 +64,12 @@ public class ItemServiceImpl implements ItemService {
                     "не является владельцем предмета id %s.", userId, itemId));
         }
         Item item = ItemMapper.toItem(itemDto);
-        if (Objects.isNull(item.getAvailable())) {
+        if (Objects.isNull(item.getAvailable()))
             item.setAvailable(itemFromStorage.getAvailable());
-        }
-        if (Objects.isNull(item.getDescription())) {
+        if (Objects.isNull(item.getDescription()))
             item.setDescription(itemFromStorage.getDescription());
-        }
-        if (Objects.isNull(item.getName())) {
+        if (Objects.isNull(item.getName()))
             item.setName(itemFromStorage.getName());
-        }
         item.setId(itemFromStorage.getId());
         item.setItemRequest(itemFromStorage.getItemRequest());
         item.setOwner(itemFromStorage.getOwner());
@@ -94,9 +92,8 @@ public class ItemServiceImpl implements ItemService {
 
         ItemDto itemDto = ItemMapper.toItemDto(item);
         itemDto.setComments(getAllComments(itemId));
-        if (!item.getOwner().getId().equals(userId)) {
+        if (!item.getOwner().getId().equals(userId))
             return itemDto;
-        }
         getLastNextBooking(itemDto);
         return itemDto;
     }
@@ -133,9 +130,8 @@ public class ItemServiceImpl implements ItemService {
     public List<ItemDto> search(Long userId, String text, Integer from, Integer size) {
         userService.getUserById(userId);
         Pageable pageable = PageRequest.of(from / size, size);
-        if (StringUtils.isBlank(text)) {
+        if (StringUtils.isBlank(text))
             return new ArrayList<>();
-        }
 
         return ItemMapper.mapToItemDto(itemRepository.findAll(pageable).getContent().stream()
                 .filter(Item::getAvailable)
