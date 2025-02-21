@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.practicum.shareit.user.dto.UserDto;
 import ru.practicum.shareit.user.service.UserService;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @Slf4j
@@ -19,13 +18,13 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public ResponseEntity<UserDto> add(@Valid @RequestBody UserDto user) {
+    public ResponseEntity<UserDto> add(@RequestBody UserDto user) {
         log.info("POST запрос на создание пользователя: {}", user);
         return ResponseEntity.ok(userService.add(user));
     }
 
     @PatchMapping("/{userId}")
-    public ResponseEntity<UserDto> update(@Valid @RequestBody UserDto userDto, @PathVariable Long userId) {
+    public ResponseEntity<UserDto> update(@RequestBody UserDto userDto, @PathVariable Long userId) {
         log.info("PATCH запрос на обновление пользователя c id: {}", userId);
         return ResponseEntity.ok(userService.update(userId, userDto));
     }

@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.practicum.shareit.request.dto.ItemRequestDto;
 import ru.practicum.shareit.request.service.RequestService;
 
-import javax.validation.Valid;
-import javax.validation.constraints.Min;
 import java.util.List;
 
 @Slf4j
@@ -26,7 +24,7 @@ public class ItemRequestController {
 
     @PostMapping
     public ResponseEntity<ItemRequestDto> add(@RequestHeader(XSHARERUSERID) Long userId,
-                                              @Valid @RequestBody ItemRequestDto requestDto) {
+                                              @RequestBody ItemRequestDto requestDto) {
         return ResponseEntity.ok(requestService.add(userId, requestDto));
     }
 
@@ -37,14 +35,14 @@ public class ItemRequestController {
 
     @GetMapping("/all")
     public ResponseEntity<List<ItemRequestDto>> getAllRequests(@RequestHeader(XSHARERUSERID) Long userId,
-                                               @RequestParam(name = "from", defaultValue = "0") @Min(0) Integer from,
-                                               @RequestParam(name = "size", defaultValue = "10") @Min(1) Integer size) {
+                                                               @RequestParam(name = "from", defaultValue = "0") Integer from,
+                                                               @RequestParam(name = "size", defaultValue = "10") Integer size) {
         return ResponseEntity.ok(requestService.getAllRequests(userId, from, size));
     }
 
     @GetMapping("/{requestId}")
     public ResponseEntity<ItemRequestDto> get(@RequestHeader(XSHARERUSERID) Long userId,
-                              @PathVariable Long requestId) {
+                                              @PathVariable Long requestId) {
         return ResponseEntity.ok(requestService.getRequestById(userId, requestId));
     }
 }
