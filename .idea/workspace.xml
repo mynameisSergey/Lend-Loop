@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9681b2f4-cd95-482b-8488-cb182a374f27" name="Changes" comment="fix: удалена валидация в контроллерах сервера">
+    <list default="true" id="9681b2f4-cd95-482b-8488-cb182a374f27" name="Changes" comment="fix: удалены зависимости из общего pom.xml">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/user/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/user/dto/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,53 +75,53 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.ShareItApp.executor": "Run",
-    "JUnit.BookingControllerTest.createBooking_whenBookingIsValid_thenReturnStatusOk.executor": "Run",
-    "JUnit.BookingDtoTest.executor": "Run",
-    "JUnit.BookingDtoTest.startSerializes.executor": "Run",
-    "JUnit.BookingMapperTest.executor": "Run",
-    "JUnit.BookingRepositoryTest.executor": "Run",
-    "JUnit.BookingRepositoryTest.getLastBooking.executor": "Run",
-    "JUnit.BookingRepositoryTest.getNextBooking.executor": "Run",
-    "JUnit.BookingServiceIT.executor": "Run",
-    "JUnit.CommentRepositoryTest.findAllByItemId.executor": "Run",
-    "JUnit.ItemControllerTest.createItem_whenItemIsValid_thenReturnStatusOk.executor": "Run",
-    "JUnit.ItemControllerTest.executor": "Run",
-    "JUnit.ItemRepositoryTest.executor": "Run",
-    "JUnit.ItemRequestControllerTest.createRequest.executor": "Run",
-    "JUnit.ItemRequestControllerTest.executor": "Run",
-    "JUnit.ItemServiceIT.executor": "Run",
-    "JUnit.RequestServiceIT.executor": "Run",
-    "JUnit.UserControllerTest.createUser_wheNameIsNotValid_thenReturnBadRequest.executor": "Run",
-    "JUnit.UserControllerTest.createUser_wheUserEmailIsNotValid_thenReturnBadRequest.executor": "Debug",
-    "JUnit.UserControllerTest.executor": "Run",
-    "JUnit.UserControllerTest.updateUser_WhenUserIsValid.executor": "Run",
-    "JUnit.UserServiceImplTest.deleteUser_whenUserExist_userRepositoryDeleteInvoked.executor": "Run",
-    "JUnit.UserServiceImplTest.executor": "Run",
-    "JUnit.java in shareit-server.executor": "Run",
-    "JUnit.shareit in shareit-server (1).executor": "Run",
-    "JUnit.shareit in shareit-server.executor": "Run",
-    "JUnit.shareit.user in shareit-server.executor": "Run",
-    "Maven.shareit [clean].executor": "Run",
-    "Maven.shareit [package].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "add-item-requests",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/serge/dev/Shareit2",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.ShareItApp.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BookingControllerTest.createBooking_whenBookingIsValid_thenReturnStatusOk.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BookingDtoTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BookingDtoTest.startSerializes.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BookingMapperTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BookingRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BookingRepositoryTest.getLastBooking.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BookingRepositoryTest.getNextBooking.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BookingServiceIT.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CommentRepositoryTest.findAllByItemId.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ItemControllerTest.createItem_whenItemIsValid_thenReturnStatusOk.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ItemControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ItemRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ItemRequestControllerTest.createRequest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ItemRequestControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ItemServiceIT.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RequestServiceIT.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.createUser_wheNameIsNotValid_thenReturnBadRequest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.createUser_wheUserEmailIsNotValid_thenReturnBadRequest.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.UserControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.updateUser_WhenUserIsValid.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceImplTest.deleteUser_whenUserExist_userRepositoryDeleteInvoked.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceImplTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.java in shareit-server.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.shareit in shareit-server (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.shareit in shareit-server.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.shareit.user in shareit-server.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.shareit [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.shareit [package].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;add-item-requests&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/serge/dev/java-shareit&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "Shell Script"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;Shell Script&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="ru.practicum.shareit.item.service" />
@@ -586,7 +590,7 @@
       <option name="project" value="LOCAL" />
       <updated>1688083529561</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -613,7 +617,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix: удалены лишние зависимости в pom" />
     <MESSAGE value="style: удалены отсупы в Booking" />
     <MESSAGE value="style: удалены отсупы в BookingController" />
     <MESSAGE value="style: удалены отсупы" />
@@ -638,6 +641,7 @@
     <MESSAGE value="docs: добавлена информация о проекте в файл README" />
     <MESSAGE value="style: удален лишний отступ" />
     <MESSAGE value="fix: удалена валидация в контроллерах сервера" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: удалена валидация в контроллерах сервера" />
+    <MESSAGE value="fix: удалены зависимости из общего pom.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: удалены зависимости из общего pom.xml" />
   </component>
 </project>

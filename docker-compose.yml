@@ -20,18 +20,20 @@ services:
       - db
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/shareit
+      - POSTGRES_PASSWORD=shareit
+      - POSTGRES_USER=shareit
 
   db:
-    # образ, из которого должен быть запущен контейнер
     image: postgres:13.7-alpine
     container_name: db
     ports:
       - "5432:5432"
-    # volume и связанная с ним директория в контейнере
     volumes:
-      - /var/lib/postgresql/data/
-    # переменные окружения
+      - db_data:/var/lib/postgresql/data/
     environment:
       - POSTGRES_DB=shareit
       - POSTGRES_USER=shareit
       - POSTGRES_PASSWORD=shareit
+
+volumes:
+  db_data:
