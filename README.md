@@ -2,7 +2,7 @@
 
 #### Веб-решение для обмена вещами в аренду, состоящее из микросервисов, взаимодействующих через HTTP-запросы.
 
-![](https://github.com/mynameisSergey/Lend-Loop/blob/main/img/%D0%A0%D0%B8%D1%81%D1%83%D0%BD%D0%BE%D0%BA.png)
+![](https://github.com/mynameisSergey/Lend-Loop/blob/main/img/SharingMap-%D0%9E%D0%B1%D1%89%D0%B0%D1%8F-%D1%84%D0%BE%D1%82%D0%BE.jpg)
 
 #### Основные функции:
 * Создание запросов на аренду вещей с указанием характеристик и срока.
