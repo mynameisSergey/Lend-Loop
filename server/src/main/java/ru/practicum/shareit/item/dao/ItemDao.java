@@ -17,4 +17,5 @@ public interface ItemDao {
     List<Item> getAll(Long userId);
 
     List<Item> search(String text);
+
 }

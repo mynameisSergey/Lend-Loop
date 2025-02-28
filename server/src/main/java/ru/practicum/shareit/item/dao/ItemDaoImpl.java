@@ -15,7 +15,6 @@ import java.util.concurrent.atomic.AtomicLong;
 public class ItemDaoImpl implements ItemDao {
 
     private final Map<Long, List<Item>> items = new HashMap<>();
-
     private final AtomicLong itemId = new AtomicLong();
 
     @Override
@@ -67,4 +66,5 @@ public class ItemDaoImpl implements ItemDao {
                         itemListSearch.add(item);
         return itemListSearch;
     }
+
 }
