@@ -27,7 +27,8 @@ public class BookingController {
     public ResponseEntity<BookingDtoOut> create(@RequestHeader(XSHARERUSERID) Long userId,
                                                 @RequestBody BookingDto bookingDto) {
         log.info("POST запрос на создание нового бронирования вещи: {} от пользователя c id: {}", bookingDto, userId);
-        return ResponseEntity.ok(bookingService.add(userId, bookingDto));
+        BookingDtoOut createdBooking = bookingService.add(userId, bookingDto);
+        return ResponseEntity.ok(createdBooking);
     }
 
     @PatchMapping("/{bookingId}")
@@ -36,7 +37,8 @@ public class BookingController {
                                                       Long bookingId,
                                                       @RequestParam(name = "approved") Boolean approved) {
         log.info("PATCH запрос на обновление статуса бронирования вещи : {} от владельца с id: {}", bookingId, userId);
-        return ResponseEntity.ok(bookingService.update(userId, bookingId, approved));
+        BookingDtoOut updatedBooking = bookingService.update(userId, bookingId, approved);
+        return ResponseEntity.ok(updatedBooking);
     }
 
     @GetMapping("/{bookingId}")
@@ -44,7 +46,8 @@ public class BookingController {
                                                         @PathVariable("bookingId")
                                                         Long bookingId) {
         log.info("GET запрос на получение данных о конкретном бронировании {} от пользователся с id: {}", bookingId, userId);
-        return ResponseEntity.ok(bookingService.getBookingById(userId, bookingId));
+        BookingDtoOut booking = bookingService.getBookingById(userId, bookingId);
+        return ResponseEntity.ok(booking);
     }
 
     @GetMapping
@@ -55,7 +58,8 @@ public class BookingController {
         log.info("GET запрос на получение списка всех бронирований текущего пользователя с id: {} и статусом {}",
                 userId, bookingState);
         validState(bookingState);
-        return ResponseEntity.ok(bookingService.getAll(userId, bookingState, from, size));
+        List<BookingDtoOut> bookings = bookingService.getAll(userId, bookingState, from, size);
+        return ResponseEntity.ok(bookings);
     }
 
     @GetMapping("/owner")
@@ -65,7 +69,8 @@ public class BookingController {
                                                            @RequestParam(value = "size", defaultValue = "10") Integer size) {
         log.info("GET запрос на получение списка всех бронирований текущего владельца с id: {} и статусом {}", ownerId, bookingState);
         validState(bookingState);
-        return ResponseEntity.ok(bookingService.getAllOwner(ownerId, bookingState, from, size));
+        List<BookingDtoOut> ownerBookings = bookingService.getAllOwner(ownerId, bookingState, from, size);
+        return ResponseEntity.ok(ownerBookings);
     }
 
     private void validState(String bookingState) {
