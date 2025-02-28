@@ -9,4 +9,5 @@ import lombok.Setter;
 @RequiredArgsConstructor
 public class ErrorResponse {
     private final String error;
+
 }
