@@ -9,4 +9,5 @@ import ru.practicum.shareit.item.model.Item;
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Long> {
     Page<Item> findAllByOwnerIdOrderByIdAsc(Long ownerId, Pageable pageable);
+
 }

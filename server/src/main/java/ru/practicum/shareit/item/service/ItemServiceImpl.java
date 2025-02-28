@@ -1,8 +1,8 @@
 package ru.practicum.shareit.item.service;
 
-import io.micrometer.core.instrument.util.StringUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -129,10 +129,10 @@ public class ItemServiceImpl implements ItemService {
     @Transactional(readOnly = true)
     public List<ItemDto> search(Long userId, String text, Integer from, Integer size) {
         userService.getUserById(userId);
-        Pageable pageable = PageRequest.of(from / size, size);
         if (StringUtils.isBlank(text))
             return new ArrayList<>();
 
+        Pageable pageable = PageRequest.of(from / size, size);
         return ItemMapper.mapToItemDto(itemRepository.findAll(pageable).getContent().stream()
                 .filter(Item::getAvailable)
                 .filter(item -> item.getName().toLowerCase().contains(text.toLowerCase())
