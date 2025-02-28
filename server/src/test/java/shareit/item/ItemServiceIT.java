@@ -130,4 +130,5 @@ public class ItemServiceIT {
                 .assertThrows(RuntimeException.class,
                         () -> itemService.getItemById(userDto1.getId(), itemId));
     }
+
 }

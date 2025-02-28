@@ -178,4 +178,5 @@ class UserServiceImplTest {
 
         assertEquals(userNotFoundException.getMessage(), String.format("Пользователь с id: %s не найден!", userId));
     }
+
 }

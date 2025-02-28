@@ -125,4 +125,5 @@ class ItemRequestControllerTest {
 
         assertEquals(objectMapper.writeValueAsString(requestDto), result);
     }
+
 }

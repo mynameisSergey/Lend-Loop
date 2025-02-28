@@ -77,4 +77,5 @@ class RequestRepositoryTest {
         assertEquals(requests.size(), 1);
         assertEquals(requests.get(0).getDescription(), "request description");
     }
+
 }

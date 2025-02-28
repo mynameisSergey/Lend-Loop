@@ -15,13 +15,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @JsonTest
 class BookingDtoTest {
+    private static final String DATE_TIME = "2023-05-13T17:33:33";
+    private BookingDto bookingDto = null;
 
     @Autowired
     private JacksonTester<BookingDto> json;
-
-    private static final String DATE_TIME = "2023-05-13T17:33:33";
-
-    private BookingDto bookingDto = null;
 
     @BeforeEach
     public void init() {
@@ -47,4 +45,5 @@ class BookingDtoTest {
         assertThat(json.write(bookingDto)).extractingJsonPathStringValue("$.end")
                 .isEqualTo(DATE_TIME);
     }
+
 }

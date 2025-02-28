@@ -126,4 +126,5 @@ class RequestServiceImplTest {
         assertEquals(requestNotFoundException.getMessage(), String.format("Запрос с id: %s" +
                 " не был найден.", request.getId()));
     }
+
 }

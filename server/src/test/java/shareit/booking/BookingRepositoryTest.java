@@ -284,6 +284,7 @@ class BookingRepositoryTest {
             fail();
         }
     }
+
 }
 
 

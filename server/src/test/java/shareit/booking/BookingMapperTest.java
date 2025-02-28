@@ -31,4 +31,5 @@ class BookingMapperTest {
         assertEquals(1L, actualBookingItemDto.getId());
         assertEquals(1L, actualBookingItemDto.getBookerId());
     }
+
 }

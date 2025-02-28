@@ -118,7 +118,6 @@ class UserControllerTest {
         assertEquals(objectMapper.writeValueAsString(userDtoToUpdate), result);
     }
 
-
     @Test
     @SneakyThrows
     @DisplayName("Тестирование получения пользователя по Id")
@@ -160,4 +159,5 @@ class UserControllerTest {
 
         verify(userService, times(1)).delete(userId);
     }
+
 }

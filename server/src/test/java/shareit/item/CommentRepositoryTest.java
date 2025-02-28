@@ -47,7 +47,6 @@ class CommentRepositoryTest {
             .text("comment")
             .build();
 
-
     @BeforeEach
     public void init() {
         testEntityManager.persist(user);
@@ -69,4 +68,5 @@ class CommentRepositoryTest {
         assertEquals(comments.size(), 1);
         assertEquals(comments.get(0).getText(), "comment");
     }
+
 }

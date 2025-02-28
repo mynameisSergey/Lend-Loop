@@ -73,7 +73,6 @@ class ItemServiceImplTest {
             .email("email2@email.com")
             .build();
 
-
     private final UserDto userDto = UserDto.builder()
             .id(1L)
             .name("username")
@@ -314,6 +313,6 @@ class ItemServiceImplTest {
 
         assertEquals(userBookingsNotFoundException.getMessage(), String.format("Пользователь с id %s должно быть хотя бы одно бронирование " +
                 "предмета с id %s.", user.getId(), item.getId()));
-
     }
+
 }

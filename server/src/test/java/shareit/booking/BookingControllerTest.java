@@ -226,4 +226,5 @@ class BookingControllerTest {
                         .header("X-Sharer-User-Id", user.getId()))
                 .andExpect(status().isInternalServerError());
     }
+
 }

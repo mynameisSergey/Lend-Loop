@@ -43,4 +43,5 @@ public class UserServiceIT {
         Assertions
                 .assertThrows(NotFoundException.class, () -> userService.getUserById(userId));
     }
+
 }

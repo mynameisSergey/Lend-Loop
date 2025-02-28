@@ -106,4 +106,5 @@ public class BookingServiceIT {
                 .assertThrows(NotFoundException.class,
                         () -> bookingService.update(userId, bookingId, true));
     }
+
 }

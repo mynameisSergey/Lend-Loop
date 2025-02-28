@@ -58,4 +58,5 @@ public class RequestServiceIT {
                 .assertThrows(RuntimeException.class,
                         () -> requestService.getRequestById(userDto.getId(), requestId));
     }
+
 }

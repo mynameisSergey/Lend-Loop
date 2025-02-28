@@ -42,7 +42,6 @@ class ItemRepositoryTest {
             .owner(user)
             .build();
 
-
     @BeforeEach
     public void addItems() {
         testEntityManager.persist(user);
@@ -63,4 +62,5 @@ class ItemRepositoryTest {
         assertEquals(items.size(), 1);
         assertEquals(items.get(0).getName(), "name");
     }
+
 }
