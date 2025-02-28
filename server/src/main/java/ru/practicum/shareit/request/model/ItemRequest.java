@@ -9,6 +9,7 @@ import ru.practicum.shareit.item.model.Item;
 import ru.practicum.shareit.user.model.User;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,7 @@ public class ItemRequest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull(message = "Description cannot be null")
     @Column(name = "description", nullable = false, length = 255)
     private String description;
 
@@ -33,9 +35,9 @@ public class ItemRequest {
     private User requester;
 
     @CreationTimestamp
-    @Column(name = "created")
+    @Column(name = "created",  updatable = false)
     private LocalDateTime created;
 
-    @OneToMany(mappedBy = "itemRequest")
+    @OneToMany(mappedBy = "itemRequest", cascade = CascadeType.ALL)
     private List<Item> items = new ArrayList<>();
 }

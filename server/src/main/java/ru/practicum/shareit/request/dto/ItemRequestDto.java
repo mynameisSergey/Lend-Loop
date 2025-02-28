@@ -21,12 +21,13 @@ public class ItemRequestDto {
 
     private Long id;
 
-    @NotNull
-    @Size(max = 255)
+    @NotNull(message = "Description cannot be null")
+    @Size(max = 255, message = "Description must be less than or equal to 255 characters")
     private String description;
 
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     @DateTimeFormat(pattern = "yyyy-MM-ddTHH:mm:ss")
+    @NotNull(message = "Creation date cannot be null")
     private LocalDateTime created;
 
     private List<ItemDto> items;
