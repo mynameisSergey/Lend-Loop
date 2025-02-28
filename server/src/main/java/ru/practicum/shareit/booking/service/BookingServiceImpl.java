@@ -188,33 +188,34 @@ public class BookingServiceImpl implements BookingService {
     }
 
     private Booking validateBookingDetails(Long userId, Long bookingId, Integer number) {
-        Optional<Booking> bookingById = bookingRepository.findById(bookingId);
-        bookingById.orElseThrow(() -> new NotFoundException(String.format("Бронь с id %s не найдена.", bookingId)));
-        log.error("Бронь с id {} не найдена.", bookingId);
+        Booking booking = bookingRepository.findById(bookingId)
+                .orElseThrow(() -> {
+                    log.error("Бронь с id {} не найдена.", bookingId);
+                    return new NotFoundException(String.format("Бронь с id %s не найдена.", bookingId));
+                });
 
-        Booking booking = bookingById.get();
         switch (number) {
             case 1:
                 if (!booking.getItem().getOwner().getId().equals(userId)) {
-                    log.warn("Пользователь не является владельцем вещи");
+                    log.warn("Пользователь с id {} не является владельцем вещи.", userId);
                     throw new NotFoundException(String.format("Пользователь с id %s не является владельцем", userId));
                 }
                 if (!booking.getStatus().equals(BookingStatus.WAITING)) {
-                    log.warn("В брони уже изменили статус");
-                    throw new ValidationException(String.format("Бронь c id %s уже изменил статус",
-                            booking.getId()));
+                    log.warn("В брони с id {} уже изменили статус.", booking.getId());
+                    throw new ValidationException(String.format("Бронь c id %s уже изменил статус", booking.getId()));
+                }
+                return booking;
 
-                }
-                return booking;
             case 2:
-                if (!booking.getBooker().getId().equals(userId)
-                        && !booking.getItem().getOwner().getId().equals(userId)) {
-                    log.warn("Пользователь не является ни владельцем, ни автором бронирования");
-                    throw new NotFoundException(String.format("Пользователь с id %s не является владельцем или автором" +
-                            " бронирования ", userId));
+                if (!booking.getBooker().getId().equals(userId) &&
+                        !booking.getItem().getOwner().getId().equals(userId)) {
+                    log.warn("Пользователь с id {} не является ни владельцем, ни автором бронирования.", userId);
+                    throw new NotFoundException(String.format("Пользователь с id %s не является владельцем или автором бронирования", userId));
                 }
                 return booking;
+
+            default:
+                throw new IllegalArgumentException(String.format("Некорректное значение number: %d", number));
         }
-        return null;
     }
 }
