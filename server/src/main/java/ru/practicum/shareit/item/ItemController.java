@@ -19,7 +19,6 @@ import java.util.List;
 public class ItemController {
 
     private static final String XSHARERUSERID = "X-SHARE-USER-Id";
-
     private final ItemService itemService;
 
     @PostMapping
@@ -67,4 +66,5 @@ public class ItemController {
                                                     @PathVariable Long itemId) {
         return ResponseEntity.ok(itemService.createComment(userId, commentDto, itemId));
     }
+
 }
