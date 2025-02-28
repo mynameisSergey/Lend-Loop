@@ -46,4 +46,5 @@ public class UserController {
         log.info("DELETE запрос на удаление пользователя с id: {}", userId);
         userService.delete(userId);
     }
+
 }

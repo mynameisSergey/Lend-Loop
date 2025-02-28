@@ -65,9 +65,14 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public UserDto getUserById(Long userId) {
         userNotExists(userId);
-        Optional<User> user = userRepository.findById(userId);
-        user.ifPresent(this::validation);
-        return UserMapper.toUserDto(user.get());
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new NotFoundException("User not found with id: " + userId));
+
+        // Выполняем валидацию
+        validation(user);
+
+        // Возвращаем DTO пользователя
+        return UserMapper.toUserDto(user);
     }
 
     private void validation(User user) throws ValidationException {
@@ -108,5 +113,6 @@ public class UserServiceImpl implements UserService {
                 throw new ValidationException("Адрес электронной почты уже существует.");
             }
     }
+
 }
 
