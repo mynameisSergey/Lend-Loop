@@ -1,4 +1,5 @@
-# Share It
+# Lend-Loop
+
 Используемые технологии и инструменты:
 - Java 11, Spring Boot, Spring Data JPA, Hibernate, Docker, JUnit, Mockito
 
