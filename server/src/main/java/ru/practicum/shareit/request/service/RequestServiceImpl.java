@@ -14,6 +14,7 @@ import ru.practicum.shareit.user.UserMapper;
 import ru.practicum.shareit.user.model.User;
 import ru.practicum.shareit.user.service.UserService;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -31,10 +32,19 @@ public class RequestServiceImpl implements RequestService {
     @Override
     @Transactional
     public ItemRequestDto add(Long userId, ItemRequestDto itemRequestDto) {
+        if (itemRequestDto == null) {
+            throw new IllegalArgumentException("ItemRequestDto cannot be null");
+        }
         User user = UserMapper.toUser(userService.getUserById(userId));
+        if (user == null) {
+            throw new EntityNotFoundException("User not found with id: " + userId);
+        }
         ItemRequest request = RequestMapping.toRequest(user, itemRequestDto);
         request.setRequester(user);
-        return RequestMapping.toRequestDto(requestRepository.save(request));
+        ItemRequest savedRequest = requestRepository.save(request);
+
+        // Возвращаем DTO
+        return RequestMapping.toRequestDto(savedRequest);
     }
 
     @Override
