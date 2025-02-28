@@ -24,4 +24,5 @@ public class UserDto {
     @NotEmpty(message = "Поле email не должно быть пустым")
     @Email(message = "Email не корректен")
     private String email;
+
 }

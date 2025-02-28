@@ -49,7 +49,4 @@ public class UserDaoImpl implements UserDao {
         return users.get(userId);
     }
 
-    private boolean userNotExists(Long user) {
-        return users.containsKey(user);
-    }
 }
