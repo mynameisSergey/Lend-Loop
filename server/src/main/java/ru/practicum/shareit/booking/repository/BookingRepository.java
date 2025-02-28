@@ -33,7 +33,6 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
             "ORDER BY b.start_date DESC", nativeQuery = true)
     Page<Booking> findAllPastBookingsByBookerId(Long bookerId, LocalDateTime currentTime, Pageable pageable);
 
-
     @Query(value = "SELECT b.* FROM bookings as b " +
             "JOIN items as i ON i.id = b.item_id " +
             "WHERE b.booker_id = ?1 " +
@@ -55,7 +54,6 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
             "AND b.status = 'REJECTED' " +
             "ORDER BY b.start_date DESC", nativeQuery = true)
     Page<Booking> findAllRejectedBookingsByBookerId(Long bookerId, Pageable pageable);
-
 
     @Query(value = "SELECT b.* FROM bookings as b " +
             "JOIN items as i ON i.id = b.item_id  " +
